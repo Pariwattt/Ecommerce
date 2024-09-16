@@ -1,17 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Home from './components/home'
+import Nav from './components/home'
+import Order from './components/order'
+import Report from './components/report'
+import Settings from './components/settings'
+import Getmoney from './components/getmoney'
+import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
+  return(
+    <Router>
+      <Routes>
+        <Route path='/' element={<Nav/>}/>
+        <Route path='/Order' element={<Order/>}/>
+        <Route path='/Report' element={<Report/>}/>
+        <Route path='/settings' element={<Settings/>}/>
 
-  return (
-    <>
-      <Home/>
-    </>
-  )
+        <Route path='/getmoney' element={<Getmoney/>}/>
+      </Routes>
+    </Router>
+  );
 }
 
 export default App

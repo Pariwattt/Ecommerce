@@ -1,0 +1,42 @@
+
+.textbox {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #000;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    margin: 20px auto;
+    text-align: center;
+}
+.input-box {
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    border: 2px solid #000;
+    margin: 10px auto;
+    display: block;
+    font-size: 24px;
+    text-align: center;
+}
+.input-box::placeholder {
+    font-size: 18px;
+    color: #999;
+}
+.container {
+    text-align: center;
+    margin-top: 20px;
+}
+.btn {
+    padding: 20px 40px;
+    margin: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.btndelete {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    color: rgb(201, 0, 0);
+}
+
