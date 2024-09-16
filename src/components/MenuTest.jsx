@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../Css/style.css'; // ใช้สไตล์ CSS เดิม
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
 // คอมโพเนนต์สำหรับการจัดการเมนู
 const Menu = ({ addItemToCart, addNewMenuItem, menuItems, deleteMenuItem }) => {
@@ -149,7 +150,7 @@ const Cart = ({ cart, removeItemFromCart, total, discount, setDiscount }) => {
       </div>
       <div className="checkout-buttons">
         <button className="cancel">ลบ</button>
-        <button className="checkout">ชำระเงิน</button>
+        <button className="checkout" onClick={() => navigate('/TestPage')}>ชำระเงิน</button>
       </div>
     </div>
   );
@@ -204,10 +205,10 @@ const App = () => {
 
   return (
     <div className="container">
-      <Menu 
-        addItemToCart={addItemToCart} 
-        addNewMenuItem={addNewMenuItem} 
-        menuItems={menuItems} 
+      <Menu
+        addItemToCart={addItemToCart}
+        addNewMenuItem={addNewMenuItem}
+        menuItems={menuItems}
         deleteMenuItem={deleteMenuItem} // ส่งฟังก์ชันลบเมนู
       />
       <Cart
