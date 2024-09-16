@@ -5,6 +5,7 @@ import Order from './components/order'
 import Report from './components/report'
 import Settings from './components/settings'
 import Getmoney from './components/getmoney'
+import Menu from './components/MenuTest'
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/Report' element={<Report/>}/>
         <Route path='/settings' element={<Settings/>}/>
 
+        <Route path='/MenuTest' element={<Menu/>}/>
         <Route path='/getmoney' element={<Getmoney/>}/>
       </Routes>
     </Router>

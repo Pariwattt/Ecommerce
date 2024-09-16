@@ -151,7 +151,7 @@ const Cart = ({ cart, removeItemFromCart, total, discount, setDiscount }) => {
       </div>
       <div className="checkout-buttons">
         <button className="cancel">ลบ</button>
-        <button className="checkout" onClick={() => navigate('/about')}>ชำระเงิน</button>
+        <button className="checkout" onClick={() => navigate('/getmoney')}>ชำระเงิน</button>
       </div>
     </div>
   );

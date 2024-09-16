@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';  // เพิ่มการ import useState
 import '../css/home.css'
 import '../css/getmoney.css'
 
-
-const App = () => {
-    const [value, setValue] = useState('');
+const GetMoney = () => {
+    const [value, setValue] = useState(''); // เรียกใช้ useState
 
     // ฟังก์ชันสำหรับเพิ่มตัวเลขใน input
     const increaseValue = (amount) => {
@@ -13,7 +12,7 @@ const App = () => {
 
     // ฟังก์ชันสำหรับลบข้อมูลใน input
     const clearValue = () => {
-        setValue('');
+        setValue(''); // ตั้งค่า value ให้เป็นค่าว่าง
     };
 
     return (
@@ -42,4 +41,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default GetMoney;
