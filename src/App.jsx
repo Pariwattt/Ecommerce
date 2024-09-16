@@ -1,20 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './Css/style.css';
+import './css/style.css';
 import './App.css';
-import MenuTest from './Components/MenuTest.jsx';
-import TestPage from './components/TestPage.jsx';
+import MenuTest from './components/MenuTest.jsx'; // นำเข้าไฟล์ MenuTest.jsx ที่สร้างไว้
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<MenuTest />} /> {/* หน้าเมนู */}
-          <Route path="/testpage" element={<TestPage />} /> {/* หน้า TestPage */}
-        </Routes>
-      </div>
-    </Router>
+    <div className="App">
+      <MenuTest />
+    </div>
   );
 }
 
