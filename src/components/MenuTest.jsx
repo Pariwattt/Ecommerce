@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../css/style.css';
+import { useNavigate } from 'react-router-dom';
+
 
 // คอมโพเนนต์สำหรับการจัดการเมนู
 const Menu = ({ addItemToCart, addNewMenuItem, menuItems, deleteMenuItem }) => {
@@ -95,7 +97,7 @@ const Menu = ({ addItemToCart, addNewMenuItem, menuItems, deleteMenuItem }) => {
 const Cart = ({ cart, removeItemFromCart, total, discount, setDiscount }) => {
   // คำนวณยอดรวมหลังหักส่วนลด
   const finalTotal = total - (total * (parseFloat(discount) || 0)) / 100;
-
+  const navigate = useNavigate(); // นำทางไปยังหน้า "/about"
   // ฟังก์ชันสำหรับอัปเดตส่วนลด
   const handleDiscountChange = (e) => {
     let value = e.target.value;
@@ -149,7 +151,7 @@ const Cart = ({ cart, removeItemFromCart, total, discount, setDiscount }) => {
       </div>
       <div className="checkout-buttons">
         <button className="cancel">ลบ</button>
-        <button className="checkout">ชำระเงิน</button>
+        <button className="checkout" onClick={() => navigate('/about')}>ชำระเงิน</button>
       </div>
     </div>
   );
