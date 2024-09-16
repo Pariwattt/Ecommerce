@@ -1,0 +1,64 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    position: relative;
+}
+nav {
+    position: relative; /* กำหนดให้ nav เป็น relative */
+}
+.button-container {
+    display: flex;
+    flex-direction: column; /* จัดปุ่มในแนวตั้ง */
+    gap: 5px;/* ระยะห่างระหว่างปุ่ม*/
+}
+.button-row {
+    display: flex;
+    gap: 5px; /* ระยะห่างระหว่างปุ่มในแถว */
+}
+
+.button-bottom-right /* ปุ่มอยู่มุมขวาล่าง*/{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.custom-button {
+    padding: 10px 30px;/* กำหนดพื้นที่ว่างในปุ่ม*/
+    background-color: #ffffffd0;/* สีพื้นหลังของปุ่ม  */
+    border: 2px solid #000000; /* กรอบปุ่ม */
+    color: rgb(0, 0, 0); /* สีของตัวอักษร */
+    font-size: 16px; /* ขนาดตัวอักษร */
+    border-radius: 12px; /* ความโค้งของมุมปุ่ม */
+    cursor: pointer;  /* เปลี่ยนเป็นรูปมือเมื่อชี้*/
+}
+
+.custom-button:hover {
+    background-color: #989696; /* เปลี่ยนสีเมื่อเอาเมาส์ไปวาง */
+}
+/* ปรับขนาดปุ่ม */
+.button-order {
+    width: 230px;
+    height: 50px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.button-report {
+    width: 113px;
+    height: 40px;
+    font-size: 14px;
+    padding: 8px;
+}
+
+.button-setting {
+    width: 112px;
+    height: 40px;
+    font-size: 14px;
+    padding: 8px;
+}
+
+.button-logout {
+    width: 80px;
+    height: 30px;
+    font-size: 12px;
+    padding: 5px;
+}
