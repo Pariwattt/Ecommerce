@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/style.css';
+import '../css/menu.css';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -116,7 +116,6 @@ const Cart = ({ cart, removeItemFromCart, total, discount, setDiscount }) => {
     <div className="cart">
       <div className="cart-header">
         <span>โต๊ะ...</span>
-        <span>เงินสด</span>
       </div>
       <div className="cart-items">
         {cart.map((item, index) => (
@@ -150,7 +149,7 @@ const Cart = ({ cart, removeItemFromCart, total, discount, setDiscount }) => {
         <span>ยอดรวมหลังหักส่วนลด {finalTotal.toFixed(2)} บาท</span>
       </div>
       <div className="checkout-buttons">
-        <button className="cancel">ลบ</button>
+        <button className="cancel" onClick={() => navigate('/order')}>ย้อนกลับ</button>
         <button className="checkout" onClick={() => navigate('/getmoney')}>ชำระเงิน</button>
       </div>
     </div>

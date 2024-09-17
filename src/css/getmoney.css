@@ -22,7 +22,7 @@
     font-size: 18px;
     color: #999;
 }
-.container {
+.containers {
     text-align: center;
     margin-top: 20px;
 }
@@ -39,4 +39,16 @@
     cursor: pointer;
     color: rgb(201, 0, 0);
 }
+select {
+    font-size: 20px; /* ปรับขนาดตัวอักษร */
+    padding: 10px;
+    border-radius: 50px;
+    width: 350px;
+    height: 50px;
+    text-align: center;
+}
 
+select option {
+    font-size: 20px; /* ปรับขนาดตัวเลือก */
+ 
+}

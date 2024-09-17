@@ -5,10 +5,17 @@ import { useNavigate } from "react-router-dom";
 const Order =()=>{
     const Navigate = useNavigate()
     return (
-    <div className="order-container">
+        <div className="order-container">
+        <button
+            className="close-button"
+            onClick={() => Navigate('../')}
+            >
+    &times;
+    </button>
+   
 
         <div className="order-title">ORDER</div>
-            <div className="table-grid" onClick={() => Navigate('/MenuTest')}>
+            <div className="table-grid" onClick={() => Navigate('/menu')}>
                 <button className="table-button">โต๊ะ 1</button>
                 <button className="table-button">โต๊ะ 2</button>
                 <button className="table-button">โต๊ะ 3</button>
