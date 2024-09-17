@@ -8,7 +8,7 @@ import Getmoney from './components/getmoney'
 import Menu from './components/Menu'
 import Pay  from './components/pay'
 import Month from './components/month';
-import Redata from './components/retdata';
+import Redata from './components/redata';
 
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 
