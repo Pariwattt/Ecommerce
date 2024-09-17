@@ -1,84 +1,108 @@
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
 
-}
-/* Header Styles */
-header {
-    background-color: #333;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    font-size: 24px;
-}
-
-/* Container */
-.container {
-    margin: 0 auto;
-    padding: 20px;
-    max-width: 1200px;
-}
-
-/* Navigation */
-.nav-button {
-    background-color: #00c7d7;
-    border: none;
-    border-radius: 10px;
-    padding: 15px 20px;
-    color: white;
-    font-size: 18px;
-    margin: 0 10px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease;
-}
-.nav-button:hover {
-    background-color: #007a8a;
-}
-
-/* Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    background-color: white;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-table th, table td {
-    padding: 15px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-table th {
-    background-color: #f4f4f4;
-    text-transform: uppercase;
-}
-
-/* Responsive Table */
-@media (max-width: 768px) {
-    table th, table td {
-        padding: 10px;
-    }
-}
-
-/* Summary Section */
-.summary {
-    background-color: #00c7d7;
-    padding: 15px;
-    color: white;
-    text-align: center;
-    border-radius: 10px;
+input[type="date"] {
+    width: 250px; /* ปรับขนาดความกว้างตามต้องการ */
+    height: 70px; /* ปรับขนาดความสูงตามต้องการ */
+    position: absolute;
+    top: 15%; /* ปรับระยะห่างจากด้านบนตามต้องการ */
+    left: 30%; /* ปรับระยะห่างจากด้านซ้ายตามต้องการ */
+    position: fixed; 
+    font-size: 30px;
     font-weight: bold;
-    font-size: 20px;
+    text-align: center;
+    
+  }
+.report-header {
+    background-color: #000000; /* สีพื้นหลัง */
+    color: aliceblue;
+    padding: 10px; /* ระยะห่างภายใน */
+    border-radius: 5px; /* ความโค้งมนของมุม */
+    font-size: 50px; /* ขนาดตัวอักษร */
+    font-weight: bold; /* ตัวอักษรหนา */
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+    position: fixed; /* ทำให้ตำแหน่งของส่วนนี้คงที่ */
+    top: 20px; /* ระยะห่างจากขอบบน */
+    left: 0; /* วางไว้ที่ขอบซ้าย */
+    right: 0; /* วางไว้ที่ขอบขวา */
+
+  }
+
+  
+.report-headers { 
+    color: rgb(255, 255, 255);
+    border-radius: 5px; /* ความโค้งมนของมุม */
+    font-size: 30px; /* ขนาดตัวอักษร */
+    font-weight: bold; /* ตัวอักษรหนา */
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+    position: fixed; /* ทำให้ตำแหน่งของส่วนนี้คงที่ */
+    top: 150px; /* ระยะห่างจากขอบบน */
+    left: 0; /* วางไว้ที่ขอบซ้าย */
+    width: 500px; /* กำหนดความกว้างของปุ่มทั้งหมด */
+    height: 80px; /* กำหนดความสูงของปุ่มทั้งหมด */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็น pointer เมื่อชี้ที่ปุ่ม */
+}
+.report-headers1 { 
+    color: rgb(255, 255, 255);
+    border-radius: 5px; /* ความโค้งมนของมุม */
+    font-size: 30px; /* ขนาดตัวอักษร */
+    font-weight: bold; /* ตัวอักษรหนา */
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+    position: fixed; /* ทำให้ตำแหน่งของส่วนนี้คงที่ */
+    top: 260px; /* ระยะห่างจากขอบบน */
+    left: 0; /* วางไว้ที่ขอบซ้าย */
+    width: 500px; /* กำหนดความกว้างของปุ่มทั้งหมด */
+    height: 80px; /* กำหนดความสูงของปุ่มทั้งหมด */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็น pointer เมื่อชี้ที่ปุ่ม */
+}
+.report-headers2 { 
+    color: rgb(255, 255, 255);
+    border-radius: 5px; /* ความโค้งมนของมุม */
+    font-size: 30px; /* ขนาดตัวอักษร */
+    font-weight: bold; /* ตัวอักษรหนา */
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+    position: fixed; /* ทำให้ตำแหน่งของส่วนนี้คงที่ */
+    top: 370px; /* ระยะห่างจากขอบบน */
+    left: 0; /* วางไว้ที่ขอบซ้าย */
+    width: 500px; /* กำหนดความกว้างของปุ่มทั้งหมด */
+    height: 80px; /* กำหนดความสูงของปุ่มทั้งหมด */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็น pointer เมื่อชี้ที่ปุ่ม */
 }
 
-/* Footer Styles */
-footer {
-    background-color: #333;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    font-size: 14px;
-    margin-top: 20px;
+.Report-headers{
+    color: rgb(255, 255, 255);
+    background-color: #776c6c;
+    border-radius: 5px; /* ความโค้งมนของมุม */
+    font-size: 20px; /* ขนาดตัวอักษร */
+    font-weight: bold; /* ตัวอักษรหนา */
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+    position: fixed; /* ทำให้ตำแหน่งของส่วนนี้คงที่ */
+    top: 800px; /* ระยะห่างจากขอบบน */
+    left: 0; /* วางไว้ที่ขอบซ้าย */
+    width: 500px; /* กำหนดความกว้างของปุ่มทั้งหมด */
+    height: 60px; /* กำหนดความสูงของปุ่มทั้งหมด */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็น pointer เมื่อชี้ที่ปุ่ม */
+
 }
+
+button:hover {
+    background-color: #0059b8; /* สีพื้นหลังเข้มขึ้นเมื่อเอาเมาส์ไปวางบนปุ่ม */
+}
+  
+.color{
+    background-color: #3629e4; /* สีพื้นหลังของปุ่ม */
+}
+.color1{
+    background-color: #35c0b9; /* สีพื้นหลังของปุ่ม */
+}
+
+
+/* กำหนดขนาดและตำแหน่งของกล่อง */
+.box1 {
+    width: 1250px; /* กำหนดความกว้างของกล่อง */
+    height: 750px; /* กำหนดความสูงของกล่อง */
+    border: 2px solid #070303; /* กำหนดขอบของกล่อง */
+    padding: 20px; /* เพิ่มระยะห่างภายในกล่อง */
+    margin: 20px; /* ระยะห่างจากขอบของกล่อง */
+    position: absolute; /* ใช้ position absolute เพื่อลอยกล่องไปที่ตำแหน่งที่ต้องการ */
+    top: 110px; /* ระยะห่างจากด้านบนของหน้าเว็บ */
+    right: 40px; /* ระยะห่างจากด้านขวาของหน้าเว็บ */
+  }

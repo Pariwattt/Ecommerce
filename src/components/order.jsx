@@ -10,8 +10,8 @@ const Order =()=>{
             className="close-button"
             onClick={() => Navigate('../')}
             >
-    &times;
-    </button>
+        &times;
+        </button>
    
 
         <div className="order-title">ORDER</div>

@@ -1,27 +1,23 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    position: relative;
-}
+
 nav {
     position: relative; /* กำหนดให้ nav เป็น relative */
 }
-.button-container {
+.botton-container {
     display: flex;
     flex-direction: column; /* จัดปุ่มในแนวตั้ง */
     gap: 5px;/* ระยะห่างระหว่างปุ่ม*/
 }
-.button-row {
+.botton-row {
     display: flex;
     gap: 5px; /* ระยะห่างระหว่างปุ่มในแถว */
 }
 
-.button-bottom-right /* ปุ่มอยู่มุมขวาล่าง*/{
+.botton-bottom-right /* ปุ่มอยู่มุมขวาล่าง*/{
     position: absolute;
     bottom: 10px;
     right: 10px;
 }
-.custom-button {
+.custom-botton {
     padding: 10px 30px;/* กำหนดพื้นที่ว่างในปุ่ม*/
     background-color: #ffffffd0;/* สีพื้นหลังของปุ่ม  */
     border: 2px solid #000000; /* กรอบปุ่ม */
@@ -31,32 +27,32 @@ nav {
     cursor: pointer;  /* เปลี่ยนเป็นรูปมือเมื่อชี้*/
 }
 
-.custom-button:hover {
+.custom-botton:hover {
     background-color: #989696; /* เปลี่ยนสีเมื่อเอาเมาส์ไปวาง */
 }
 /* ปรับขนาดปุ่ม */
-.button-order {
+.botton-order {
     width: 610px;
     height: 110px;
     font-size: 50px;
     padding: 20px;
 }
 
-.button-report {
+.botton-report {
     width: 300px;
     height: 60px;
     font-size: 20px;
     padding: 10px;
 }
 
-.button-setting {
+.botton-setting {
     width: 112px;
     height: 40px;
     font-size: 14px;
     padding: 8px;
 }
 
-.button-logout {
+.botton-logout {
     width: 100px;
     height: 40px;
     font-size: 12px;
