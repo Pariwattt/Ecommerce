@@ -13,7 +13,7 @@ const Reportday = () => {
         <div className='report-header'>รายงานการขาย - Sales Report</div>
           <button className='color report-headers'>ยอดขายรายวัน</button> 
           <button className='color1 report-headers1' onClick={() => navigate('/month')}>ยอดขายรายเดือน</button>
-          <button className='color1 report-headers2' onClick={() => navigate('/reportdata')}>สถิติการขาย</button>
+          <button className='color1 report-headers2' onClick={() => navigate('/redata')}>สถิติการขาย</button>
           <button className="Report-headers" onClick={() => navigate('/')}>ย้อนกลับ</button>
           
         </div>
