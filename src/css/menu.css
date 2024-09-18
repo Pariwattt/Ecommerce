@@ -1,0 +1,220 @@
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1900px;
+    max-height: 800px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+}
+
+/*ปุ่ม menu*/
+.menu {
+    flex: 2;
+    padding: 20px;
+    background-color: #dbf6ff;
+    color: #000;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 2000px;
+    height: 800px;
+    box-sizing: border-box;
+}
+
+
+/* เมื่ออยู่ในโหมดจัดการ */
+.manage-menu {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.manage-menu:hover {
+    background-color: rgb(72, 182, 72);
+}
+
+.manage-menu.active {
+    background-color: rgb(207, 86, 86);
+}
+
+.manage-menu.active:hover {
+    background-color: rgb(250, 132, 132);
+}
+
+
+
+.menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.menu-header input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.menu-item,
+.add-menu {
+    background-color: #fff;
+    border: 2px solid #000;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #000;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* กำหนดความกว้างของช่องชื่อเมนู */
+.add-menu-form input[name="name"] {
+    width: 100px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.add-menu-form button {
+    height: 30px;
+    width: 50px;
+    font-size: 10px;
+}
+
+/* กำหนดความกว้างของช่องราคา */
+.add-menu-form input[name="price"] {
+    width: 100px;
+    font-size: 16px;
+    text-align: left;
+}
+
+
+.menu-item.selected {
+    border-color: #4CAF50;
+}
+
+.add-menu {
+    background-color: #FFA500;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+
+.cart {
+    flex: 1;
+    background-color: #eee;
+    color: #000;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    margin-bottom: 20px;
+
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-item .remove {
+    color: red;
+    cursor: pointer;
+}
+
+.cart-footer {
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.cart-footer span {
+    margin-bottom: 10px;
+}
+
+.checkout-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.checkout-buttons button {
+    width: 48%;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.checkout-buttons .cancel {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.checkout-buttons .checkout {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.checkout-buttons .checkout :hover {
+    background-color: #3e8e41;
+}
+
+.menu-item:hover {
+    background-color: #cceeff;
+    /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+    transform: scale(1.05);
+    /* ขยายขนาดเล็กน้อยเมื่อ hover */
+    transition: transform 0.2s, background-color 0.2s;
+    /* เพิ่มความนุ่มนวลให้กับเอฟเฟกต์ */
+}
+
+.add-menu:hover {
+    background-color: #ff9800;
+    /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+    transform: scale(1.05);
+    /* ขยายขนาดเล็กน้อยเมื่อ hover */
+    transition: transform 0.2s, background-color 0.2s;
+    /* เพิ่มความนุ่มนวลให้กับเอฟเฟกต์ */
+}
+
+.checkout-buttons button:hover {
+    opacity: 0.9;
+    /* ลดความโปร่งใสเมื่อ hover */
+}

@@ -1,5 +1,21 @@
+body, html {
+  height: 100%; /* ให้ความสูงของ body และ html เป็น 100% ของหน้าจอ */
+  margin: 0;
+  display: flex;
+  justify-content: center; /* จัดแนวกลางในแนวนอน */
+  align-items: center;     /* จัดแนวกลางในแนวตั้ง */
+}
+
+nav{
+  text-align: center
+}
+nav a {
+  color: black;
+  text-decoration: none;
+  margin: 10px;
+}
 #root {
-  max-width: 1900px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
