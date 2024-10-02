@@ -1,0 +1,28 @@
+.navbar {
+    background-color: #990000;
+    padding: 10px;
+  }
+  
+  .navbar-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+  }
+  
+  .navbar-item {
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .navbar-item.navbar-user {
+    background-color: #0057e7;
+    border-radius: 5px;
+  }
+  
+  .navbar-item.navbar-logout {
+    background-color: #e74c3c;
+    border-radius: 5px;
+  }
+  
