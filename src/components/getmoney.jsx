@@ -21,15 +21,16 @@ const GetMoney = () => {
         <div className="payment-section">
           <div className="payment-info">
             <div className="price">
-              <label>ราคา</label>
+              <label className="submit-label">คิดเงิน</label>
               <div className="price-value red">{price.toFixed(2)}</div>
             </div>
             <div className="received">
-              <label>รับเงิน</label>
+              <label className="received-label">รับเงิน</label>
               <div className="received-value green">{received.toFixed(2)}</div>
             </div>
           </div>
 
+          {/* Add both buttons here */}
           <div className="action-buttons">
             <button className="cancel-btn">ยกเลิก</button>
             <button className="submit-btn">คิดเงิน</button>
