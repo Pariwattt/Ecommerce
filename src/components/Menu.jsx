@@ -65,10 +65,14 @@ function App() {
 
                 {/* สรุปยอดชำระเงิน */}
                 <div className="summary-container">
+                    <div className='titleOfsummary'>สรูปยอด</div>
                     <div className="summary">
-                        <p>ราคา: <span>115</span></p>
-                        <p>ส่วนลด: <span>0</span></p>
-                        <h2>ยอดชำระ: <span>115.00</span></h2>
+                        <p>ราคา</p>
+                        <div className='price'>115</div>
+                        <p>ส่วนลด</p>
+                        <input type="text" className='discount' placeholder="ส่วนลด %" />
+                        <h2>ยอดชำระ</h2>
+                        <div className='Total'>....</div>
                     </div>
                     <div className="buttons">
                         <button className="pay-btn">คิดเงิน</button>
