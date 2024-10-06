@@ -7,11 +7,13 @@
   color: white;                      /* สีตัวอักษร */
   padding: 13px;                     /* ระยะห่างภายใน Footbar */
   font-family: Arial, sans-serif;    /* ฟอนต์ */
-  height: 1px;                      /* ความสูงของ Footbar */
-  width: 95.; 
-  margin-top: 508px;                     /* ความกว้างเต็มจอ */
+  position: fixed;                   /* ทำให้ Footbar อยู่ติดด้านล่าง */
+  bottom: 0;                         /* ติดกับขอบล่างของหน้า */
+  width: 100%;                       /* ความกว้างเต็มจอ */
+  height: 50px;                      /* กำหนดความสูงของ Footbar */
+  z-index: 1000;                     /* ทำให้ Footbar อยู่ด้านหน้าของเนื้อหาอื่น */
+  box-sizing: border-box;            /* รวม padding เข้าไปในขนาดความกว้างและความสูง */
 }
-
 /* สไตล์สำหรับวันที่และเวลา */
 .footbar-right {
   display: flex;
