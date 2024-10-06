@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/navber.css';
+import '../css/navbar.css';  // นำเข้าไฟล์ CSS สำหรับ Navbar
 
 function Navbar() {
   return (

@@ -1,23 +1,22 @@
 /* สไตล์สำหรับ Footbar */
 .footbar {
-    display: flex;
-    justify-content: space-between;    /* แยกเนื้อหาออกเป็นซ้ายและขวา */
-    align-items: center;               /* จัดให้อยู่กลางแนวตั้ง */
-    background-color: #b71c1c;         /* สีพื้นหลังแดงเข้ม */
-    color: white;                      /* สีตัวอักษร */
-    padding: 13px;                     /* ระยะห่างภายใน Footbar */
-    font-family: Arial, sans-serif;    /* ฟอนต์ */
-    height: 1px;                      /* ความสูงของ Footbar */
-    width: 95.; 
-    margin-top: 508px;                     /* ความกว้างเต็มจอ */
-  }
-  
-  /* สไตล์สำหรับวันที่และเวลา */
-  .footbar-right {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 18px;
-    font-weight: bold;  
-    margin-right: 0px;
-  }
-  
+  display: flex;
+  justify-content: space-between;    /* แยกเนื้อหาออกเป็นซ้ายและขวา */
+  align-items: center;               /* จัดให้อยู่กลางแนวตั้ง */
+  background-color: #b71c1c;         /* สีพื้นหลังแดงเข้ม */
+  color: white;                      /* สีตัวอักษร */
+  padding: 13px;                     /* ระยะห่างภายใน Footbar */
+  font-family: Arial, sans-serif;    /* ฟอนต์ */
+  height: 1px;                      /* ความสูงของ Footbar */
+  width: 95.; 
+  margin-top: 508px;                     /* ความกว้างเต็มจอ */
+}
+
+/* สไตล์สำหรับวันที่และเวลา */
+.footbar-right {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+  font-weight: bold;  
+  margin-right: 0px;
+}
