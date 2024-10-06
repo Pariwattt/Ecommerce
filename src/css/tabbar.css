@@ -1,0 +1,34 @@
+
+.tabbar {
+    display: flex;
+    justify-content: space-between; /* แยกปุ่มออกเป็นฝั่งซ้ายและขวา */
+    align-items: center;            /* จัดให้อยู่กลางแนวตั้ง */
+    background-color: #b71c1c;     
+    color: white;                   /* สีตัวอักษร */
+    padding: 15px;                 
+    font-family: Arial, sans-serif; /* ฟอนต์ */
+    width: 100%;                    /* ให้กว้างเต็มจอ */
+    height: 30px;                   /* เพิ่มความสูงให้มากขึ้น */
+    position: fixed;                /* ทำให้ตำแหน่งคงที่ */
+    top: 50%;                       /* กำหนดให้อยู่กลางแนวตั้ง */
+    transform: translateY(-50%);    /* ปรับตำแหน่งให้อยู่กลางแนวตั้ง */
+    z-index: 1000;                  /* เพิ่ม z-index เพื่อให้แน่ใจว่ามีลำดับชั้นที่สูง */
+}
+
+.tabbar button {
+    background-color: transparent;   /* ทำให้ปุ่มโปร่งใส */
+    color: white;                    /* สีตัวอักษร */
+    border: 2px solid transparent;   /* เริ่มต้นด้วยขอบโปร่งใส */
+    margin-right: 5px;              /* เพิ่มระยะห่างระหว่างปุ่ม */
+    font-size: 18px;                 /* ขนาดตัวอักษร */
+    cursor: pointer;                 /* แสดง cursor แบบ pointer เมื่อ hover */
+    padding: 10px 20px;             /* เพิ่ม padding ให้ปุ่มดูใหญ่ขึ้น */
+    transition: all 0.3s ease;       /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
+    border-radius: 10px;             /* ปรับขอบให้เป็นมุมโค้ง */
+}
+
+.tabbar button:hover {
+    border: 1px solid white;         /* เพิ่มความหนาของขอบเมื่อ hover */
+    border-radius: 30px;             /* ทำให้ขอบโค้งมากขึ้นเมื่อ hover */
+    padding: 12px 24px;              /* เพิ่ม padding เพื่อให้ปุ่มขยาย */
+}

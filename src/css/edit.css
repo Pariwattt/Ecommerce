@@ -1,0 +1,79 @@
+.edit-img_box {
+    width: 550px;
+    height: 310px;
+    background-color: rgb(196, 190, 190);
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    border-radius: 20px;  /* ทำให้ขอบโค้งมน */
+  }
+.text-edit-box {
+    width: 210px;
+    height: 15px;
+    background-color: rgb(220, 220, 220);
+    border: 1px solid #ccc;
+    border-radius: 10px;    /* ทำให้ขอบโค้งมน */
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* จัดให้กลางแนวนอน */
+
+}
+
+.button-center {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* จัดให้กลางแนวนอน */
+}
+.confirm-button {
+    padding: 10px 30px; /* กำหนดพื้นที่ว่างในปุ่ม */
+    background-color: #0083eed0; /* สีพื้นหลังของปุ่ม */
+    border: 1px solid #008cff; /* กรอบปุ่ม */
+    border-radius: 250px; /* ความโค้งของมุมปุ่ม */
+    cursor: pointer;  /* เปลี่ยนเป็นรูปมือเมื่อชี้ */
+    display: flex; /* ใช้ Flexbox สำหรับจัดตำแหน่ง */
+    justify-content: center; /* จัดตำแหน่งข้อความให้ตรงกลาง */
+    align-items: center; /* จัดตำแหน่งข้อความในแนวตั้ง */
+    font-size: 20px; /* ขนาดตัวอักษร */
+    color: rgb(0, 0, 0); /* สีของตัวอักษร */
+}
+
+.confirm-button:hover {
+    background-color: #5899b8; /* เปลี่ยนสีเมื่อเอาเมาส์ไปวาง */
+}
+
+/* ปรับขนาดปุ่ม */
+.button-confirm-sub {
+    width: 180px;
+    height: 50px; /* เพิ่มความสูงของปุ่ม */
+}
+.cancel-button {
+    padding: 10px 30px; /* กำหนดพื้นที่ว่างในปุ่ม */
+    background-color: #f44336; /* สีพื้นหลังของปุ่ม Cancel */
+    border: 1px solid #f44336; /* กรอบปุ่ม */
+    border-radius: 250px; /* ความโค้งของมุมปุ่ม */
+    cursor: pointer;  /* เปลี่ยนเป็นรูปมือเมื่อชี้ */
+    display: flex; /* ใช้ Flexbox สำหรับจัดตำแหน่ง */
+    justify-content: center; /* จัดตำแหน่งข้อความให้ตรงกลาง */
+    align-items: center; /* จัดตำแหน่งข้อความในแนวตั้ง */
+    font-size: 20px; /* ขนาดตัวอักษร */
+    color: white; /* สีของตัวอักษร */
+}
+
+.cancel-button:hover {
+    background-color: #e57373; /* เปลี่ยนสีเมื่อเอาเมาส์ไปวาง */
+}
+.square-box {
+    background-color: #f0f0f0; /* สีพื้นหลังของกล่อง */
+    border: 1px solid #ccc; /* กรอบกล่อง */
+    display: flex; /* เพื่อให้ใช้ flexbox */
+    align-items: center; /* จัดแนวกลางแนวตั้ง */
+    justify-content: center; /* จัดแนวกลางแนวนอน */
+    border-radius: 10px; /* มุมโค้ง */
+    font-family: Arial, sans-serif; /* ฟอนต์ */
+    font-size: 16px; /* ขนาดตัวอักษร */
+    color: #333; /* สีตัวอักษร */
+}

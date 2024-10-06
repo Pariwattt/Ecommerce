@@ -1,7 +1,7 @@
 // main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Test from '../src/components/payment2.jsx'; // Importing test.jsx component
+import Test from '../src/components/edit.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
