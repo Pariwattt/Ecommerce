@@ -1,10 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+// main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Test from '../src/components/payment2.jsx'; // Importing test.jsx component
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Test />  {/* Use the Test component here */}
+  </React.StrictMode>
+);
