@@ -7,26 +7,99 @@
     left: 100px;
     border-radius: 20px;  /* ทำให้ขอบโค้งมน */
   }
-.text-edit-box {
-    width: 210px;
-    height: 15px;
-    background-color: rgb(220, 220, 220);
-    border: 1px solid #ccc;
-    border-radius: 10px;    /* ทำให้ขอบโค้งมน */
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* จัดให้กลางแนวนอน */
 
+.textName{
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    color: #333;
+    
 }
+.t1{
+    position: absolute;
+    top: 80px;
+    left: 850px;
+}
+.t2{
+    position: absolute;
+    top: 160px;
+    left: 850px;
+}
+.t3{
+    position: absolute;
+    top: 240px;
+    left: 850px;
+}
+.t4{
+    position: absolute;
+    top: 80px;
+    left: 1350px;
+}
+
+.con-ner {
+    display: flex;
+    justify-content: center;
+
+  }
+  
+.In-Name-box {
+    position: absolute; 
+    top: 115px;
+    left: 1000px;
+
+    width: 220px; /* กำหนดความกว้างของกล่องข้อความ */
+    height: 25px; /* กำหนดความสูงของกล่องข้อความ */
+    padding: 5px; /* เว้นระยะห่างภายในกล่องข้อความ */
+    font-size: 20px; /* กำหนดขนาดฟอนต์ */
+    border-radius: 5px; /* ขอบกล่องมน */
+    resize: none; /* ปิดการปรับขนาดกล่องข้อความ */
+
+    /* จัดข้อความให้อยู่กึ่งกลางในแนวนอนและแนวตั้ง */
+    display: flex;
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    text-align: center; /* จัดให้อยู่กลางแนวนอน */
+ }
+ .In-Price-box{
+    position: absolute; 
+    top: 285px;
+    left: 1000px;
+    width: 220px; /* กำหนดความกว้างของกล่องข้อความ */
+    height: 25px; /* กำหนดความสูงของกล่องข้อความ */
+    padding: 5px; /* เว้นระยะห่างภายในกล่องข้อความ */
+    font-size: 20px; /* กำหนดขนาดฟอนต์ */
+    border-radius: 5px; /* ขอบกล่องมน */
+    resize: none; /* ปิดการปรับขนาดกล่องข้อความ */
+
+    /* จัดข้อความให้อยู่กึ่งกลางในแนวนอนและแนวตั้ง */
+    display: flex;
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    text-align: center; /* จัดให้อยู่กลางแนวนอน */
+ }
+.In-Code-box{
+    position: absolute; 
+    top: 115px;
+    left: 1500px;
+    width: 220px; /* กำหนดความกว้างของกล่องข้อความ */
+    height: 25px; /* กำหนดความสูงของกล่องข้อความ */
+    padding: 5px; /* เว้นระยะห่างภายในกล่องข้อความ */
+    font-size: 20px; /* กำหนดขนาดฟอนต์ */
+    border-radius: 5px; /* ขอบกล่องมน */
+    resize: none; /* ปิดการปรับขนาดกล่องข้อความ */
+
+    /* จัดข้อความให้อยู่กึ่งกลางในแนวนอนและแนวตั้ง */
+    display: flex;
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    text-align: center; /* จัดให้อยู่กลางแนวนอน */
+}
+  
+
 
 .button-center {
     margin-top: 20px;
     display: flex;
     justify-content: center; /* จัดให้กลางแนวนอน */
+    position: absolute; 
+    top: 350px;
+    left: 1000px;
 }
 .confirm-button {
     padding: 10px 30px; /* กำหนดพื้นที่ว่างในปุ่ม */
@@ -61,6 +134,7 @@
     align-items: center; /* จัดตำแหน่งข้อความในแนวตั้ง */
     font-size: 20px; /* ขนาดตัวอักษร */
     color: white; /* สีของตัวอักษร */
+    margin-left: 100px;
 }
 
 .cancel-button:hover {

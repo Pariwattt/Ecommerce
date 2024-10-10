@@ -1,7 +1,6 @@
 
 .tabbar {
     display: flex;
-    justify-content: space-between; /* แยกปุ่มออกเป็นฝั่งซ้ายและขวา */
     align-items: center;            /* จัดให้อยู่กลางแนวตั้ง */
     background-color: #b71c1c;     
     color: white;                   /* สีตัวอักษร */
