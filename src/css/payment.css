@@ -1,9 +1,9 @@
 .new-container {
-    width: 1300px;
-    height: 430px;
+    width: 1300rem;
+    height: 430rem;
     background-color: #d3d3d3df;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 10rem;
+    padding: 20rem;
     position: absolute;
     top: 56.5%;
     left: 50%;
@@ -11,29 +11,29 @@
   }
   
   .price-section, .receive-money-section {
-    margin-bottom: 20px;
+    margin-bottom: 20rem;
     display: flex;
     flex-direction: column;    /* จัดเรียงตามแนวตั้ง */
     align-items: center;       /* จัดให้อยู่ตรงกลาง */
   }
   
   .label {
-    margin-bottom: 5px;        /* เพิ่มระยะห่างระหว่างข้อความและกล่อง */
+    margin-bottom: 5rem;        /* เพิ่มระยะห่างระหว่างข้อความและกล่อง */
     font-weight: bold;         /* ทำให้ข้อความตัวหนา */
-    font-size: 28px;
+    font-size: 28rem;
   }
   
   .price-box {
     width: 40%;
-    height: 40px;
+    height: 40rem;
     background-color: white;
-    border: 5px solid #b1b1b1;
-    border-radius: 15px;
-    padding: 10px;
+    border: 5rem solid #b1b1b1;
+    border-radius: 15rem;
+    padding: 10rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
+    font-size: 30rem;
     font-weight: bold;
     color: red;
     font-family: Arial, Helvetica, sans-serif;
@@ -41,37 +41,37 @@
   }
   .money-box {
     width: 40%;
-    height: 40px;
+    height: 40rem;
     background-color: white;
-    border: 5px solid #b1b1b1;
-    border-radius: 15px;
-    padding: 10px;
+    border: 5rem solid #b1b1b1;
+    border-radius: 15rem;
+    padding: 10rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
+    font-size: 30rem;
     font-weight: bold;
     color: green;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 .price-box, .money-box {
-  margin-bottom: -15px; /* ลดระยะห่างด้านล่างเหลือ 5px */
+  margin-bottom: -15rem; /* ลดระยะห่างด้านล่างเหลือ 5rem */
 }
   .button-container {
     display: flex;            /* ใช้ Flexbox เพื่อจัดเรียงปุ่ม */
     justify-content: flex-start;  /* จัดให้ปุ่มชิดซ้ายและติดกัน */
-    gap: 10px;                   /* ระยะห่างระหว่างปุ่มเป็น 0 */
-    padding: 10px;            /* ระยะห่างภายใน container */
-    margin-top: 10px;
-    margin-left: 20px;
+    gap: 10rem;                   /* ระยะห่างระหว่างปุ่มเป็น 0 */
+    padding: 10rem;            /* ระยะห่างภายใน container */
+    margin-top: 10rem;
+    margin-left: 20rem;
   }
   
   .button-container button {
-    padding: 10px 20px;       /* ระยะห่างภายในปุ่ม */
+    padding: 10rem 20rem;       /* ระยะห่างภายในปุ่ม */
     border: none;             /* เอาขอบออก */
-    border-radius: 5px;       /* มุมปุ่มโค้งเล็กน้อย */
-    font-size: 18px;          /* ขนาดตัวอักษร */
+    border-radius: 5rem;       /* มุมปุ่มโค้งเล็กน้อย */
+    font-size: 18rem;          /* ขนาดตัวอักษร */
     cursor: pointer;          /* เปลี่ยนเป็น pointer เมื่อ hover */
     font-weight: bold;
   }
@@ -79,16 +79,16 @@
   .button-container button:first-of-type {
     background-color: #1e90ff; /* ปุ่ม QR Code สีฟ้า */
     color: white;              /* ตัวอักษรสีขาว */
-    width: 160px;
-    padding: 18px;
-    border-radius: 10px;        /* มุมโค้ง 10px */
+    width: 160rem;
+    padding: 18rem;
+    border-radius: 10rem;        /* มุมโค้ง 10rem */
   }
   
   .button-container button:last-of-type {
     background-color: #32cd32; /* ปุ่ม เงินสด สีเขียว */
     color: white;              /* ตัวอักษรสีขาว */
-    width: 150px;
-    border-radius: 10px;        /* มุมโค้ง 10px */
+    width: 150rem;
+    border-radius: 10rem;        /* มุมโค้ง 10rem */
   }
   
   
@@ -98,19 +98,19 @@
   .con-button {
     display: flex;              /* ใช้ Flexbox เพื่อจัดเรียงปุ่ม */
     justify-content: center;    /* จัดปุ่มให้อยู่ตรงกลาง */
-    gap: 10px;                  /* ระยะห่างระหว่างปุ่ม */
-    margin-top: 20px;
+    gap: 10rem;                  /* ระยะห่างระหว่างปุ่ม */
+    margin-top: 20rem;
   }
   
   .con-button button {
-    padding: 13px 50px;         /* ระยะห่างภายในปุ่ม */
+    padding: 13rem 50rem;         /* ระยะห่างภายในปุ่ม */
     border: none;               /* เอาขอบออก */
-    border-radius: 15px;         /* มุมปุ่มโค้งเล็กน้อย */
-    font-size: 25px;            /* ขนาดตัวอักษร */
+    border-radius: 15rem;         /* มุมปุ่มโค้งเล็กน้อย */
+    font-size: 25rem;            /* ขนาดตัวอักษร */
     cursor: pointer;            /* เปลี่ยนเป็น pointer เมื่อ hover */
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-top: 20rem;
+    margin-right: 20rem;
+    margin-left: 20rem;
   }
   
   /* ปุ่มยกเลิก */

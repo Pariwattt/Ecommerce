@@ -12,29 +12,29 @@ html, body {
     align-items: center;              /* จัดให้อยู่กลางแนวตั้ง */
     background-color: #b71c1c;        /* สีพื้นหลังของ Navbar (สีแดง) */
     color: white;                     /* สีตัวอักษร */
-    padding: 15px;                    /* เพิ่มระยะห่างภายใน Navbar */
+    padding: 15rem;                    /* เพิ่มระยะห่างภายใน Navbar */
     font-family: Arial, sans-serif;   /* ฟอนต์ */
     width: 97.;                     /* ความกว้างของ Navbar ให้เต็มหน้าจอ */
-    height: 20px;                     /* เพิ่มความสูงของ Navbar */
+    height: 20rem;                     /* เพิ่มความสูงของ Navbar */
   }
   
   /* สไตล์สำหรับปุ่มทางซ้าย */
   .navbar button {
     background-color: transparent;    /* ทำให้ปุ่มโปร่งใส */
     color: white;                     /* สีตัวอักษร */
-    border: 2px solid transparent;    /* เริ่มต้นด้วยขอบโปร่งใส */
-    margin-right: 5px;               /* เพิ่มระยะห่างระหว่างปุ่ม */
-    font-size: 18px;                  /* ขนาดตัวอักษร */
+    border: 2rem solid transparent;    /* เริ่มต้นด้วยขอบโปร่งใส */
+    margin-right: 5rem;               /* เพิ่มระยะห่างระหว่างปุ่ม */
+    font-size: 18rem;                  /* ขนาดตัวอักษร */
     cursor: pointer;                  /* แสดง cursor แบบ pointer เมื่อ hover */
-    padding: 10px 20px;               /* เพิ่ม padding ให้ปุ่มดูใหญ่ขึ้น */
+    padding: 10rem 20rem;               /* เพิ่ม padding ให้ปุ่มดูใหญ่ขึ้น */
     transition: all 0.3s ease;        /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
-    border-radius: 10px;              /* ปรับขอบให้เป็นมุมโค้ง */
+    border-radius: 10rem;              /* ปรับขอบให้เป็นมุมโค้ง */
   }
   
   .navbar button:hover {
-    border: 1px solid white;          /* เพิ่มความหนาของขอบเมื่อ hover */
-    border-radius: 30px;              /* ทำให้ขอบโค้งมากขึ้นเมื่อ hover */
-    padding: 12px 24px;               /* เพิ่ม padding เพื่อให้ปุ่มขยาย */
+    border: 1rem solid white;          /* เพิ่มความหนาของขอบเมื่อ hover */
+    border-radius: 30rem;              /* ทำให้ขอบโค้งมากขึ้นเมื่อ hover */
+    padding: 12rem 24rem;               /* เพิ่ม padding เพื่อให้ปุ่มขยาย */
   }
   
   /* จัดกล่องผู้จัดการให้อยู่ข้างๆปุ่มออกจากระบบ */
@@ -47,9 +47,9 @@ html, body {
   .user-box {
     background-color: #2196F3;        /* สีพื้นหลังของกล่องผู้จัดการ */
     color: white;                     /* สีตัวอักษร */
-    padding: 10px 15px;               /* ระยะห่างภายในกล่อง */
-    border-radius: 20px;              /* มุมโค้งของกล่อง */
-    margin-right: 20px;               /* ระยะห่างระหว่างปุ่มออกจากระบบ */
+    padding: 10rem 15rem;               /* ระยะห่างภายในกล่อง */
+    border-radius: 20rem;              /* มุมโค้งของกล่อง */
+    margin-right: 20rem;               /* ระยะห่างระหว่างปุ่มออกจากระบบ */
     display: flex;
     align-items: center;
   }
@@ -58,15 +58,15 @@ html, body {
   .navbar button:last-of-type {
     background-color: transparent;
     color: white;
-    border: 2px solid transparent;    /* เริ่มต้นด้วยขอบโปร่งใส */
-    font-size: 18px;
+    border: 2rem solid transparent;    /* เริ่มต้นด้วยขอบโปร่งใส */
+    font-size: 18rem;
     cursor: pointer;
     transition: all 0.3s ease;        /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
   }
   
   .navbar button:last-of-type:hover {
-    border: 1px solid white;          /* เพิ่มความหนาของขอบเมื่อ hover */
-    border-radius: 30px;              /* ทำให้ขอบโค้งมากขึ้นเมื่อ hover */
-    padding: 12px 24px;               /* เพิ่ม padding เพื่อให้ปุ่มขยาย */
+    border: 1rem solid white;          /* เพิ่มความหนาของขอบเมื่อ hover */
+    border-radius: 30rem;              /* ทำให้ขอบโค้งมากขึ้นเมื่อ hover */
+    padding: 12rem 24rem;               /* เพิ่ม padding เพื่อให้ปุ่มขยาย */
   }
   
