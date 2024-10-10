@@ -14,7 +14,7 @@ html, body {
   color: white;                     /* สีตัวอักษร */
   padding: 0.9375rem;               /* 15px -> 0.9375rem */
   font-family: Arial, sans-serif;   /* ฟอนต์ */
-  width: 97%;                       /* แก้ไขความกว้างผิดพลาดจาก width: 97. */
+  width: 100%;                       /* แก้ไขความกว้างผิดพลาดจาก width: 97. */
   height: 1.25rem;                  /* 20px -> 1.25rem */
 }
 
