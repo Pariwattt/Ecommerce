@@ -5,20 +5,21 @@
   align-items: center;               /* จัดให้อยู่กลางแนวตั้ง */
   background-color: #b71c1c;         /* สีพื้นหลังแดงเข้ม */
   color: white;                      /* สีตัวอักษร */
-  padding: 13rem;                     /* ระยะห่างภายใน Footbar */
+  padding: 0.8125rem;                /* 13px -> 0.8125rem */
   font-family: Arial, sans-serif;    /* ฟอนต์ */
   position: fixed;                   /* ทำให้ Footbar อยู่ติดด้านล่าง */
   bottom: 0;                         /* ติดกับขอบล่างของหน้า */
   width: 100%;                       /* ความกว้างเต็มจอ */
-  height: 50rem;                      /* กำหนดความสูงของ Footbar */
+  height: 3.125rem;                  /* 50px -> 3.125rem */
   z-index: 1000;                     /* ทำให้ Footbar อยู่ด้านหน้าของเนื้อหาอื่น */
   box-sizing: border-box;            /* รวม padding เข้าไปในขนาดความกว้างและความสูง */
 }
+
 /* สไตล์สำหรับวันที่และเวลา */
 .footbar-right {
   display: flex;
   justify-content: flex-end;
-  font-size: 18rem;
+  font-size: 1.125rem;               /* 18px -> 1.125rem */
   font-weight: bold;  
-  margin-right: 0rem;
+  margin-right: 0;                   /* 0px -> 0 (ค่าเดียวกัน) */
 }

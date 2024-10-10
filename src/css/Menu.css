@@ -2,12 +2,10 @@
 .container {
     display: flex;
     justify-content: space-between;
-    padding: 20rem;
-    height: calc(100vh - 60rem - 78rem); /* ปรับตามความสูงของ navbar และ footbar */
+    padding: 1.25rem; /* 20px -> 1.25rem */
+    height: calc(100vh - 3.75rem - 4.875rem); /* 60px -> 3.75rem และ 78px -> 4.875rem */
     overflow: auto; /* ให้มีการเลื่อนถ้าสูงเกิน */
 }
-
-
 
 /* ช่องแสดงรายการอาหารและปุ่มเมนู */
 .left-container {
@@ -15,7 +13,7 @@
     display: flex;
     flex-direction: column; /* ให้รายการและเมนูเรียงในแนวตั้ง */
     height: 100%; /* ทำให้เต็มความสูง */
-    padding: 20rem;
+    padding: 1.25rem; /* 20px -> 1.25rem */
 }
 
 .table-container, .menu-grid {
@@ -29,186 +27,157 @@
     width: 100%; /* ตารางเต็มความกว้าง */
 }
 
-
-/*ช่องรายการอาหาร*/
+/* ช่องรายการอาหาร */
 table {
     width: 100%; /* ตารางเต็มความกว้าง */
     border-collapse: collapse; /* ทำให้ตารางไม่มีเส้นห่าง */
 }
 
 th, td {
-    padding: 10rem;
-    border: 1rem solid #ddd; /* เส้นขอบของเซลล์ */
+    padding: 0.625rem; /* 10px -> 0.625rem */
+    border: 1px solid #ddd; /* เส้นขอบของเซลล์ */
     text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง */
 }
-
 
 /* กล่องสรุปยอด */
 .summary-container {
     width: 30%; /* ความกว้างของกล่องสรุปยอด */
     background-color: #f5f5f5; /* สีพื้นหลัง */
-    padding: 20rem;
-    border-radius: 8rem; /* มุมกลม */
+    padding: 1.25rem; /* 20px -> 1.25rem */
+    border-radius: 0.5rem; /* 8px -> 0.5rem */
     text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง */
     align-items: center;
     justify-content: center;
 }
 
-.summary{
+.summary {
     display: flex; /* ใช้ flexbox */
     flex-direction: column; /* จัดให้แนวตั้ง */
     align-items: center; /* จัดกลางแนวนอน */
 }
 
-.titleOfsummary{
+.titleOfsummary {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #b71c1c;         /* สีพื้นหลังแดงเข้ม */
     text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง */
     color: white; /* สีตัวอักษรขาว */
-    border-radius: 8rem; /* มุมกลม */
-    max-height: 100rem;
-    padding: 10rem;
-
+    border-radius: 0.5rem; /* 8px -> 0.5rem */
+    max-height: 6.25rem; /* 100px -> 6.25rem */
+    padding: 0.625rem; /* 10px -> 0.625rem */
 }
-
 
 /* ข้อความในสรุปยอด */
 .summary p, .summary h2 {
-    font-size: 18rem;
+    font-size: 1.125rem; /* 18px -> 1.125rem */
 }
-
 
 /* ปุ่มสรุปยอด */
 .buttons {
     display: flex;
     justify-content: space-between; /* แยกปุ่มออกจากกัน */
-    margin-top: 20rem;
+    margin-top: 1.25rem; /* 20px -> 1.25rem */
 }
-
-
 
 /* ปุ่มคิดเงิน */
 .pay-btn {
     background-color: #0099ff; /* สีน้ำเงิน */
     color: white; /* สีตัวอักษรขาว */
-    padding: 10rem 20rem;
+    padding: 0.625rem 1.25rem; /* 10px 20px -> 0.625rem 1.25rem */
     border: none;
     cursor: pointer;
-    border-radius: 30rem; /* มุมกลม */
-    transition: all 0.3s ease; 
-}
-.pay-btn:hover{
-    background-color:blue;
+    border-radius: 1.875rem; /* 30px -> 1.875rem */
+    transition: all 0.3s ease;
 }
 
-
+.pay-btn:hover {
+    background-color: blue;
+}
 
 /* ปุ่มยกเลิก */
 .cancel-btn {
     background-color: #ff4d4d; /* สีแดง */
     color: white;
-    padding: 10rem 20rem;
+    padding: 0.625rem 1.25rem; /* 10px 20px -> 0.625rem 1.25rem */
     border: none;
     cursor: pointer;
-    border-radius: 30rem; /* มุมกลม */
-    transition: all 0.3s ease; 
-    
-}
-.cancel-btn:hover{
-    background-color:#a00;
+    border-radius: 1.875rem; /* 30px -> 1.875rem */
+    transition: all 0.3s ease;
 }
 
-
+.cancel-btn:hover {
+    background-color: #a00;
+}
 
 /* แถบเมนูหลัก */
 .navbarMenuType {
     display: flex;
     justify-content: space-around; /* กระจายปุ่มเมนูให้เต็มแถบ */
     background-color: #a00; /* สีแดงเข้ม */
-    padding: 10rem;
+    padding: 0.625rem; /* 10px -> 0.625rem */
     color: white;
 }
-
-
 
 /* ปุ่มเมนู */
 .nav-item {
     background-color: transparent;
     border: none;
     color: white;
-    font-size: 16rem;
+    font-size: 1rem; /* 16px -> 1rem */
     cursor: pointer;
-    transition: all 0.3s ease; 
-}
-.nav-item:hover{
-    border: 1rem solid white;          /* เพิ่มความหนาของขอบเมื่อ hover */
-    border-radius: 30rem;              /* ทำให้ขอบโค้งมากขึ้นเมื่อ hover */
-    padding: 12rem 24rem;       
+    transition: all 0.3s ease;
 }
 
+.nav-item:hover {
+    border: 1px solid white; /* เพิ่มความหนาของขอบเมื่อ hover */
+    border-radius: 1.875rem; /* 30px -> 1.875rem */
+    padding: 0.75rem 1.5rem; /* 12px 24px -> 0.75rem 1.5rem */
+}
 
 /* ช่องค้นหา */
 .search-input {
-    padding: 5rem;
-    border-radius: 4rem; /* มุมกลม */
-    border: 1rem solid #ddd;
+    padding: 0.3125rem; /* 5px -> 0.3125rem */
+    border-radius: 0.25rem; /* 4px -> 0.25rem */
+    border: 1px solid #ddd;
 }
-
-
 
 /* พื้นที่แสดงเมนูอาหาร */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* แบ่งคอลัมน์ออกเป็น 4 คอลัมน์ */
-    gap: 10rem; /* ช่องว่างระหว่างปุ่ม */
-    padding: 20rem;
+    grid-template-columns: repeat(5, 1fr); /* แบ่งคอลัมน์ออกเป็น 5 คอลัมน์ */
+    gap: 0.625rem; /* 10px -> 0.625rem */
+    padding: 1.25rem; /* 20px -> 1.25rem */
     align-items: center;
     justify-items: center;
 }
 
-
-
 /* ปุ่มเมนูอาหาร */
 .menu-item {
     background-color: #ccc;
-    border: 1rem solid #aaa;
-    padding: 20rem;
+    border: 1px solid #aaa;
+    padding: 1.25rem; /* 20px -> 1.25rem */
     text-align: center;
     cursor: pointer;
-    font-size: 18rem;
-    border-radius: 8rem; /* มุมกลม */
+    font-size: 1.125rem; /* 18px -> 1.125rem */
+    border-radius: 0.5rem; /* 8px -> 0.5rem */
     flex-grow: 1; /* ทำให้ปุ่มเมนูขยายเต็มที่ */
-    min-height: 10rem; /* กำหนดความสูงขั้นต่ำ */
-    min-width: 50rem; /* กำหนดความกว้างขั้นต่ำ */
-    max-width: 150rem;
-    max-height: 100rem;
+    min-height: 0.625rem; /* 10px -> 0.625rem */
+    min-width: 3.125rem; /* 50px -> 3.125rem */
+    max-width: 9.375rem; /* 150px -> 9.375rem */
+    max-height: 6.25rem; /* 100px -> 6.25rem */
     align-items: center;
     justify-content: center;
 }
-.menu-item:hover{
+
+.menu-item:hover {
     background-color: #aaa;
 }
-.price{
+
+.price, .discount, .Total {
     background-color: #dbdada;
-    padding: 10rem;
-    border-radius: 30rem;
-    width: 250rem;
-    text-align: center;
-}
-.discount{
-    background-color: #dbdada;
-    padding: 10rem;
-    border-radius: 30rem;
-    border: 1rem solid #ddd;
-    text-align: center;
-    width: 250rem;
-}
-.Total{
-    background-color: #dbdada;
-    padding: 10rem;
-    border-radius: 30rem;
-    width: 250rem;
+    padding: 0.625rem; /* 10px -> 0.625rem */
+    border-radius: 1.875rem; /* 30px -> 1.875rem */
+    width: 15.625rem; /* 250px -> 15.625rem */
     text-align: center;
 }

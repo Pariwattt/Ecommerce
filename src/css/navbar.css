@@ -1,72 +1,71 @@
 /* ลบ margin ค่าเริ่มต้นของ body และ html */
 html, body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* สไตล์สำหรับ Navbar */
-  .navbar {
-    display: flex;
-    justify-content: space-between;   /* แยกปุ่มออกเป็นฝั่งซ้ายและขวา */
-    align-items: center;              /* จัดให้อยู่กลางแนวตั้ง */
-    background-color: #b71c1c;        /* สีพื้นหลังของ Navbar (สีแดง) */
-    color: white;                     /* สีตัวอักษร */
-    padding: 15rem;                    /* เพิ่มระยะห่างภายใน Navbar */
-    font-family: Arial, sans-serif;   /* ฟอนต์ */
-    width: 97.;                     /* ความกว้างของ Navbar ให้เต็มหน้าจอ */
-    height: 20rem;                     /* เพิ่มความสูงของ Navbar */
-  }
-  
-  /* สไตล์สำหรับปุ่มทางซ้าย */
-  .navbar button {
-    background-color: transparent;    /* ทำให้ปุ่มโปร่งใส */
-    color: white;                     /* สีตัวอักษร */
-    border: 2rem solid transparent;    /* เริ่มต้นด้วยขอบโปร่งใส */
-    margin-right: 5rem;               /* เพิ่มระยะห่างระหว่างปุ่ม */
-    font-size: 18rem;                  /* ขนาดตัวอักษร */
-    cursor: pointer;                  /* แสดง cursor แบบ pointer เมื่อ hover */
-    padding: 10rem 20rem;               /* เพิ่ม padding ให้ปุ่มดูใหญ่ขึ้น */
-    transition: all 0.3s ease;        /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
-    border-radius: 10rem;              /* ปรับขอบให้เป็นมุมโค้ง */
-  }
-  
-  .navbar button:hover {
-    border: 1rem solid white;          /* เพิ่มความหนาของขอบเมื่อ hover */
-    border-radius: 30rem;              /* ทำให้ขอบโค้งมากขึ้นเมื่อ hover */
-    padding: 12rem 24rem;               /* เพิ่ม padding เพื่อให้ปุ่มขยาย */
-  }
-  
-  /* จัดกล่องผู้จัดการให้อยู่ข้างๆปุ่มออกจากระบบ */
-  .right-section {
-    display: flex;
-    align-items: center;              /* จัดให้อยู่กลางแนวตั้ง */
-  }
-  
-  /* สไตล์สำหรับกล่องแสดงชื่อผู้จัดการ */
-  .user-box {
-    background-color: #2196F3;        /* สีพื้นหลังของกล่องผู้จัดการ */
-    color: white;                     /* สีตัวอักษร */
-    padding: 10rem 15rem;               /* ระยะห่างภายในกล่อง */
-    border-radius: 20rem;              /* มุมโค้งของกล่อง */
-    margin-right: 20rem;               /* ระยะห่างระหว่างปุ่มออกจากระบบ */
-    display: flex;
-    align-items: center;
-  }
-  
-  /* สไตล์สำหรับปุ่มออกจากระบบ */
-  .navbar button:last-of-type {
-    background-color: transparent;
-    color: white;
-    border: 2rem solid transparent;    /* เริ่มต้นด้วยขอบโปร่งใส */
-    font-size: 18rem;
-    cursor: pointer;
-    transition: all 0.3s ease;        /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
-  }
-  
-  .navbar button:last-of-type:hover {
-    border: 1rem solid white;          /* เพิ่มความหนาของขอบเมื่อ hover */
-    border-radius: 30rem;              /* ทำให้ขอบโค้งมากขึ้นเมื่อ hover */
-    padding: 12rem 24rem;               /* เพิ่ม padding เพื่อให้ปุ่มขยาย */
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* สไตล์สำหรับ Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;   /* แยกปุ่มออกเป็นฝั่งซ้ายและขวา */
+  align-items: center;              /* จัดให้อยู่กลางแนวตั้ง */
+  background-color: #b71c1c;        /* สีพื้นหลังของ Navbar (สีแดง) */
+  color: white;                     /* สีตัวอักษร */
+  padding: 0.9375rem;               /* 15px -> 0.9375rem */
+  font-family: Arial, sans-serif;   /* ฟอนต์ */
+  width: 97%;                       /* แก้ไขความกว้างผิดพลาดจาก width: 97. */
+  height: 1.25rem;                  /* 20px -> 1.25rem */
+}
+
+/* สไตล์สำหรับปุ่มทางซ้าย */
+.navbar button {
+  background-color: transparent;    /* ทำให้ปุ่มโปร่งใส */
+  color: white;                     /* สีตัวอักษร */
+  border: 0.125rem solid transparent;  /* 2px -> 0.125rem */
+  margin-right: 0.3125rem;          /* 5px -> 0.3125rem */
+  font-size: 1.125rem;              /* 18px -> 1.125rem */
+  cursor: pointer;                  /* แสดง cursor แบบ pointer เมื่อ hover */
+  padding: 0.625rem 1.25rem;        /* 10px 20px -> 0.625rem 1.25rem */
+  transition: all 0.3s ease;        /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
+  border-radius: 0.625rem;          /* 10px -> 0.625rem */
+}
+
+.navbar button:hover {
+  border: 0.0625rem solid white;    /* 1px -> 0.0625rem */
+  border-radius: 1.875rem;          /* 30px -> 1.875rem */
+  padding: 0.75rem 1.5rem;          /* 12px 24px -> 0.75rem 1.5rem */
+}
+
+/* จัดกล่องผู้จัดการให้อยู่ข้างๆปุ่มออกจากระบบ */
+.right-section {
+  display: flex;
+  align-items: center;              /* จัดให้อยู่กลางแนวตั้ง */
+}
+
+/* สไตล์สำหรับกล่องแสดงชื่อผู้จัดการ */
+.user-box {
+  background-color: #2196F3;        /* สีพื้นหลังของกล่องผู้จัดการ */
+  color: white;                     /* สีตัวอักษร */
+  padding: 0.625rem 0.9375rem;      /* 10px 15px -> 0.625rem 0.9375rem */
+  border-radius: 1.25rem;           /* 20px -> 1.25rem */
+  margin-right: 1.25rem;            /* 20px -> 1.25rem */
+  display: flex;
+  align-items: center;
+}
+
+/* สไตล์สำหรับปุ่มออกจากระบบ */
+.navbar button:last-of-type {
+  background-color: transparent;
+  color: white;
+  border: 0.125rem solid transparent;  /* 2px -> 0.125rem */
+  font-size: 1.125rem;                /* 18px -> 1.125rem */
+  cursor: pointer;
+  transition: all 0.3s ease;          /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
+}
+
+.navbar button:last-of-type:hover {
+  border: 0.0625rem solid white;      /* 1px -> 0.0625rem */
+  border-radius: 1.875rem;            /* 30px -> 1.875rem */
+  padding: 0.75rem 1.5rem;            /* 12px 24px -> 0.75rem 1.5rem */
+}
