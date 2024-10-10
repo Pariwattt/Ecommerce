@@ -8,13 +8,35 @@ function App() {
     const [productName, setProductName] = useState(''); // สร้างตัวแปร text และฟังก์ชัน setText เพื่อจัดการข้อความ
     const [productPrice, setProductPrice] = useState(''); // สำหรับราคาสินค้า
     const [productCode,setProductCode] = useState('');
-    return (
-        
+    const [image, setImage] = useState(null); // สร้าง state สำหรับรูปภาพ
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result); // ตั้งค่ารูปภาพเมื่ออ่านไฟล์เสร็จ
+            };
+            reader.readAsDataURL(file); // อ่านไฟล์เป็น Base64 URL
+        }
+    };
+
+    return (   
         <div>
             <Navbar />
             <Footbar />
             <Tabbar/>
-            <div className='edit-img_box'></div>
+            <div className='edit-img_box'>
+            {image && <img src={image} alt="Uploaded" className='uploaded-image' />} {/* แสดงรูปภาพที่อัพโหลด */}
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange} // เมื่อมีการเลือกไฟล์
+                    style={{ display: 'none' }} // ซ่อน input
+                    id="file-upload"/>
+                <label htmlFor="file-upload" className="file-upload-label">
+                <img src="/path/to/upload-logo.png"className="L-upload-logo" />
+                </label>
+            </div>
             <div className='textName'>
                 <h6 className='t1'>ชื่อสินค้า</h6>
                 <h6 className='t2'>ประเภทสินค้า</h6>

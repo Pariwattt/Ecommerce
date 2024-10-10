@@ -6,8 +6,28 @@
     top: 100px;
     left: 100px;
     border-radius: 20px;  /* ทำให้ขอบโค้งมน */
+    justify-content: center; /* จัดให้อยู่กลางตามแนวนอน */
+    align-items: center; /* จัดให้อยู่กลางตามแนวตั้ง */
+    display: flex; /* ใช้ Flexbox */
+    overflow: hidden; /* ซ่อนรูปภาพที่เกิน */
   }
+  .uploaded-image {
+    width: 100%; /* ขยายให้เต็มบล็อก */
+    height: 100%; /* ความสูงเต็ม */
+    object-fit: cover; /* ทำให้รูปภาพพอดีกับบล็อก */
+    position: absolute; /* ตำแหน่งภาพ */
+    top: 0; /* ตำแหน่งด้านบน */
+    left: 0; /* ตำแหน่งด้านซ้าย */
+}
+.file-upload-label {
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อชี้ที่โลโก้ */
+}
 
+.upload-logo {
+    width: 50px; /* กำหนดความกว้างของโลโก้ */
+    height: auto; /* ความสูงอัตโนมัติ */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อชี้ที่โลโก้ */
+}
 .textName{
     font-family: Arial, sans-serif;
     font-size: 30px;
