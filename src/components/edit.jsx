@@ -9,15 +9,27 @@ function App() {
     const [productPrice, setProductPrice] = useState(''); // สำหรับราคาสินค้า
     const [productCode,setProductCode] = useState('');
     const [image, setImage] = useState(null); // สร้าง state สำหรับรูปภาพ
+    
     const handleImageChange = (e) => {
         const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImage(reader.result); // ตั้งค่ารูปภาพเมื่ออ่านไฟล์เสร็จ
-            };
+            if (file) {
+                const reader = new FileReader();
+                    reader.onloadend = () => {
+                    setImage(reader.result); // ตั้งค่ารูปภาพเมื่ออ่านไฟล์เสร็จ
+                };
             reader.readAsDataURL(file); // อ่านไฟล์เป็น Base64 URL
         }
+    };
+    // ฟังก์ชันสำหรับแปลงตัวเลขให้มีคอมม่า
+    const formatPrice = (value) => {
+        if (!value) return ''; // ถ้าไม่มีค่าให้ส่งกลับเป็นค่าว่าง
+        const numberValue = parseFloat(value.replace(/,/g, '')); // ลบคอมม่าออกก่อนแปลงเป็นตัวเลข
+        return numberValue.toLocaleString(); // แปลงตัวเลขให้มีคอมม่า
+    };
+    const handlePriceChange = (e) => {
+        const { value } = e.target;
+        // อัปเดตราคาสินค้าเป็นฟอร์แมตที่มีคอมม่า
+        setProductPrice(formatPrice(value));
     };
 
     return (   
@@ -34,7 +46,7 @@ function App() {
                     style={{ display: 'none' }} // ซ่อน input
                     id="file-upload"/>
                 <label htmlFor="file-upload" className="file-upload-label">
-                <img src="/path/to/upload-logo.png"className="L-upload-logo" />
+                <img src="/img/upload.png"className="L-upload-logo" />
                 </label>
             </div>
             <div className='textName'>
@@ -54,10 +66,10 @@ function App() {
             </div>
             <div className="con-ner">
                 <input
-                    type="number"
+                    type="text"
                     className="In-Price-box"
                     value={productPrice}
-                    onChange={(e) => setProductPrice(e.target.value)}  
+                    onChange={handlePriceChange} // อัปเดตราคาเมื่อมีการพิมพ 
                     placeholder="0"  // ข้อความที่จะแสดงเมื่อยังไม่มีข้อความ
                     min="0" // กำหนดค่าต่ำสุดเป็น 0
                 />
