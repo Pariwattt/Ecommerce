@@ -3,8 +3,13 @@ import '../css/edit.css';  // นำเข้าไฟล์ CSS
 import Navbar from './navbar';  // นำเข้าคอมโพเนนต์ Navbar
 import Footbar from './footbar';  // นำเข้า Footbar
 import Tabbar from './tabbar';
+import LockZoom from './LockZoom';
+
+import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
 
 function App() {
+    const Navigate = useNavigate();
+    
     const [productName, setProductName] = useState(''); // สร้างตัวแปร text และฟังก์ชัน setText เพื่อจัดการข้อความ
     const [productPrice, setProductPrice] = useState(''); // สำหรับราคาสินค้า
     const [productCode,setProductCode] = useState('');
@@ -34,6 +39,7 @@ function App() {
 
     return (   
         <div>
+            <LockZoom/>
             <Navbar />
             <Footbar />
             <Tabbar/>

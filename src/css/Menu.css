@@ -1,0 +1,263 @@
+
+.container {
+    justify-content: space-between;
+    padding: 20px;
+    height: calc(100vh - 60px - 78px);
+    /* ปรับตามความสูงของ navbar และ footbar */
+    overflow: hidden;
+    display: flex;
+}
+
+
+
+/* ช่องแสดงรายการอาหารและปุ่มเมนู */
+.left-container {
+    flex-grow: 1;
+    /* ขยายเต็มพื้นที่ที่มีอยู่ */
+    display: flex;
+    flex-direction: column;
+    /* ให้รายการและเมนูเรียงในแนวตั้ง */
+    height: 100%;
+    /* ทำให้เต็มความสูง */
+    padding: 20px;
+}
+
+.table-container,
+.menu-grid {
+    flex-grow: 1;
+    /* ให้ทั้งสองส่วนขยายเต็มที่ */
+    display: flex;
+    flex-direction: column;
+    /* เรียงภายในให้เป็นแนวตั้ง */
+}
+
+/* ตารางสินค้า */
+.table-container {
+    width: 100%;
+    /* ตารางเต็มความกว้าง */
+}
+
+
+/*ช่องรายการอาหาร*/
+table {
+    width: 100%;
+    /* ตารางเต็มความกว้าง */
+    border-collapse: collapse;
+    /* ทำให้ตารางไม่มีเส้นห่าง */
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    /* เส้นขอบของเซลล์ */
+    text-align: center;
+    /* จัดข้อความให้อยู่กึ่งกลาง */
+}
+
+
+/* กล่องสรุปยอด */
+.summary-container {
+    width: 30%;
+    /* ความกว้างของกล่องสรุปยอด */
+    background-color: #f5f5f5;
+    /* สีพื้นหลัง */
+    padding: 20px;
+    border-radius: 8px;
+    /* มุมกลม */
+    text-align: center;
+    /* จัดข้อความให้อยู่กึ่งกลาง */
+    align-items: center;
+    justify-content: center;
+}
+
+.summary {
+    display: flex;
+    /* ใช้ flexbox */
+    flex-direction: column;
+    /* จัดให้แนวตั้ง */
+    align-items: center;
+    /* จัดกลางแนวนอน */
+}
+
+.titleOfsummary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #b71c1c;
+    /* สีพื้นหลังแดงเข้ม */
+    text-align: center;
+    /* จัดข้อความให้อยู่กึ่งกลาง */
+    color: white;
+    /* สีตัวอักษรขาว */
+    border-radius: 8px;
+    /* มุมกลม */
+    max-height: 100px;
+    padding: 10px;
+
+}
+
+
+/* ข้อความในสรุปยอด */
+.summary p,
+.summary h2 {
+    font-size: 18px;
+}
+
+
+/* ปุ่มสรุปยอด */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    /* แยกปุ่มออกจากกัน */
+    margin-top: 20px;
+}
+
+
+
+/* ปุ่มคิดเงิน */
+.pay-btn {
+    background-color: #0099ff;
+    /* สีน้ำเงิน */
+    color: white;
+    /* สีตัวอักษรขาว */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    /* มุมกลม */
+    transition: all 0.3s ease;
+}
+
+.pay-btn:hover {
+    background-color: blue;
+}
+
+
+
+/* ปุ่มยกเลิก */
+.cancel-btn {
+    background-color: #ff4d4d;
+    /* สีแดง */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    /* มุมกลม */
+    transition: all 0.3s ease;
+
+}
+
+.cancel-btn:hover {
+    background-color: #a00;
+}
+
+
+
+/* แถบเมนูหลัก */
+.navbarMenuType {
+    display: flex;
+    justify-content: space-around;
+    /* กระจายปุ่มเมนูให้เต็มแถบ */
+    background-color: #a00;
+    /* สีแดงเข้ม */
+    padding: 10px;
+    color: white;
+}
+
+
+
+/* ปุ่มเมนู */
+.nav-item {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+    border: 1px solid white;
+    /* เพิ่มความหนาของขอบเมื่อ hover */
+    border-radius: 30px;
+    /* ทำให้ขอบโค้งมากขึ้นเมื่อ hover */
+    padding: 12px 24px;
+}
+
+
+/* ช่องค้นหา */
+.search-input {
+    padding: 5px;
+    border-radius: 4px;
+    /* มุมกลม */
+    border: 1px solid #ddd;
+}
+
+
+
+/* พื้นที่แสดงเมนูอาหาร */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* แบ่งคอลัมน์ออกเป็น 4 คอลัมน์ */
+    gap: 10px;
+    /* ช่องว่างระหว่างปุ่ม */
+    padding: 20px;
+    align-items: center;
+    justify-items: center;
+}
+
+
+
+/* ปุ่มเมนูอาหาร */
+.menu-item {
+    background-color: #ccc;
+    border: 1px solid #aaa;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 8px;
+    /* มุมกลม */
+    flex-grow: 1;
+    /* ทำให้ปุ่มเมนูขยายเต็มที่ */
+    min-height: 10px;
+    /* กำหนดความสูงขั้นต่ำ */
+    min-width: 50px;
+    /* กำหนดความกว้างขั้นต่ำ */
+    max-width: 150px;
+    max-height: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-item:hover {
+    background-color: #aaa;
+}
+
+.price {
+    background-color: #dbdada;
+    padding: 10px;
+    border-radius: 30px;
+    width: 250px;
+    text-align: center;
+}
+
+.discount {
+    background-color: #dbdada;
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    text-align: center;
+    width: 250px;
+}
+
+.Total {
+    background-color: #dbdada;
+    padding: 10px;
+    border-radius: 30px;
+    width: 250px;
+    text-align: center;
+}

@@ -2,11 +2,16 @@ import React from 'react';
 import '../css/payment2.css';  // นำเข้าไฟล์ CSS
 import Navbar from './navbar';  // นำเข้าคอมโพเนนต์ Navbar
 import Footbar from './footbar';  // นำเข้า Footbar
+import LockZoom from './LockZoom';
+
+import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
 
 function App() {
+  const Navigate = useNavigate();
   return (
     <div>
-        <Navbar />
+      <LockZoom/>
+      <Navbar />
       {/* กลุ่มปุ่มที่มีอยู่ */}
       <div className="button-container">
         <button>QR Code</button>
@@ -21,7 +26,7 @@ function App() {
         </div>
         
         <div className="con-button">
-            <button>จบรายการ</button>
+            <button onClick={() => Navigate('/')} >จบรายการ</button>
         </div>
         <div className="con-button2">
             <button>ใบเสร็จคิดเงิน</button>
