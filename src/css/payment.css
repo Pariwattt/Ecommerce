@@ -18,7 +18,7 @@
   }
   
   .label {
-    margin-bottom: 5px;        /* เพิ่มระยะห่างระหว่างข้อความและกล่อง */
+    margin-bottom: 20px;        /* เพิ่มระยะห่างระหว่างข้อความและกล่อง */
     font-weight: bold;         /* ทำให้ข้อความตัวหนา */
     font-size: 28px;
   }
@@ -56,7 +56,7 @@
     font-weight: bold;
 }
 .price-box, .money-box {
-  margin-bottom: -15px; /* ลดระยะห่างด้านล่างเหลือ 5px */
+  margin-bottom: -55px; /* ลดระยะห่างด้านล่างเหลือ 5px */
 }
   .button-container {
     display: flex;            /* ใช้ Flexbox เพื่อจัดเรียงปุ่ม */
@@ -98,7 +98,7 @@
   .con-button {
     display: flex;              /* ใช้ Flexbox เพื่อจัดเรียงปุ่ม */
     justify-content: center;    /* จัดปุ่มให้อยู่ตรงกลาง */
-    gap: 10px;                  /* ระยะห่างระหว่างปุ่ม */
+    gap: 20px;                  /* ระยะห่างระหว่างปุ่ม */
     margin-top: 20px;
   }
   
