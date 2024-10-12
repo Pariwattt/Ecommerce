@@ -1,18 +1,20 @@
 import React from 'react';
-import '../css/navbar.css'; // สไตล์ของ navbar
+import '../css/navbar.css';  // นำเข้าไฟล์ CSS สำหรับ Navbar
 
-const Navbar = () => {
+function Navbar() {
   return (
-    <nav className="navbar">
-      <ul className="navbar-list">
-        <li className="navbar-item">ขายสินค้า</li>
-        <li className="navbar-item">จัดการเมนู</li>
-        <li className="navbar-item">สรุปยอดขาย</li>
-        <li className="navbar-item navbar-user">นายผู้จัดการ</li>
-        <li className="navbar-item navbar-logout">ออกจากระบบ</li>
-      </ul>
-    </nav>
+    <div className="navbar">
+      <div className="left-buttons">
+        <button>ขายสินค้า</button>
+        <button>จัดการเมนู</button>
+        <button>สรุปยอดขาย</button>
+      </div>
+      <div className="right-section">
+        <div className="user-box">นายผู้จัดการ</div>
+        <button>ออกจากระบบ</button>
+      </div>
+    </div>
   );
-};
+}
 
 export default Navbar;
