@@ -1,0 +1,90 @@
+body {
+    background-color: #ffffff;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link.active {
+    background-color: #b71d1a;
+    border-radius: 5px;
+}
+
+/* Summary section */
+.summary-header {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.summary-header .btn {
+    font-size: 16px;
+}
+
+/* Table */
+table {
+    background-color: #f3f3f3;
+    border-radius: 10px;
+}
+
+table th,
+table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid #dedede !important;
+}
+
+.table th {
+    background-color: skyblue;
+    color: white;
+}
+
+.details-btn {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Summary buttons */
+.summary-buttons .btn {
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.summary-buttons .btn.active {
+    background-color: #9AA07E;
+}
+
+/* Additional styling based on the provided image */
+.content {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #EDEDED;
+}
+
+.btn {
+    border-radius: 20px;
+}
+
+.summary-buttons {
+    margin-top: 60px;
+}

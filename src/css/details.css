@@ -1,0 +1,107 @@
+body {
+    background-color: #ffffff;
+}
+
+header {
+    background-color: #b71d1a;
+    color: white;
+    padding: 10px;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link.active {
+    background-color: #b71d1a;
+    border-radius: 5px;
+}
+
+.logout {
+    background-color: #2f94cf;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+.summary-header {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.summary-header .btn {
+    font-size: 16px;
+}
+
+.btn-download {
+    background-color: #009BE5;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+table {
+    background-color: #f3f3f3;
+    border-radius: 10px;
+}
+
+table th,
+table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid #dedede !important;
+}
+
+.table th {
+    background-color: skyblue;
+    color: white;
+}
+
+.btn {
+    border-radius: 20px;
+}
+
+.btn-back {
+    background-color: #b71d1a;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+}
+
+.summary-buttons .btn {
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.summary-buttons .btn.active {
+    background-color: #9AA07E;
+}
+
+.content {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #EDEDED;
+}
+
+.summary-buttons {
+    margin-top: 60px;
+}
