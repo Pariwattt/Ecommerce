@@ -12,7 +12,7 @@ function App() {
         <LockZoom>
             <div>
                 <Navbar />
-                <div className="container">
+                <div className="container-Menu">
                     {/* ตารางแสดงรายการสินค้า และ พื้นที่แสดงเมนู */}
                     <div className="left-container">
                         <div className="table-container">
