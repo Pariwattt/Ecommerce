@@ -48,7 +48,7 @@ function App() {
         </div>
         {/* โลโก้ด้านขวา */}
         <div style={{ paddingLeft: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <img src="/img/Red and Yellow Illustrative Burger Logo (1).png" alt="Logo" style={{ maxWidth: '320px' }} />
+          <img src="img/Red and Yellow Illustrative Burger Logo (1).png" alt="Logo" style={{ maxWidth: '320px' }} />
         </div>
       </div>
     </div>
