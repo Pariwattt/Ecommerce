@@ -17,7 +17,7 @@
     align-items: center;       /* จัดให้อยู่ตรงกลาง */
   }
   
-  .label {
+  .L-abel {
     margin-bottom: 20px;        /* เพิ่มระยะห่างระหว่างข้อความและกล่อง */
     font-weight: bold;         /* ทำให้ข้อความตัวหนา */
     font-size: 28px;
@@ -58,7 +58,7 @@
 .price-box, .money-box {
   margin-bottom: -55px; /* ลดระยะห่างด้านล่างเหลือ 5px */
 }
-  .button-container {
+  .but-con {
     display: flex;            /* ใช้ Flexbox เพื่อจัดเรียงปุ่ม */
     justify-content: flex-start;  /* จัดให้ปุ่มชิดซ้ายและติดกัน */
     gap: 10px;                   /* ระยะห่างระหว่างปุ่มเป็น 0 */
@@ -67,7 +67,7 @@
     margin-left: 20px;
   }
   
-  .button-container button {
+  .but-con button {
     padding: 10px 20px;       /* ระยะห่างภายในปุ่ม */
     border: none;             /* เอาขอบออก */
     border-radius: 5px;       /* มุมปุ่มโค้งเล็กน้อย */
@@ -76,7 +76,7 @@
     font-weight: bold;
   }
   
-  .button-container button:first-of-type {
+  .but-con button:first-of-type {
     background-color: #1e90ff; /* ปุ่ม QR Code สีฟ้า */
     color: white;              /* ตัวอักษรสีขาว */
     width: 160px;
@@ -84,7 +84,7 @@
     border-radius: 10px;        /* มุมโค้ง 10px */
   }
   
-  .button-container button:last-of-type {
+  .but-con button:last-of-type {
     background-color: #32cd32; /* ปุ่ม เงินสด สีเขียว */
     color: white;              /* ตัวอักษรสีขาว */
     width: 150px;
