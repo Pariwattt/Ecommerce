@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Login.css';  // ใช้สำหรับเพิ่ม CSS ของคุณ
+import '../css/login.css';  // ใช้สำหรับเพิ่ม CSS ของคุณ
 
 
 function App() {

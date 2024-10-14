@@ -1,7 +1,7 @@
 // main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Menu from '../src/components/Menu';
+import Menu from '../src/components/Login';
 import Payment from '../src/components/payment';
 import Payment2 from '../src/components/payment2'
 
