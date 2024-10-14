@@ -10,67 +10,57 @@ const SalesTable = () => {
             <Navbar />
             {/* ส่วนของ Footer */}
             <Footbar />
-            <div className="date-section">
-                    {/* วันที่และไอคอนปฏิทิน */}
-                    <span>15 กันยายน 2567</span>
-                    <span className="calendar-icon">📅</span>
-                </div>
+
             {/* ส่วนของคอนเทนเนอร์การขาย */}
             <div className="sales-container">
-                
+
 
                 {/* ตารางข้อมูลการขาย */}
                 <table className="sales-table">
                     <thead>
                         <tr>
-                            <th>ที่</th>
-                            <th>เลขที่บิล</th>
-                            <th>จำนวน</th>
+                            <th>วันที่</th>
+                            <th>จำนวนสินค้า</th>
                             <th>ราคา</th>
                             <th>ส่วนลด</th>
                             <th>ยอดรวม</th>
-                            <th>ชำระด้วย</th>
-                            <th>เวลา</th>
-                            <th>รายละเอียด</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>00001</td>
-                            <td>8</td>
-                            <td>5560</td>
-                            <td>0</td>
-                            <td>5560</td>
-                            <td>QrCode</td>
-                            <td>15:30:45</td>
-                            <td><button className="details-button">...</button></td>
+                            <td>59</td>
+                            <td>98100</td>
+                            <td>5699</td>
+                            <td>91888</td>
+
+
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>00002</td>
-                            <td>10</td>
-                            <td>300</td>
-                            <td>150</td>
-                            <td>150</td>
-                            <td>Cash</td>
-                            <td>15:30:55</td>
-                            <td><button className="details-button">...</button></td>
+                            <td>100</td>
+                            <td>130012</td>
+                            <td>100</td>
+                            <td>129912</td>
+
                         </tr>
                     </tbody>
-                    <tfoot>
+                    <tfoot className='foot'>
                         <tr>
-                            <td colSpan="2">รวม</td>
-                            <td>18</td>
-                            <td>5860</td>
-                            <td>150</td>
-                            <td>5710</td>
+                            <td colSpan="1">รวม</td>
+                            <td>159</td>
+                            <td>228112</td>
+                            <td>5799</td>
+                            <td>221800</td>
+
                         </tr>
                     </tfoot>
                 </table>
 
                 {/* ส่วนของปุ่มสรุปยอดขายที่อยู่ทางด้านขวาของตาราง */}
-                <div className="summary-section">    
+                <div className="summary-section">
+                    <th>1</th>
                     <button className="summary-button">ยอดขายรายวัน</button>
                     <button className="summary-button">ยอดขายรายเดือน</button>
                     <button className="summary-button">ยอดขายสินค้า</button>

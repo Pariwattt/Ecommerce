@@ -1,25 +1,15 @@
 import React from 'react';
 import Navbar from './navbar';
 import Footbar from './footbar';
-import '../css/summary1.css';
+import '../css/summ1.css';
 
 const SalesTable = () => {
     return (
         <div>
-            {/* ส่วนของ Navbar */}
             <Navbar />
-            {/* ส่วนของ Footer */}
             <Footbar />
-            <div className="date-section">
-                    {/* วันที่และไอคอนปฏิทิน */}
-                    <span>15 กันยายน 2567</span>
-                    <span className="calendar-icon">📅</span>
-                </div>
-            {/* ส่วนของคอนเทนเนอร์การขาย */}
+            
             <div className="sales-container">
-                
-
-                {/* ตารางข้อมูลการขาย */}
                 <table className="sales-table">
                     <thead>
                         <tr>
@@ -69,8 +59,7 @@ const SalesTable = () => {
                     </tfoot>
                 </table>
 
-                {/* ส่วนของปุ่มสรุปยอดขายที่อยู่ทางด้านขวาของตาราง */}
-                <div className="summary-section">    
+                <div className="summary-section">
                     <button className="summary-button">ยอดขายรายวัน</button>
                     <button className="summary-button">ยอดขายรายเดือน</button>
                     <button className="summary-button">ยอดขายสินค้า</button>
