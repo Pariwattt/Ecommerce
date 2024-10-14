@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import '../css/login.css';  // ใช้สำหรับเพิ่ม CSS ของคุณ
 
+import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
 
 function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const Navigate = useNavigate();
 
   const handleLogin = () => {
     // เพิ่มฟังก์ชันการล็อกอินตามที่คุณต้องการ
@@ -39,7 +41,7 @@ function App() {
           <p style={{ color: '#999', textAlign: 'center' }}>
             <a href="/" style={{ color: '#999', textDecoration: 'none' }}>Forgot password</a>
           </p>
-          <button onClick={handleLogin} style={{ backgroundColor: '#3b82f6', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer', width: '100%' }}>
+          <button onClick={() => Navigate('/Menu')} style={{ backgroundColor: '#3b82f6', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer', width: '100%' }}>
             ลงชื่อเข้าใช้งาน
           </button>
           <p style={{ marginTop: '10px', color: '#999', textAlign: 'center' }}>
@@ -48,7 +50,7 @@ function App() {
         </div>
         {/* โลโก้ด้านขวา */}
         <div style={{ paddingLeft: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <img src="img/Red and Yellow Illustrative Burger Logo (1).png" alt="Logo" style={{ maxWidth: '320px' }} />
+          <img src="/img/Logo.png" alt="Logo" style={{ maxWidth: '320px' }} />
         </div>
       </div>
     </div>
