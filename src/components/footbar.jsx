@@ -23,6 +23,7 @@ function Footbar() {
   const formattedTime = currentTime.toLocaleTimeString('th-TH');
 
   return (
+    
     <div className="footbar">
       <div className="footbar-left">
         {/* คุณสามารถเพิ่มเนื้อหาด้านซ้ายได้ เช่น ข้อมูลอื่นๆ */}
