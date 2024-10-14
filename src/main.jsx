@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import Menu from '../src/components/Menu';
 import Payment from '../src/components/payment';
 import Payment2 from '../src/components/payment2';
+import Edit from '../src/components/edit';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Menu />} />           {/* เส้นทางเริ่มต้น */}
         <Route path="/payment" element={<Payment />} />  {/* เส้นทางไปหน้าคิดเงิน */}
         <Route path="/payment2" element={<Payment2 />} />
+        <Route path="/edit" element={<Edit />} />
       </Routes>
     </Router>
   </React.StrictMode>

@@ -20,16 +20,16 @@ function App() {
 
       {/* กล่องสี่เหลี่ยมจาก new-container */}
       <div className="new-container">
-        <div className="price-section">
-          <p className="label">ราคา</p>
-          <div className="price-box">115.00</div>
+        <div className="P-price-section">
+          <p className="L-abel">ราคา</p>
+          <div className="price0-box">115.00</div>
         </div>
         
         <div className="receive-money-section">
           <p className="L-abel">รับเงิน</p>
           <div className="money-box">200.00</div>
         </div>
-        <div className="con-button">
+        <div className="con-button1">
             <button onClick={() => Navigate('/')}>ยกเลิก</button>
             <button onClick={() => Navigate('/payment2')}>คิดเงิน</button>
         </div>

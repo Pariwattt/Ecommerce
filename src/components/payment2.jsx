@@ -22,7 +22,7 @@ function App() {
       <div className="new-container">
         <div className="price-section">
           <p className="label">ทอนเงิน</p>
-          <div className="price-box">115.00</div>
+          <div className="price1-box">115.00</div>
         </div>
         
         <div className="con-button">

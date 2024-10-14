@@ -1,15 +1,4 @@
-.new-container {
-    width: 1300px;
-    height: 430px;
-    background-color: #d3d3d3df;
-    border-radius: 10px;
-    padding: 20px;
-    position: absolute;
-    top: 56.5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-  
+
 .price-section{
     margin-bottom: 20px;
     display: flex;
@@ -24,7 +13,7 @@
     margin-top: 90px;
 }
   
-.price-box {
+.price1-box {
     width: 40%;
     height: 40px;
     background-color: white;

@@ -1,4 +1,4 @@
-.container {
+.new-container {
     width: 1300px;
     height: 430px;
     background-color: #d3d3d3df;
@@ -10,7 +10,7 @@
     transform: translate(-50%, -50%);
   }
   
-  .price-section, .receive-money-section {
+  .P-price-section, .receive-money-section {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;    /* จัดเรียงตามแนวตั้ง */
@@ -23,7 +23,7 @@
     font-size: 28px;
   }
   
-  .price-box {
+  .price0-box {
     width: 40%;
     height: 40px;
     background-color: white;
@@ -92,17 +92,17 @@
   }
   
   
-  .button-container button:hover {
+  .but-con button:hover {
     opacity: 0.8;              /* ลดความทึบเมื่อลากเมาส์ */
   }
-  .con-button {
+  .con-button1 {
     display: flex;              /* ใช้ Flexbox เพื่อจัดเรียงปุ่ม */
     justify-content: center;    /* จัดปุ่มให้อยู่ตรงกลาง */
-    gap: 20px;                  /* ระยะห่างระหว่างปุ่ม */
-    margin-top: 20px;
+    gap: 30px;                  /* ระยะห่างระหว่างปุ่ม */
+    margin-top: 60px;
   }
   
-  .con-button button {
+  .con-button1 button {
     padding: 13px 50px;         /* ระยะห่างภายในปุ่ม */
     border: none;               /* เอาขอบออก */
     border-radius: 15px;         /* มุมปุ่มโค้งเล็กน้อย */
@@ -114,20 +114,20 @@
   }
   
   /* ปุ่มยกเลิก */
-  .con-button button:first-of-type {
+  .con-button1 button:first-of-type {
     background-color: #ff3b3b;  /* สีของปุ่มยกเลิก (สีแดง) */
     color: white;               /* ตัวอักษรสีขาว */
   }
   
   /* ปุ่มคิดเงิน */
-  .con-button button:last-of-type {
+  .con-button1 button:last-of-type {
     background-color: #33a1fc;  /* สีของปุ่มคิดเงิน (สีเขียว) */
     color: white;               /* ตัวอักษรสีขาว */
   }
   
   /* Hover effect */
-  .con-button button:hover {
-    opacity: 0.8;               /* ลดความทึบเมื่อลากเมาส์ */
+  .con-button1 button:hover {
+    opacity: 0.9;               /* ลดความทึบเมื่อลากเมาส์ */
   }
   
   
