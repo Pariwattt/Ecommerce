@@ -2,8 +2,10 @@ import React from 'react';
 import Navbar from './navbar';
 import Footbar from './footbar';
 import '../css/summary1.css';
+import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
 
 const SalesTable = () => {
+    const Navigate = useNavigate();
     return (
         <div>
             {/* ส่วนของ Navbar */}
@@ -44,7 +46,7 @@ const SalesTable = () => {
                             <td>5560</td>
                             <td>QrCode</td>
                             <td>15:30:45</td>
-                            <td><button className="details-button">...</button></td>
+                            <td><button className="details-button" onClick={() => Navigate('/summary2')}>...</button></td>
                         </tr>
                         <tr>
                             <td>2</td>
@@ -72,8 +74,8 @@ const SalesTable = () => {
                 {/* ส่วนของปุ่มสรุปยอดขายที่อยู่ทางด้านขวาของตาราง */}
                 <div className="summary-section">    
                     <button className="summary-button">ยอดขายรายวัน</button>
-                    <button className="summary-button">ยอดขายรายเดือน</button>
-                    <button className="summary-button">ยอดขายสินค้า</button>
+                    <button className="summary-button" onClick={() => Navigate('/summary3')}>ยอดขายรายเดือน</button>
+                    <button className="summary-button" onClick={() => Navigate('/summary4')}>ยอดขายสินค้า</button>
                 </div>
             </div>
         </div>

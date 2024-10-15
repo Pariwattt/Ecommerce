@@ -9,7 +9,7 @@ function Navbar() {
       <div className="left-buttons">
         <button onClick={() => Navigate('/')}>ขายสินค้า</button>
         <button onClick={() => Navigate('/edit')}>จัดการเมนู</button>
-        <button>สรุปยอดขาย</button>
+        <button onClick={() => Navigate('/summary1')}>สรุปยอดขาย</button>
       </div>
       <div className="right-section">
         <div className="user-box">นายผู้จัดการ</div>
