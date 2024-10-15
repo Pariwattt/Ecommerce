@@ -2,7 +2,7 @@ import React from 'react';
 import '../css/Menu.css';  // นำเข้าไฟล์ CSS
 import Navbar from './navbar';  // นำเข้าคอมโพเนนต์ Navbar
 import Footbar from './footbar';  // นำเข้า Footbar
-
+import LockZoom from './LockZoom';
 
 import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
 
