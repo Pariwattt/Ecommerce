@@ -1,0 +1,78 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum TokenType {
+    ACCESS
+    REFRESH
+    RESET_PASSWORD
+    VERIFY_EMAIL
+}
+
+// User Model
+model user {
+  user_id   String   @id() @default(uuid()) @db.Uuid
+  username String   @unique
+  password String
+  role     String
+  created_at DateTime @default(now())
+  updated_at DateTime? @updatedAt
+  categoriesCreated  categories[] @relation("categoriesCreatedBy") 
+  categoriesUpdated  categories[] @relation("CategoriesupdatedBy") 
+  productsCreated  product[] @relation("productsCreatedBy") 
+  productsUpdated  product[] @relation("productsUpdatedBy") 
+  token        token[]      @relation(name: "token")
+}
+
+// Token Model
+model token {
+    id                     String   @id() @default(uuid()) @db.Uuid
+    type                   TokenType
+    ip                     String?   @db.VarChar(50)
+    device                 String?   @db.VarChar(255)
+    latitude               String?   @db.VarChar(100)
+    longitude              String?   @db.VarChar(100)
+    token                  String    @unique()
+    refresh_token           String?   @unique()
+    expiration             DateTime
+    expiration_refresh_token DateTime?
+    created_by              String  @db.Uuid
+    created_at              DateTime  @default(now())
+    updated_at              DateTime?  @updatedAt()
+
+    user user? @relation(name: "token", fields: [created_by], references: [user_id])
+}
+
+// Category Model
+model categories {
+  id             String   @id() @default(uuid()) @db.Uuid
+  category_name  String   @unique
+  created_at     DateTime @default(now())
+  created_by     String   @db.Uuid
+  updated_at     DateTime? @updatedAt
+  updated_by     String?  @db.Uuid
+  products       product[]
+  categoriesCreated user  @relation("categoriesCreatedBy", fields: [created_by], references: [user_id])
+  categoriesUpdated user? @relation("CategoriesupdatedBy", fields: [updated_by], references: [user_id])
+}
+
+// Product Model
+model product {
+  id            String   @id() @default(uuid()) @db.Uuid
+  product_name  String
+  price         Float
+  category_id   String  @db.Uuid 
+  created_at    DateTime @default(now())
+  created_by    String   @db.Uuid
+  updated_at    DateTime? @updatedAt
+  updated_by    String?  @db.Uuid
+  category      categories @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  productsCreated user   @relation("productsCreatedBy", fields: [created_by], references: [user_id])
+  productsUpdated user?  @relation("productsUpdatedBy", fields: [updated_by], references: [user_id])
+}
+

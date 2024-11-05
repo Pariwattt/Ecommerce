@@ -1,0 +1,93 @@
+/* คอนเทนเนอร์ของส่วนการขาย */
+.sales-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* ส่วนของวันที่ */
+.date-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* ไอคอนปฏิทิน */
+.calendar-icon {
+    font-size: 24px;
+}
+
+/* ตารางการขาย */
+.sales-table {
+    width: 75%; /* ปรับขนาดของตารางเพื่อให้มีพื้นที่สำหรับปุ่ม */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* เซลล์ตาราง */
+.sales-table th, .sales-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+/* หัวตาราง */
+.sales-table th {
+    background-color: rgb(135, 187, 235);
+    color: white;
+}
+
+/* ส่วนท้ายตาราง */
+.sales-table tfoot td {
+    font-weight: bold;
+}
+
+/* ปุ่มรายละเอียด */
+.details-button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* ส่วนของปุ่มสรุปยอดขาย */
+.summary-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end; /* ปรับตำแหน่งของปุ่มให้อยู่ทางขวา */
+}
+
+/* ปุ่มสรุปยอดขาย */
+.summary-button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+/* ปุ่มสรุปยอดขายเมื่อโฮเวอร์ */
+.summary-button:hover {
+    background-color: #45a049;
+}
+
+.summary-header {
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.ax{
+    margin-right: 30%;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: red;
+    
+}
