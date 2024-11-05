@@ -5,7 +5,8 @@ import { pino } from "pino";
 
 import { env } from "@common/utils/envConfig";
 import errorHandler from "@common/middleware/errorHandler";
-import { categoryRouter } from "@modules/categories/categoryRouter";
+// import { categoryRouter } from "@modules/categories/categoryRouter";
+import { categoryRouter } from "./router/categortRouter";
 
 const logger = pino({ name: "server start" });
 const app = express();
