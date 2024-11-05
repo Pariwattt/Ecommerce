@@ -26,7 +26,7 @@ function App() {
         </div>
         
         <div className="con-button">
-            <button onClick={() => Navigate('/')} >จบรายการ</button>
+            <button onClick={() => Navigate('/Menu')} >จบรายการ</button>
         </div>
         <div className="con-button2">
             <button>ใบเสร็จคิดเงิน</button>

@@ -30,7 +30,7 @@ function App() {
           <div className="money-box">200.00</div>
         </div>
         <div className="con-button1">
-            <button onClick={() => Navigate('/')}>ยกเลิก</button>
+            <button onClick={() => Navigate('/Menu')}>ยกเลิก</button>
             <button onClick={() => Navigate('/Payment2')}>คิดเงิน</button>
         </div>
       </div>
