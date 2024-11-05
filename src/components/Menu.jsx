@@ -7,6 +7,8 @@ import LockZoom from './LockZoom';
 import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
 
 function App() {
+
+
     const Navigate = useNavigate();  // สร้าง instance ของ useNavigate
     return (
         <LockZoom>
