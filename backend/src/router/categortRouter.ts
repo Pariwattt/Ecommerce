@@ -10,7 +10,5 @@ export const categoryRouter = (() => {
             data: "success"
         })
     })
-
-
     return router;
 })();
