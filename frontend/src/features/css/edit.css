@@ -2,7 +2,7 @@
     width: 550px;
     height: 310px;
     position: absolute;
-    top: 100px;
+    top: 35px;
     left: 100px;
     border-radius: 20px;  /* ทำให้ขอบโค้งมน */
     justify-content: center; /* จัดให้อยู่กลางตามแนวนอน */
@@ -37,22 +37,22 @@
 }
 .t1{
     position: absolute;
-    top: 80px;
+    top: 10px;
     left: 850px;
 }
 .t2{
     position: absolute;
-    top: 160px;
+    top: 90px;
     left: 850px;
 }
 .t3{
     position: absolute;
-    top: 240px;
+    top: 170px;
     left: 850px;
 }
 .t4{
     position: absolute;
-    top: 80px;
+    top: 10px;
     left: 1350px;
 }
 
@@ -64,7 +64,7 @@
   
 .In-Name-box {
     position: absolute; 
-    top: 115px;
+    top: 50px;
     left: 1000px;
 
     width: 220px; /* กำหนดความกว้างของกล่องข้อความ */
@@ -81,7 +81,7 @@
  }
  .In-Price-box{
     position: absolute; 
-    top: 285px;
+    top: 215px;
     left: 1000px;
     width: 220px; /* กำหนดความกว้างของกล่องข้อความ */
     height: 25px; /* กำหนดความสูงของกล่องข้อความ */
@@ -97,7 +97,7 @@
  }
 .In-Code-box{
     position: absolute; 
-    top: 115px;
+    top: 50px;
     left: 1500px;
     width: 220px; /* กำหนดความกว้างของกล่องข้อความ */
     height: 25px; /* กำหนดความสูงของกล่องข้อความ */
@@ -119,7 +119,7 @@
     display: flex;
     justify-content: center; /* จัดให้กลางแนวนอน */
     position: absolute; 
-    top: 350px;
+    top: 285px;
     left: 1000px;
 }
 .confirm-button {
@@ -171,4 +171,69 @@
     font-family: Arial, sans-serif; /* ฟอนต์ */
     font-size: 16px; /* ขนาดตัวอักษร */
     color: #333; /* สีตัวอักษร */
+}
+.productList-button {
+
+    width: 127px; /* กำหนดความกว้างของกล่องข้อความ */
+    height: 127px; /* กำหนดความสูงของกล่องข้อความ */
+    padding: 2px; /* เว้นระยะห่างภายในกล่องข้อความ */
+    font-size: 20px; /* ปรับขนาดฟอนต์ของข้อความในปุ่ม */
+    border-radius: 5px; /* ปรับขอบโค้งของปุ่ม */
+    background-color: #f1f1f1; /* สีพื้นหลังของปุ่ม */
+    border: 1px solid #ddd; /* กำหนดขอบของปุ่ม */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
+    margin: 10px;
+}
+
+.productList-button:hover {
+    background-color: #e0e0e0; /* สีพื้นหลังของปุ่มเมื่อ hover */
+
+}
+.product-list{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px; /* ระยะห่างระหว่างปุ่ม */
+}
+.product-list-con{
+    width: 1885px;            /* ความกว้างของกรอบ */
+    height: 400px;           /* ความสูงของกรอบ */
+    border: 2px solid #ddd;  /* สีและขนาดขอบของกรอบ */
+    padding: 10px;           /* ระยะห่างภายในกรอบ */
+    overflow-y: auto;        /* เพิ่มการเลื่อนแนวตั้ง */
+    background-color: #f9f9f9; /* พื้นหลังของกรอบ */
+    position: absolute; 
+    top: 510px;
+    left: 0px;
+
+
+
+}
+.proBox-increase {
+    width: 127px; /* กำหนดความกว้างของกล่องข้อความ */
+    height: 127px; /* กำหนดความสูงของกล่องข้อความ */
+    border-radius: 5px; /* ปรับขอบโค้งของปุ่ม */
+    background-color: #f0ecec; /* สีพื้นหลังของปุ่ม */
+    border: 1px solid #ddd; /* กำหนดขอบของปุ่ม */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
+    margin: 10px;
+    display: flex;    
+    font-size: 100px;
+    color: #dfd9d9;
+    justify-content: center; /* จัดตำแหน่งข้อความในแนวนอน */
+    align-items: center; /* จัดตำแหน่งข้อความในแนวตั้ง */
+}
+.proBox-increase:hover {
+    background-color: #e0e0e0; /* สีพื้นหลังของปุ่มเมื่อ hover */
+
+}
+.prolist-con{
+    width: 1905px;            /* ความกว้างของกรอบ */
+    height: 389px;           /* ความสูงของกรอบ */
+    border: 2px solid #ddd;  /* สีและขนาดขอบของกรอบ */
+    padding: 1px;           /* ระยะห่างภายในกรอบ */
+    overflow-y: auto;        /* เพิ่มการเลื่อนแนวตั้ง */
+    background-color: #f9f9f9; /* พื้นหลังของกรอบ */
+    position: absolute; 
+    top: 50px;
+    left: 0px;
 }
