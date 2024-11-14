@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import '../css/edit.css';
+import React, { useState } from 'react';
+import '../css/edit.css';  // นำเข้าไฟล์ CSS
 import Navbar from '../webPageFeatures/navbar';
 import Footbar from '../webPageFeatures/footbar';
 import LockZoom from '../webPageFeatures/LockZoom';
 import Tabbar from './tabbar';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa'; // นำเข้าไอคอน
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
 
 function App() {
     const Navigate = useNavigate();
@@ -15,25 +15,9 @@ function App() {
     const [productPrice, setProductPrice] = useState('');
     const [productCode, setProductCode] = useState('');
     const [image, setImage] = useState(null);
-    const [products, setProducts] = useState([]); // สำหรับเก็บสินค้าที่เพิ่มเข้ามา
-    const [showFields, setShowFields] = useState(false);  // ใช้แสดง input fields
-    const [editingProductIndex, setEditingProductIndex] = useState(null);  // สำหรับเก็บตำแหน่งสินค้าที่แก้ไข
-
-    // โหลดข้อมูลจาก localStorage เมื่อคอมโพเนนต์โหลด
-    useEffect(() => {
-        const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
-        setProducts(savedProducts);
-    }, []);
-
-    // ฟังก์ชันบันทึกข้อมูลสินค้าไปยัง localStorage
-    const saveToLocalStorage = () => {
-        localStorage.setItem('products', JSON.stringify(products));
-    };
-
-    useEffect(() => {
-        // เมื่อ products มีการเปลี่ยนแปลง ให้บันทึกลง localStorage
-        saveToLocalStorage();
-    }, [products]);
+    const [products, setProducts] = useState([]); // เพิ่ม state สำหรับเก็บสินค้าที่เพิ่มเข้ามา
+    const [showFields, setShowFields] = useState(false);  // state ใหม่ที่จะใช้ควบคุมการแสดงผลของ input fields
+    const [editingProductIndex, setEditingProductIndex] = useState(null);  // เพิ่ม state สำหรับการเก็บสินค้าที่กำลังแก้ไข
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -66,13 +50,13 @@ function App() {
             code: productCode
         };
 
-        // ถ้ากำลังแก้ไขสินค้า, ให้แทนที่สินค้าเดิม
+        // ถ้ากำลังแก้ไขสินค้า ให้แทนที่สินค้าเดิม
         if (editingProductIndex !== null) {
             const updatedProducts = [...products];
             updatedProducts[editingProductIndex] = newProduct;
             setProducts(updatedProducts);
         } else {
-            // ถ้าไม่ได้แก้ไข, ให้เพิ่มสินค้าใหม่
+            // ถ้าไม่ได้แก้ไขสินค้าใหม่ ให้เพิ่มสินค้าใหม่
             setProducts([...products, newProduct]);
         }
 
@@ -82,13 +66,13 @@ function App() {
         setProductCode('');
         setImage(null);
         setShowFields(false);
-        setEditingProductIndex(null);
+        setEditingProductIndex(null);  // รีเซ็ตสถานะการแก้ไข
     };
 
     const handleCancel = () => {
         // ถ้ามีการแก้ไขสินค้า, ลบสินค้าออกจากรายการ
         if (editingProductIndex !== null) {
-            handleDeleteProduct(editingProductIndex);
+            handleDeleteProduct(editingProductIndex);  // ลบสินค้าที่กำลังแก้ไข
         } else {
             setProductName('');
             setProductPrice('');
@@ -96,8 +80,9 @@ function App() {
             setImage(null);
         }
 
+        // รีเซ็ตฟอร์มและซ่อนการแสดงผล
         setShowFields(false);
-        setEditingProductIndex(null);
+        setEditingProductIndex(null);  // รีเซ็ตสถานะการแก้ไข
     };
 
     const handleDeleteProduct = (index) => {
@@ -106,11 +91,12 @@ function App() {
     };
 
     const handleShowFields = (index) => {
+        // ถ้ามีการคลิกสินค้ารายการเดิมเพื่อแก้ไข
         if (editingProductIndex !== null && editingProductIndex === index) {
-            setShowFields(!showFields);
+            setShowFields(!showFields);  // สลับการแสดงฟอร์ม
         } else {
             setShowFields(true);
-            setEditingProductIndex(index);
+            setEditingProductIndex(index);  // กำหนดให้กำลังแก้ไขสินค้ารายการนี้
             const product = products[index];
             setProductName(product.name);
             setProductPrice(product.price);
@@ -141,6 +127,7 @@ function App() {
                 </div>
             </div>
 
+            {/* เงื่อนไขการแสดงผลของ input fields */}
             {showFields && (
                 <>
                     <div className='prolist-con'>
@@ -192,6 +179,7 @@ function App() {
                             />
                         </div>
 
+                        {/* เงื่อนไขการแสดงผลปุ่ม Confirm และ Cancel */}
                         <div className="button-center">
                             <button className="confirm-button button-confirm-sub" onClick={handleConfirm}>
                                 Confirm
