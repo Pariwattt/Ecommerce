@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/tabbar.css';
 import { FaPlus } from 'react-icons/fa';
 
@@ -7,7 +7,22 @@ function Tabbar() {
   const [newText, setNewText] = useState(''); // สำหรับเก็บข้อความใหม่ที่กรอก
   const [showInput, setShowInput] = useState(false); // ใช้แสดง/ซ่อน input field
   const [editingIndex, setEditingIndex] = useState(null); // ใช้เก็บตำแหน่งของข้อความที่กำลังแก้ไข
-  const [deletingIndex, setDeletingIndex] = useState(null); // ใช้เก็บตำแหน่งที่ต้องการลบ
+  
+
+  // โหลดข้อมูลจาก localStorage เมื่อเริ่มโปรแกรม
+  useEffect(() => {
+    const storedTypes = JSON.parse(localStorage.getItem('types'));
+    if (storedTypes) {
+      setType(storedTypes);
+    }
+  }, []);
+
+  // บันทึกข้อมูลลงใน localStorage ทุกครั้งที่มีการเปลี่ยนแปลง
+  useEffect(() => {
+    if (type.length > 0) {
+      localStorage.setItem('types', JSON.stringify(type));
+    }
+  }, [type]);
 
   // ฟังก์ชันเพิ่มกล่องใหม่
   const handleAddtype = () => {
