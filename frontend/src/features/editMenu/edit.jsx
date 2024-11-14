@@ -14,6 +14,7 @@ function App() {
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState('');
     const [productCode, setProductCode] = useState('');
+    const [productCategory, setProductCategory] = useState(''); // state สำหรับประเภทสินค้า
     const [image, setImage] = useState(null);
     const [products, setProducts] = useState([]); // เพิ่ม state สำหรับเก็บสินค้าที่เพิ่มเข้ามา
     const [showFields, setShowFields] = useState(false);  // state ใหม่ที่จะใช้ควบคุมการแสดงผลของ input fields
@@ -47,7 +48,8 @@ function App() {
         const newProduct = {
             name: productName,
             price: productPrice,
-            code: productCode
+            code: productCode,
+            category: productCategory  // เพิ่ม category ในข้อมูลสินค้า
         };
 
         // ถ้ากำลังแก้ไขสินค้า ให้แทนที่สินค้าเดิม
@@ -64,6 +66,7 @@ function App() {
         setProductName('');
         setProductPrice('');
         setProductCode('');
+        setProductCategory(''); // รีเซ็ตค่า category
         setImage(null);
         setShowFields(false);
         setEditingProductIndex(null);  // รีเซ็ตสถานะการแก้ไข
@@ -77,6 +80,7 @@ function App() {
             setProductName('');
             setProductPrice('');
             setProductCode('');
+            setProductCategory(''); // รีเซ็ตค่า category
             setImage(null);
         }
 
@@ -101,6 +105,7 @@ function App() {
             setProductName(product.name);
             setProductPrice(product.price);
             setProductCode(product.code);
+            setProductCategory(product.category);  // กำหนด category สำหรับการแก้ไข
         }
     };
 
@@ -177,6 +182,23 @@ function App() {
                                 onChange={(e) => setProductCode(e.target.value)}
                                 placeholder="รหัสสินค้า"
                             />
+                        </div>
+
+                        {/* เพิ่ม input สำหรับเลือกประเภทสินค้า */}
+                        <div className="con-ner">
+                            <select
+                                className="In-Category-box"
+                                value={productCategory}
+                                onChange={(e) => setProductCategory(e.target.value)}
+                                placeholder="เลือกประเภทสินค้า"
+                            >
+                                <option value="">เลือกประเภทสินค้า</option>
+                                <option value="Electronics">อิเล็กทรอนิกส์</option>
+                                <option value="Clothing">เสื้อผ้า</option>
+                                <option value="Food">อาหาร</option>
+                                <option value="Home">บ้านและสวน</option>
+                                {/* เพิ่มประเภทสินค้าอื่นๆ ตามที่ต้องการ */}
+                            </select>
                         </div>
 
                         {/* เงื่อนไขการแสดงผลปุ่ม Confirm และ Cancel */}

@@ -79,6 +79,29 @@
     align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
     text-align: center; /* จัดให้อยู่กลางแนวนอน */
  }
+ .In-Category-box {
+    position: absolute; 
+    top: 135px;
+    left: 1000px;
+
+    width: 234px; /* ความกว้าง */
+    height: 40px; /* ปรับความสูง */
+    padding: 5px; /* ปรับช่องว่างภายในกล่อง */
+    font-size: 20px; /* ปรับขนาดตัวอักษร */
+    border: 2px solid #000000; /* เพิ่มเส้นขอบ */
+    border-radius: 5px; /* ทำมุมโค้ง */
+    background-color: #f9f9f9; /* เปลี่ยนสีพื้นหลัง */
+    resize: none; /* ปิดการปรับขนาดกล่องข้อความ */
+
+    display: flex;
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    text-align: center; /* จัดให้อยู่กลางแนวนอน */
+}
+
+.In-Category-box:focus {
+    outline: none; /* เอาขอบเมื่อคลิกออก */
+    border-color: #dd0b0b; /* เปลี่ยนสีขอบเมื่อคลิก */
+}
  .In-Price-box{
     position: absolute; 
     top: 215px;
@@ -93,7 +116,7 @@
     /* จัดข้อความให้อยู่กึ่งกลางในแนวนอนและแนวตั้ง */
     display: flex;
     align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
-    text-align: center; /* จัดให้อยู่กลางแนวนอน */
+    text-align: right; /* จัดให้อยู่กลางแนวนอน */
  }
 .In-Code-box{
     position: absolute; 
