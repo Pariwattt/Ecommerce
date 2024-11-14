@@ -13,21 +13,60 @@
     transform: translateY(-50%);    /* ปรับตำแหน่งให้อยู่กลางแนวตั้ง */
     z-index: 1000;                  /* เพิ่ม z-index เพื่อให้แน่ใจว่ามีลำดับชั้นที่สูง */
 }
+.left-buttons {
+    display: flex;
+    align-items: center;
+  }
 
-.tabbar button {
-    background-color: transparent;   /* ทำให้ปุ่มโปร่งใส */
-    color: white;                    /* สีตัวอักษร */
-    border: 2px solid transparent;   /* เริ่มต้นด้วยขอบโปร่งใส */
-    margin-right: 5px;              /* เพิ่มระยะห่างระหว่างปุ่ม */
-    font-size: 18px;                 /* ขนาดตัวอักษร */
-    cursor: pointer;                 /* แสดง cursor แบบ pointer เมื่อ hover */
-    padding: 10px 20px;             /* เพิ่ม padding ให้ปุ่มดูใหญ่ขึ้น */
-    transition: all 0.3s ease;       /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
-    border-radius: 10px;             /* ปรับขอบให้เป็นมุมโค้ง */
+
+.tabber-increase  :hover {
+    color: rgb(243, 229, 229);             /* เปลี่ยนสีตัวอักษรเมื่อ hover */
+    background-color: rgba(233, 220, 220, 0.8); /* ปรับพื้นหลังให้โปร่งใสเมื่อ hover */
+    border: 1px solid rgba(238, 228, 228, 0.7); /* เพิ่มเส้นขอบโปร่งใส */
 }
 
-.tabbar button:hover {
-    border: 1px solid white;         /* เพิ่มความหนาของขอบเมื่อ hover */
-    border-radius: 30px;             /* ทำให้ขอบโค้งมากขึ้นเมื่อ hover */
-    padding: 12px 24px;              /* เพิ่ม padding เพื่อให้ปุ่มขยาย */
+.tabber-increase {
+    width: 50px; /* กำหนดความกว้างของกล่องข้อความ */
+    height: 50px; /* กำหนดความสูงของกล่องข้อความ */
+    border-radius: 10px; /* ปรับขอบโค้งของปุ่ม */
+    background-color: #e9e9e9; /* สีพื้นหลังของปุ่ม */
+    border: 1px solid #f1d6d6; /* กำหนดขอบของปุ่ม */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
+    display: flex;    
+    font-size: 40px;
+    color: #c7c6c4;
+    justify-content: center; /* จัดตำแหน่งข้อความในแนวนอน */
+    display: flex;
+    align-items: center; /* จัดตำแหน่งข้อความในแนวตั้ง */
+    transition: all 0.3s ease;       /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */  
+    cursor: pointer;                 /* แสดง cursor แบบ pointer เมื่อ hover */
+}
+.type-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .type-product {
+    width: auto;
+    height: 40px;
+    background-color: rgb(185, 19, 19);    /* สีพื้นหลังเริ่มต้น */
+    color: white;                           /* สีตัวอักษร */
+    border: 2px solid transparent;          /* เริ่มต้นด้วยขอบโปร่งใส */
+    margin-right: 10px;                     /* เพิ่มระยะห่างระหว่างกล่อง */
+    font-size: 18px;                        /* ขนาดตัวอักษร */
+    cursor: pointer;                        /* เปลี่ยน cursor เมื่อ hover */
+    padding: 2px 2px;                       /* เพิ่ม padding */
+    transition: all 0.3s ease;              /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
+    border-radius: 10px;                    /* ปรับขอบเป็นมุมโค้ง */
+    display: flex;                           /* ใช้ Flexbox เพื่อจัดตำแหน่งข้อความ */
+    align-items: center;                    /* จัดตำแหน่งในแนวตั้ง */
+    justify-content: center;                 /* จัดตำแหน่งในแนวนอน */
+}
+
+/* กำหนดสีเมื่อ hover */
+.type-product:hover {
+    color: rgb(243, 229, 229);             /* เปลี่ยนสีตัวอักษรเมื่อ hover */
+    background-color: rgba(189, 27, 21, 0.8); /* ปรับพื้นหลังให้โปร่งใสเมื่อ hover */
+    border: 2px solid rgba(243, 229, 229, 0.7); /* เพิ่มเส้นขอบโปร่งใส */
 }
