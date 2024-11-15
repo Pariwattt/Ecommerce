@@ -7,7 +7,7 @@ import { env } from "@common/utils/envConfig";
 import errorHandler from "@common/middleware/errorHandler";
 // import { categoryRouter } from "@modules/categories/categoryRouter";
 import { categoryRouter } from "./router/categortRouter";
-import { tabbarRouter } from "./router/tabbarRouter";
+import { productRouter } from "./router/productRouter";
 
 const logger = pino({ name: "server start" });
 const app = express();
@@ -21,8 +21,11 @@ app.use(helmet());
 
 // Routes
 app.use("/v1/category", categoryRouter);
-app.use("/v1/tabbar", categoryRouter);
+app.use("/v1/product", productRouter);
 
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+  });
 
 // Error handlers
 app.use(errorHandler());
