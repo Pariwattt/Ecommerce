@@ -1,110 +1,91 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../css/tabbar.css';
 import { FaPlus } from 'react-icons/fa';
+import Type from './type';
+import axios from 'axios';
 
 function Tabbar() {
-  const [type, setType] = useState([]); // สร้าง state สำหรับเก็บกล่อง
-  const [newText, setNewText] = useState(''); // สำหรับเก็บข้อความใหม่ที่กรอก
-  const [showInput, setShowInput] = useState(false); // ใช้แสดง/ซ่อน input field
-  const [editingIndex, setEditingIndex] = useState(null); // ใช้เก็บตำแหน่งของข้อความที่กำลังแก้ไข
-  
+  const [showType, setShowType] = useState(false);
+  const [categories, setCategories] = useState([]); // เก็บรายการกล่องข้อความ
+  const [editIndex, setEditIndex] = useState(null); // เก็บตำแหน่งของกล่องที่กำลังแก้ไข
+  const [isEditing, setIsEditing] = useState(false); // ตรวจสอบสถานะการเปิดแก้ไข
 
-  // โหลดข้อมูลจาก localStorage เมื่อเริ่มโปรแกรม
-  useEffect(() => {
-    const storedTypes = JSON.parse(localStorage.getItem('types'));
-    if (storedTypes) {
-      setType(storedTypes);
-    }
-  }, []);
-
-  // บันทึกข้อมูลลงใน localStorage ทุกครั้งที่มีการเปลี่ยนแปลง
-  useEffect(() => {
-    if (type.length > 0) {
-      localStorage.setItem('types', JSON.stringify(type));
-    }
-  }, [type]);
-
-  // ฟังก์ชันเพิ่มกล่องใหม่
-  const handleAddtype = () => {
-    setShowInput(true); // แสดง input field เมื่อคลิก +
-    setEditingIndex(null); // รีเซ็ตการแก้ไข
+  // เพิ่มหมวดหมู่ใหม่
+  const addCategory = (category) => {
+    setCategories((prev) => [...prev, category]);
+    setShowType(false); // ซ่อน Type หลังยืนยัน
+    setIsEditing(false); // ปิดการแก้ไข
   };
 
-  // ฟังก์ชันยืนยันและเพิ่มข้อความลงใน type-container
-  const handleConfirm = () => {
-    if (newText.trim() !== '') { // เช็คถ้าข้อความไม่ว่าง
-      if (editingIndex !== null) {
-        // ถ้ากำลังแก้ไขกล่อง, ให้แก้ไขข้อความในตำแหน่งนั้น
-        const updatedTypes = [...type];
-        updatedTypes[editingIndex] = newText;
-        setType(updatedTypes);
-      } else {
-        // ถ้าไม่ใช่การแก้ไข, ให้เพิ่มข้อความใหม่
-        setType([...type, newText]);
-      }
-
-      setNewText(''); // รีเซ็ตข้อความหลังจากยืนยัน
-      setShowInput(false); // ซ่อน input field
-    }
+  // แก้ไขหมวดหมู่
+  const editCategory = (category, index) => {
+    const updatedCategories = [...categories];
+    updatedCategories[index] = category; // อัปเดตหมวดหมู่ที่เลือก
+    setCategories(updatedCategories);
+    setShowType(false); // ซ่อน Type หลังแก้ไข
+    setIsEditing(false); // ปิดการแก้ไข
+    setEditIndex(null); // รีเซ็ตสถานะการแก้ไข
   };
 
-  // ฟังก์ชันยกเลิก
-  const handleCancel = () => {
-    setNewText(''); // รีเซ็ตข้อความที่กรอก
-    setShowInput(false); // ซ่อน input field
-    setEditingIndex(null); // รีเซ็ตการแก้ไข
-  };
-
-  // ฟังก์ชันลบข้อความ
-  const handleDelete = () => {
-    if (editingIndex !== null) {
-      const updatedTypes = type.filter((_, i) => i !== editingIndex); // ลบข้อความที่ถูกเลือก
-      setType(updatedTypes);
-      setShowInput(false); // ซ่อน input field
-      setEditingIndex(null); // รีเซ็ตการแก้ไข
-    }
-  };
-
-  // ฟังก์ชันเริ่มต้นการแก้ไข
-  const handleEdit = (index) => {
-    setEditingIndex(index); // กำหนดตำแหน่งที่กำลังแก้ไข
-    setNewText(type[index]); // กำหนดข้อความที่เลือกมาให้กรอกใน input
-    setShowInput(true); // แสดง input field
+  // ลบหมวดหมู่
+  const deleteCategory = (index) => {
+    const updatedCategories = categories.filter((_, idx) => idx !== index);
+    setCategories(updatedCategories);
+    setShowType(false); // ซ่อน Type หลังลบ
+    setIsEditing(false); // ปิดการแก้ไข
+    setEditIndex(null); // รีเซ็ตสถานะการแก้ไข
   };
 
   return (
-    <div className="tabbar">
-      <div className="left-buttons">
-        {/* แสดงกล่องแต่ละกล่องที่เพิ่ม */}
-        <div className="type-container">
-          {type.map((text, index) => (
-            <div key={index} className="type-product">
-              <span onClick={() => handleEdit(index)}>{text}</span> {/* แก้ไขข้อความเมื่อคลิก */}
+    <div>
+      {/* แสดง Type เฉพาะเมื่อกด + หรือแก้ไข */}
+      {showType && (
+        <>
+          {/* Overlay ที่ปิดกั้นการคลิกที่ด้านหลัง */}
+          <div className="overlay" onClick={() => {
+            setShowType(false);
+            setIsEditing(false); // ปิดการแก้ไขเมื่อคลิกปิด
+          }}></div>
+          <Type
+            onConfirm={editIndex === null ? addCategory : (category) => editCategory(category, editIndex)} 
+            onDelete={editIndex !== null ? () => deleteCategory(editIndex) : null} // ส่งฟังก์ชันลบเมื่อแก้ไข
+            onClose={() => {
+              setShowType(false);
+              setIsEditing(false); // ปิดการแก้ไข
+              setEditIndex(null); // รีเซ็ตการแก้ไข
+            }}
+            initialValue={editIndex !== null ? categories[editIndex] : ''} // ส่งค่าเริ่มต้นหากเป็นการแก้ไข
+          />
+        </>
+      )}
+
+      <div className="tabbar">
+        <div className="left-buttons">
+          {/* แสดงกล่องข้อความที่เพิ่ม */}
+          {categories.map((category, index) => (
+            <div
+              key={index}
+              className="type-product"
+              onClick={() => {
+                // เปิดแก้ไขเฉพาะเมื่อกดปุ่ม + เท่านั้น
+                if (isEditing) {
+                  setEditIndex(index); // เลือกกล่องเพื่อแก้ไข
+                  setShowType(true); // เปิดหน้า Type
+                }
+              }}
+            >
+              <span>{category}</span>
             </div>
           ))}
         </div>
-
         {/* ปุ่ม + */}
-        <div className="tabber-increase" onClick={handleAddtype}>
+        <div className="tabber-increase" onClick={() => {
+          setShowType(true);
+          setIsEditing(true); // เปิดการแก้ไขเมื่อกดปุ่ม +
+        }}>
           <FaPlus />
         </div>
-      </div> 
-
-      {/* ฟอร์มกรอกข้อความ */}
-      {showInput && (
-        <div className="input-container">
-          <input
-            type="text"
-            value={newText}
-            onChange={(e) => setNewText(e.target.value)}
-            placeholder="กรอกข้อความ"
-          />
-          <button onClick={handleConfirm}>ยืนยัน</button>
-          <button onClick={editingIndex !== null ? handleDelete : handleCancel}>
-            {editingIndex !== null ? 'ลบ' : 'ยกเลิก'}
-          </button> {/* ถ้าเป็นการแก้ไขจะแสดงคำว่า 'ลบ', ถ้าไม่ใช่จะเป็น 'ยกเลิก' */}
-        </div>
-      )}
+      </div>
     </div>
   );
 }
