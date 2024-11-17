@@ -6,7 +6,7 @@ import { pino } from "pino";
 import { env } from "@common/utils/envConfig";
 import errorHandler from "@common/middleware/errorHandler";
 // import { categoryRouter } from "@modules/categories/categoryRouter";
-import { categoryRouter } from "./router/categortRouter";
+import { typeRouter } from "./router/typeRouter";
 import { productRouter } from "./router/productRouter";
 
 const logger = pino({ name: "server start" });
@@ -20,7 +20,7 @@ app.use(cors({ origin: env.CORS_ORIGIN, credentials: true }));
 app.use(helmet());
 
 // Routes
-app.use("/v1/category", categoryRouter);
+app.use("/v1/type", typeRouter);
 app.use("/v1/product", productRouter);
 
 app.listen(3000, () => {
