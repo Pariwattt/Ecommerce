@@ -1,0 +1,262 @@
+.edit-img_box {
+    width: 550px;
+    height: 310px;
+    position: absolute;
+    top: 35px;
+    left: 100px;
+    border-radius: 20px;  /* ทำให้ขอบโค้งมน */
+    justify-content: center; /* จัดให้อยู่กลางตามแนวนอน */
+    align-items: center; /* จัดให้อยู่กลางตามแนวตั้ง */
+    display: flex; /* ใช้ Flexbox */
+    overflow: hidden; /* ซ่อนรูปภาพที่เกิน */
+    border: 1px solid rgb(185, 157, 166); /* กรอบปุ่ม */
+
+  }
+.uploaded-image {
+    width: 100%; /* ขยายให้เต็มบล็อก */
+    height: 100%; /* ความสูงเต็ม */
+    object-fit: cover; /* ทำให้รูปภาพพอดีกับบล็อก */
+    position: absolute; /* ตำแหน่งภาพ */
+    top: 0; /* ตำแหน่งด้านบน */
+    left: 0; /* ตำแหน่งด้านซ้าย */
+}
+.file-upload-label {
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อชี้ที่โลโก้ */
+}
+
+.L-upload-logo {
+    width: 60px; /* กำหนดความกว้างของโลโก้ */
+    height: auto; /* ความสูงอัตโนมัติ */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อชี้ที่โลโก้ */
+}
+.textName{
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    color: #333;
+    
+}
+.t1{
+    position: absolute;
+    top: 10px;
+    left: 850px;
+}
+.t2{
+    position: absolute;
+    top: 90px;
+    left: 850px;
+}
+.t3{
+    position: absolute;
+    top: 170px;
+    left: 850px;
+}
+.t4{
+    position: absolute;
+    top: 10px;
+    left: 1350px;
+}
+
+.con-ner {
+    display: flex;
+    justify-content: center;
+
+  }
+  
+.In-Name-box {
+    position: absolute; 
+    top: 50px;
+    left: 1000px;
+
+    width: 220px; /* กำหนดความกว้างของกล่องข้อความ */
+    height: 25px; /* กำหนดความสูงของกล่องข้อความ */
+    padding: 5px; /* เว้นระยะห่างภายในกล่องข้อความ */
+    font-size: 20px; /* กำหนดขนาดฟอนต์ */
+    border-radius: 5px; /* ขอบกล่องมน */
+    resize: none; /* ปิดการปรับขนาดกล่องข้อความ */
+
+    /* จัดข้อความให้อยู่กึ่งกลางในแนวนอนและแนวตั้ง */
+    display: flex;
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    text-align: center; /* จัดให้อยู่กลางแนวนอน */
+ }
+ .In-Category-box {
+    position: absolute; 
+    top: 135px;
+    left: 1000px;
+
+    width: 234px; /* ความกว้าง */
+    height: 40px; /* ปรับความสูง */
+    padding: 5px; /* ปรับช่องว่างภายในกล่อง */
+    font-size: 20px; /* ปรับขนาดตัวอักษร */
+    border: 2px solid #000000; /* เพิ่มเส้นขอบ */
+    border-radius: 5px; /* ทำมุมโค้ง */
+    background-color: #f9f9f9; /* เปลี่ยนสีพื้นหลัง */
+    resize: none; /* ปิดการปรับขนาดกล่องข้อความ */
+
+    display: flex;
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    text-align: center; /* จัดให้อยู่กลางแนวนอน */
+}
+
+.In-Category-box:focus {
+    outline: none; /* เอาขอบเมื่อคลิกออก */
+    border-color: #dd0b0b; /* เปลี่ยนสีขอบเมื่อคลิก */
+}
+ .In-Price-box{
+    position: absolute; 
+    top: 215px;
+    left: 1000px;
+    width: 220px; /* กำหนดความกว้างของกล่องข้อความ */
+    height: 25px; /* กำหนดความสูงของกล่องข้อความ */
+    padding: 5px; /* เว้นระยะห่างภายในกล่องข้อความ */
+    font-size: 20px; /* กำหนดขนาดฟอนต์ */
+    border-radius: 5px; /* ขอบกล่องมน */
+    resize: none; /* ปิดการปรับขนาดกล่องข้อความ */
+
+    /* จัดข้อความให้อยู่กึ่งกลางในแนวนอนและแนวตั้ง */
+    display: flex;
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    text-align: right; /* จัดให้อยู่กลางแนวนอน */
+ }
+.In-Code-box{
+    position: absolute; 
+    top: 50px;
+    left: 1500px;
+    width: 220px; /* กำหนดความกว้างของกล่องข้อความ */
+    height: 25px; /* กำหนดความสูงของกล่องข้อความ */
+    padding: 5px; /* เว้นระยะห่างภายในกล่องข้อความ */
+    font-size: 20px; /* กำหนดขนาดฟอนต์ */
+    border-radius: 5px; /* ขอบกล่องมน */
+    resize: none; /* ปิดการปรับขนาดกล่องข้อความ */
+
+    /* จัดข้อความให้อยู่กึ่งกลางในแนวนอนและแนวตั้ง */
+    display: flex;
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    text-align: center; /* จัดให้อยู่กลางแนวนอน */
+}
+  
+
+
+.button-center {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* จัดให้กลางแนวนอน */
+    position: absolute; 
+    top: 285px;
+    left: 1000px;
+}
+.confirm-button {
+    padding: 10px 30px; /* กำหนดพื้นที่ว่างในปุ่ม */
+    background-color: #0083eed0; /* สีพื้นหลังของปุ่ม */
+    border: 1px solid #008cff; /* กรอบปุ่ม */
+    border-radius: 250px; /* ความโค้งของมุมปุ่ม */
+    cursor: pointer;  /* เปลี่ยนเป็นรูปมือเมื่อชี้ */
+    display: flex; /* ใช้ Flexbox สำหรับจัดตำแหน่ง */
+    justify-content: center; /* จัดตำแหน่งข้อความให้ตรงกลาง */
+    align-items: center; /* จัดตำแหน่งข้อความในแนวตั้ง */
+    font-size: 20px; /* ขนาดตัวอักษร */
+    color: rgb(0, 0, 0); /* สีของตัวอักษร */
+}
+
+.confirm-button:hover {
+    background-color: #5899b8; /* เปลี่ยนสีเมื่อเอาเมาส์ไปวาง */
+}
+
+/* ปรับขนาดปุ่ม */
+.button-confirm-sub {
+    width: 180px;
+    height: 50px; /* เพิ่มความสูงของปุ่ม */
+}
+.cancel-button {
+    padding: 10px 30px; /* กำหนดพื้นที่ว่างในปุ่ม */
+    background-color: #f44336; /* สีพื้นหลังของปุ่ม Cancel */
+    border: 1px solid #f44336; /* กรอบปุ่ม */
+    border-radius: 250px; /* ความโค้งของมุมปุ่ม */
+    cursor: pointer;  /* เปลี่ยนเป็นรูปมือเมื่อชี้ */
+    display: flex; /* ใช้ Flexbox สำหรับจัดตำแหน่ง */
+    justify-content: center; /* จัดตำแหน่งข้อความให้ตรงกลาง */
+    align-items: center; /* จัดตำแหน่งข้อความในแนวตั้ง */
+    font-size: 20px; /* ขนาดตัวอักษร */
+    color: white; /* สีของตัวอักษร */
+    margin-left: 100px;
+}
+
+.cancel-button:hover {
+    background-color: #e57373; /* เปลี่ยนสีเมื่อเอาเมาส์ไปวาง */
+}
+.square-box {
+    background-color: #f0f0f0; /* สีพื้นหลังของกล่อง */
+    border: 1px solid #ccc; /* กรอบกล่อง */
+    display: flex; /* เพื่อให้ใช้ flexbox */
+    align-items: center; /* จัดแนวกลางแนวตั้ง */
+    justify-content: center; /* จัดแนวกลางแนวนอน */
+    border-radius: 10px; /* มุมโค้ง */
+    font-family: Arial, sans-serif; /* ฟอนต์ */
+    font-size: 16px; /* ขนาดตัวอักษร */
+    color: #333; /* สีตัวอักษร */
+}
+.productList-button {
+
+    width: 127px; /* กำหนดความกว้างของกล่องข้อความ */
+    height: 127px; /* กำหนดความสูงของกล่องข้อความ */
+    padding: 2px; /* เว้นระยะห่างภายในกล่องข้อความ */
+    font-size: 20px; /* ปรับขนาดฟอนต์ของข้อความในปุ่ม */
+    border-radius: 5px; /* ปรับขอบโค้งของปุ่ม */
+    background-color: #f1f1f1; /* สีพื้นหลังของปุ่ม */
+    border: 1px solid #ddd; /* กำหนดขอบของปุ่ม */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
+    margin: 10px;
+}
+
+.productList-button:hover {
+    background-color: #e0e0e0; /* สีพื้นหลังของปุ่มเมื่อ hover */
+
+}
+.product-list{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px; /* ระยะห่างระหว่างปุ่ม */
+}
+.product-list-con{
+    width: 1885px;            /* ความกว้างของกรอบ */
+    height: 405px;           /* ความสูงของกรอบ */
+    border: 2px solid #ddd;  /* สีและขนาดขอบของกรอบ */
+    padding: 10px;           /* ระยะห่างภายในกรอบ */
+    overflow-y: auto;        /* เพิ่มการเลื่อนแนวตั้ง */
+    background-color: #f9f9f9; /* พื้นหลังของกรอบ */
+    position: absolute; 
+    top: 510px;
+    left: 0px;
+
+
+
+}
+.proBox-increase {
+    width: 127px; /* กำหนดความกว้างของกล่องข้อความ */
+    height: 127px; /* กำหนดความสูงของกล่องข้อความ */
+    border-radius: 5px; /* ปรับขอบโค้งของปุ่ม */
+    background-color: #f0ecec; /* สีพื้นหลังของปุ่ม */
+    border: 1px solid #ddd; /* กำหนดขอบของปุ่ม */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
+    margin: 10px;
+    display: flex;    
+    font-size: 100px;
+    color: #dfd9d9;
+    justify-content: center; /* จัดตำแหน่งข้อความในแนวนอน */
+    align-items: center; /* จัดตำแหน่งข้อความในแนวตั้ง */
+}
+.proBox-increase:hover {
+    background-color: #e0e0e0; /* สีพื้นหลังของปุ่มเมื่อ hover */
+
+}
+.prolist-con{
+    width: 1905px;            /* ความกว้างของกรอบ */
+    height: 389px;           /* ความสูงของกรอบ */
+    border: 2px solid #ddd;  /* สีและขนาดขอบของกรอบ */
+    padding: 1px;           /* ระยะห่างภายในกรอบ */
+    overflow-y: auto;        /* เพิ่มการเลื่อนแนวตั้ง */
+    background-color: #f9f9f9; /* พื้นหลังของกรอบ */
+    position: absolute; 
+    top: 50px;
+    left: 0px;
+}
