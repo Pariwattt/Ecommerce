@@ -80,7 +80,7 @@ function Tabbar({ onCategorySelect }) { // รับ callback function
         <div className="left-buttons">
           {/* ปุ่ม "ทั้งหมด" */}
           <div
-            className="type-product all-button"
+            className="type-product tabber-increase"
             onClick={() => onCategorySelect('')} // ส่งค่า '' เพื่อแสดงสินค้าทั้งหมด
           >
             <span>ทั้งหมด</span>
