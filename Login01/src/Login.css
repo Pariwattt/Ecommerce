@@ -1,0 +1,15 @@
+.container {
+    background-color: red; /* พื้นหลังสีแดง */
+    height: 100vh; /* ความสูงเต็มหน้าจอ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+  
+  .form-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
