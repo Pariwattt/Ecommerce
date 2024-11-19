@@ -114,7 +114,7 @@ function App() {
         try {
             if (editingProductCode) {
                 // แก้ไขสินค้า
-                await axios.put("http://localhost:8081/v1/product/edit/${editingProductCode}", newProduct);
+                await axios.put(`http://localhost:8081/v1/product/edit/${editingProductCode}`, newProduct);
                 alert("แก้ไขสินค้าสำเร็จ");
             } else {
                 // เพิ่มสินค้าใหม่
@@ -140,7 +140,7 @@ function App() {
     const handleDeleteProduct = async () => {
         try {
             // ใช้ backticks (`  `) สำหรับ template string
-            await axios.delete("http://localhost:8081/v1/product/delete/${editingProductCode}");
+            await axios.delete(`http://localhost:8081/v1/product/delete/${editingProductCode}`);
             alert("ลบสินค้าสำเร็จ");
 
             const response = await axios.get("http://localhost:8081/v1/product/get");

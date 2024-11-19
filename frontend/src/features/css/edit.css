@@ -271,14 +271,3 @@
     pointer-events: auto; /* Enable click and typing */
     background-color: white; /* White background */
 }
-/* Default size (Main Page) */
-.product-list-con {
-    width: 100%;
-    font-size: 1rem; /* ขนาดปกติ */
-}
-
-/* สไตล์เมื่อย้ายไปหน้าถัดไป (Page ที่สอง) */
-.small-size .product-list-con {
-    width: 80%; /* ขนาดเล็กลง */
-    font-size: 0.8rem; /* ขนาดฟอนต์เล็กลง */
-}

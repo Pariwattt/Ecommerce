@@ -16,15 +16,15 @@ function Tabbar({ onCategorySelect }) { // รับ callback function
       .then(response => setCategories(response.data))
       .catch(error => console.error("Error fetching categories:", error));
   }, []);
-  
+
   const addCategory = async (category) => {
     try {
       // ส่งคำขอเพิ่มหมวดหมู่
       const response = await axios.post('http://localhost:8081/v1/type/add', { type: category });
-      
+
       // ตรวจสอบข้อมูลที่ API ส่งกลับ
       console.log('API Response:', response.data);
-  
+
       // เพิ่มหมวดหมู่ใน state (ตรวจสอบว่า response.data.type ถูกต้อง)
       if (response.data && response.data.type) {
         setCategories((prev) => [...prev, response.data.type]); // เพิ่มหมวดหมู่ใหม่
@@ -37,7 +37,7 @@ function Tabbar({ onCategorySelect }) { // รับ callback function
       console.error("Error adding category:", error);
     }
   };
-  
+
   // แก้ไขหมวดหมู่
   const editCategory = async (category, index) => {
     const typeID = categories[index].typeID;
@@ -95,15 +95,19 @@ function Tabbar({ onCategorySelect }) { // รับ callback function
           {/* "All" Button */}
           <div
             className={`type-product ${activeType === '' ? 'active' : ''}`} // Highlight if active
-            onClick={() => onCategorySelect('')}
+            onClick={() => {
+              setActiveType(''); // Reset activeType
+              onCategorySelect(''); // เลือก "ทั้งหมด"
+            }}
           >
             <span>ทั้งหมด</span>
           </div>
+
           {/* ปุ่มประเภทสินค้า */}
           {categories.map((category, index) => (
             <div
               key={index}
-              className="type-product"
+              className={`type-product ${activeType === category.type ? 'active' : ''}`} // ใช้ 'active' เมื่อเลือก
               onClick={() => {
                 // ส่งค่า type
                 // เปิดแก้ไขเฉพาะเมื่อกดปุ่ม + เท่านั้น
@@ -112,6 +116,7 @@ function Tabbar({ onCategorySelect }) { // รับ callback function
                   setShowType(true); // เปิดหน้า Type
                 }
                 else {
+                  setActiveType(category.type); // อัปเดต activeType
                   onCategorySelect(category.type);
                 }
               }}
