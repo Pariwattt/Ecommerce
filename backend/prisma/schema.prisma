@@ -12,10 +12,11 @@ model Product {
     name   String
     price  Float
     code   String  @unique
-    type   Type    @relation(fields: [typeId], references: [id])
-    typeId Int
+    type   Type    @relation(fields: [typeId], references: [typeID])
+    typeId String  @default("defaultTypeId") // กำหนดค่าเริ่มต้นให้กับ typeId
     image  String?
 }
+
 
 model Type {
     id       Int       @id @default(autoincrement())
