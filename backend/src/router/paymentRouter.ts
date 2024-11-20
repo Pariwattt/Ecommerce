@@ -10,15 +10,18 @@ export const paymentRouter = (() => {
     router.post("/pay", async (req: Request, res: Response) => {
         const { productIds, discount, amountReceived, typePay } = req.body;
 
-        if (!productIds || !discount || amountReceived === undefined || !typePay) {
+        if (!productIds || amountReceived === undefined || !typePay) {
             return res.status(400).json({ message: "กรุณากรอกข้อมูลให้ครบถ้วน" });
         }
 
+        // หาก discount เป็นค่าว่าง หรือ undefined ให้ตั้งค่าเป็น 0
+        const validDiscount = discount !== undefined && discount !== "" ? parseFloat(discount) : 0;
+
         try {
-            // ดึงข้อมูลสินค้าจาก productRouter
+            // ดึงข้อมูลสินค้าที่เลือก
             const products = await prisma.product.findMany({
                 where: {
-                    id: { in: productIds }, // ดึงสินค้าที่เลือกจาก productIds
+                    id: { in: productIds },
                 },
             });
 
@@ -26,34 +29,30 @@ export const paymentRouter = (() => {
                 return res.status(404).json({ message: "ไม่พบสินค้าที่เลือก" });
             }
 
-            // คำนวณ totalPrice (ราคาสินค้ารวมทั้งหมด)
+            // คำนวณราคาและเงินทอน
             const totalPrice = products.reduce((sum, product) => sum + product.price, 0);
-
-            // คำนวณ priceToPay (ราคาหลังจากส่วนลด)
-            const priceToPay = totalPrice - (totalPrice * (discount / 100));
-
-            // คำนวณ change (เงินทอน)
+            const priceToPay = totalPrice - (totalPrice * (validDiscount / 100));
             const change = amountReceived - priceToPay;
 
-            // คำนวณจำนวนสินค้า
-            const productQuantity = products.length;
+            if (change < 0) {
+                return res.status(400).json({ message: "จำนวนเงินที่จ่ายไม่เพียงพอ" });
+            }
 
-            // บันทึกการจ่ายเงินในฐานข้อมูล
+            // บันทึกการชำระเงินลงฐานข้อมูล
             const payment = await prisma.payment.create({
                 data: {
                     totalPrice,
                     priceToPay,
                     change,
-                    discount,
+                    discount: validDiscount, // ใช้ validDiscount ที่เป็นค่า 0 หรือส่วนลดที่กรอก
                     typePay,
                     amountReceived,
-                    productQuantity,
+                    productQuantity: productIds.length,
                     date: new Date(),
-                    time: new Date().toLocaleTimeString(), // ใช้เวลาปัจจุบัน
+                    time: new Date().toLocaleTimeString(),
                 },
             });
 
-            // ส่งผลลัพธ์
             return res.status(201).json({
                 message: "การชำระเงินสำเร็จ",
                 paymentId: payment.id,

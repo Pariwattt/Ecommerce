@@ -3,17 +3,16 @@ import '../css/Menu.css';
 import Navbar from '../webPageFeatures/navbar';
 import Footbar from '../webPageFeatures/footbar';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
+import { useNavigate } from 'react-router-dom';
 
 function App() {
     const [products, setProducts] = useState([]); // ข้อมูลสินค้าทั้งหมด
     const [categories, setCategories] = useState([]); // ข้อมูลประเภทสินค้า
     const [selectedType, setSelectedType] = useState(null); // ประเภทสินค้าที่เลือก
-    const [cart, setCart] = useState([]); // รายการสินค้าในตาราง
-    const [payments, setPayments] = useState([]); // ข้อมูลการชำระเงินทั้งหมด
-    const Navigate = useNavigate();
-    const [discount, setDiscount] = useState(''); // เก็บค่าที่ใส่ในช่องส่วนลด
+    const [cart, setCart] = useState([]); // รายการสินค้าในตะกร้า
+    const [discount, setDiscount] = useState('0'); // เก็บค่าที่ใส่ในช่องส่วนลด (เริ่มต้นเป็น 0)
     const [error, setError] = useState(''); // เก็บข้อความแสดงข้อผิดพลาด
+    const Navigate = useNavigate();
 
     // ดึงข้อมูลสินค้า
     useEffect(() => {
@@ -36,23 +35,13 @@ function App() {
                 console.error('Error fetching type:', error);
             });
     }, []);
-    // ดึงข้อมูลการชำระเงินทั้งหมด
-    useEffect(() => {
-        axios.get('http://localhost:8081/v1/payment/payments')
-            .then((response) => {
-                setPayments(response.data.payments);
-            })
-            .catch((error) => {
-                console.error('Error fetching payments:', error);
-            });
-    }, []);
 
     // ฟิลเตอร์สินค้าโดยประเภท
     const filteredProducts = selectedType
         ? products.filter((product) => product.typeId === selectedType)
         : products;
 
-    // เพิ่มสินค้าในตาราง
+    // เพิ่มสินค้าในตะกร้า
     const handleProductClick = (product) => {
         setCart((prevCart) => {
             const existingProduct = prevCart.find((item) => item.code === product.code);
@@ -65,13 +54,14 @@ function App() {
             }
         });
     };
+
     // ฟังก์ชันจัดการการเปลี่ยนแปลงค่าในช่องส่วนลด
     const handleDiscountChange = (e) => {
         const value = e.target.value;
 
-        // ตรวจสอบว่าค่าเป็นตัวเลข และอยู่ในช่วง 0-100
+        // ตรวจสอบว่าค่าเป็นตัวเลข และอยู่ในช่วง 0-100 หรือเป็นค่าว่าง
         if (value === '' || (/^\d+$/.test(value) && parseInt(value) >= 0 && parseInt(value) <= 100)) {
-            setDiscount(value); // อัปเดตค่า
+            setDiscount(value === '' ? '0' : value); // อัปเดตค่าเป็น 0 ถ้าค่าว่าง
             setError(''); // ล้างข้อความข้อผิดพลาด
         } else {
             setError('กรุณากรอกส่วนลด');
@@ -85,8 +75,14 @@ function App() {
     const calculateGrandTotal = () =>
         cart.reduce((total, product) => total + calculateTotal(product), 0);
 
-    return (
+    // คำนวณยอดชำระหลังหักส่วนลด
+    const calculateDiscountedTotal = () => {
+        const total = calculateGrandTotal();
+        const discountValue = parseFloat(discount || 0); // แปลงส่วนลดเป็นตัวเลข
+        return total * (1 - discountValue / 100);
+    };
 
+    return (
         <div>
             <Navbar />
             <div className="copyPages">
@@ -126,10 +122,10 @@ function App() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th >รายการ</th>
-                                    <th >ราคา</th>
-                                    <th >จำนวน</th>
-                                    <th >รวม</th>
+                                    <th>รายการ</th>
+                                    <th>ราคา</th>
+                                    <th>จำนวน</th>
+                                    <th>รวม</th>
                                 </tr>
                             </thead>
                         </table>
@@ -165,17 +161,27 @@ function App() {
                             value={discount}
                             onChange={handleDiscountChange}
                         />
-                        {error && <span className="error-message">{error}</span>} {/* แสดงข้อความข้อผิดพลาด */}
+                        {error && <span className="error-message">{error}</span>}
                         <h2>ยอดชำระ</h2>
                         <div className="Total">
-                            {/* คำนวณยอดชำระหลังหักส่วนลด */}
-                            {new Intl.NumberFormat().format(
-                                calculateGrandTotal() * (1 - discount / 100)
-                            )}
+                            {new Intl.NumberFormat().format(calculateDiscountedTotal())}
                         </div>
                     </div>
                     <div className="buttons">
-                        <button className="pay-btn" disabled={cart.length === 0} onClick={() => Navigate('/Payment')}>
+                        <button
+                            className="pay-btn"
+                            disabled={cart.length === 0}
+                            onClick={() =>
+                                Navigate('/Payment', {
+                                    state: {
+                                        cart,
+                                        discount,
+                                        total: calculateGrandTotal(),
+                                        discountedTotal: calculateDiscountedTotal(),
+                                    },
+                                })
+                            }
+                        >
                             คิดเงิน
                         </button>
                         <button className="cancel-btn" onClick={() => setCart([])}>
@@ -186,7 +192,6 @@ function App() {
             </div>
             <Footbar />
         </div>
-
     );
 }
 
