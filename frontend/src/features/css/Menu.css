@@ -54,7 +54,7 @@
     border-right: 1px solid #ddd;
     /* เส้นแบ่งคอลัมน์ */
     font-weight: bold;
-    background-color: #f5f5f5;
+    background-color: #fcfbfb;
     /* สีพื้นหลังหัวข้อ */
     box-sizing: border-box;
 }
@@ -63,7 +63,7 @@
 .header-wrapper th {
     position: sticky;
     top: 0;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     z-index: 2;
     text-align: center;
 }
@@ -97,7 +97,7 @@
     /* เอาขอบบนออก เพื่อให้ดูต่อเนื่องกับหัวข้อ */
     overflow-y: auto;
     /* เพิ่ม scrollbar แนวตั้ง */
-    background-color: #ffffff;
+    background-color: #fcfcfc;
     /* สีพื้นหลังของเนื้อหา */
     border-radius: 0 0 8px 8px;
     /* มุมกล่องส่วนล่าง */

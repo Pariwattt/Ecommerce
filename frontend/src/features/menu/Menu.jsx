@@ -4,12 +4,14 @@ import Navbar from '../webPageFeatures/navbar';
 import Footbar from '../webPageFeatures/footbar';
 import LockZoom from '../webPageFeatures/LockZoom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
 
 function App() {
     const [products, setProducts] = useState([]); // ข้อมูลสินค้าทั้งหมด
     const [categories, setCategories] = useState([]); // ข้อมูลประเภทสินค้า
     const [selectedType, setSelectedType] = useState(null); // ประเภทสินค้าที่เลือก
     const [cart, setCart] = useState([]); // รายการสินค้าในตาราง
+    const Navigate = useNavigate();
 
     // ดึงข้อมูลสินค้า
     useEffect(() => {
@@ -139,7 +141,7 @@ function App() {
                             </div>
                         </div>
                         <div className="buttons">
-                            <button className="pay-btn" disabled={cart.length === 0}>
+                            <button className="pay-btn" disabled={cart.length === 0} onClick={() => Navigate('/Payment')}>
                                 คิดเงิน
                             </button>
                             <button className="cancel-btn" onClick={() => setCart([])}>
