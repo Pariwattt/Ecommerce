@@ -3,17 +3,28 @@ import '../css/navbar.css';  // นำเข้าไฟล์ CSS สำหร�
 import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
 
 function Navbar() {
-  const Navigate = useNavigate();
+  const navigate = useNavigate(); // ใช้ navigate เพื่อเปลี่ยนเส้นทาง
+
+  // ฟังก์ชันสำหรับ logout
+  const handleLogout = () => {
+    // ลบ token ออกจากคุกกี้
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+    // รีไดเรกไปหน้า login
+    navigate('/');
+  };
+
   return (
     <div className="navbar">
       <div className="left-buttons">
-        <button onClick={() => Navigate('/Menu')}>ขายสินค้า</button>
-        <button onClick={() => Navigate('/EditMenu')}>จัดการเมนู</button>
-        <button onClick={() => Navigate('/Summary1')}>สรุปยอดขาย</button>
+        <button onClick={() => navigate('/Menu')}>ขายสินค้า</button>
+        <button onClick={() => navigate('/EditMenu')}>จัดการเมนู</button>
+        <button onClick={() => navigate('/Summary1')}>สรุปยอดขาย</button>
       </div>
       <div className="right-section">
         <div className="user-box">นายผู้จัดการ</div>
-        <button>ออกจากระบบ</button>
+        {/* ปุ่ม logout */}
+        <button onClick={handleLogout}>ออกจากระบบ</button>
       </div>
     </div>
   );

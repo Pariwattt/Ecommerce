@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../css/edit.css';
 import Navbar from '../webPageFeatures/navbar';
 import Footbar from '../webPageFeatures/footbar';
-import LockZoom from '../webPageFeatures/LockZoom';
+
 import Tabbar from './tabbar';
 import { FaPlus } from 'react-icons/fa';
 
@@ -171,7 +171,7 @@ function App() {
 
     return (
         <div>
-            <LockZoom />
+            
             <Navbar />
             <Footbar />
             <Tabbar onCategorySelect={handleCategorySelect} />

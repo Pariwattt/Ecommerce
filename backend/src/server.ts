@@ -8,6 +8,9 @@ import errorHandler from "@common/middleware/errorHandler";
 // import { categoryRouter } from "@modules/categories/categoryRouter";
 import { typeRouter } from "./router/typeRouter";
 import { productRouter } from "./router/productRouter";
+import { userRouter } from "@modules/users/userRouter";
+import { paymentRouter } from "./router/paymentRouter";
+
 
 const logger = pino({ name: "server start" });
 const app = express();
@@ -22,6 +25,8 @@ app.use(helmet());
 // Routes
 app.use("/v1/type", typeRouter);
 app.use("/v1/product", productRouter);
+app.use("/v1/user", userRouter);
+app.use("/v1/payment",paymentRouter);
 
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
