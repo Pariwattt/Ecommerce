@@ -1,36 +1,45 @@
 import express, { Request, Response, Router } from "express";
+import { PrismaClient } from "@prisma/client";
 
-interface Type {
-    type: string;
-    typeID: string;
-}
-const types: Type[] = [];
+const prisma = new PrismaClient();
 
 export const typeRouter = (() => {
     const router: Router = express.Router();
 
-    // API สำหรับดึงข้อมูล
+    // API สำหรับดึงข้อมูลประเภททั้งหมด
     router.get("/get", async (req: Request, res: Response) => {
-        res.json(types);
+        try {
+            const types = await prisma.type.findMany();
+            res.json(types);
+        } catch (error) {
+            console.error("Error fetching types:", error);
+            res.status(500).json({ message: "เกิดข้อผิดพลาดในการดึงข้อมูลประเภท" });
+        }
     });
 
-    // API สำหรับเพิ่มข้อมูล
+    // API สำหรับเพิ่มข้อมูลประเภท
     router.post("/add", async (req: Request, res: Response) => {
         const { type } = req.body;
-        
+
         if (!type) {
             return res.status(400).json({ message: "ข้อมูลไม่ครบถ้วน" });
         }
 
-        // สร้าง typeID โดยอิงจากจำนวนสินค้าที่มีอยู่
-        const typeID = (types.length + 1).toString();
-        const newType: Type = { type, typeID };
-
-        types.push(newType);
-        return res.status(201).json({ message: "เพิ่มประเภทสำเร็จ", type: newType });
+        try {
+            const newType = await prisma.type.create({
+                data: { 
+                    type, 
+                    typeID: (await prisma.type.count() + 1).toString() 
+                },
+            });
+            res.status(201).json({ message: "เพิ่มประเภทสำเร็จ", type: newType });
+        } catch (error) {
+            console.error("Error adding type:", error);
+            res.status(500).json({ message: "เกิดข้อผิดพลาดในการเพิ่มประเภท" });
+        }
     });
 
-    // API สำหรับแก้ไขข้อมูล
+    // API สำหรับแก้ไขข้อมูลประเภท
     router.put("/edit/:typeID", async (req: Request, res: Response) => {
         const { typeID } = req.params;
         const { type } = req.body;
@@ -39,28 +48,37 @@ export const typeRouter = (() => {
             return res.status(400).json({ message: "ข้อมูลไม่ครบถ้วน" });
         }
 
-        const typeIndex = types.findIndex(t => t.typeID === typeID);
-        if (typeIndex === -1) {
-            return res.status(404).json({ message: "ไม่พบประเภทที่ต้องการแก้ไข" });
+        try {
+            const updatedType = await prisma.type.update({
+                where: { typeID },
+                data: { type },
+            });
+            res.json({ message: "แก้ไขประเภทสำเร็จ", type: updatedType });
+        } catch (error) {
+            console.error("Error updating type:", error);
+            if (error.code === "P2025") {
+                return res.status(404).json({ message: "ไม่พบประเภทที่ต้องการแก้ไข" });
+            }
+            res.status(500).json({ message: "เกิดข้อผิดพลาดในการแก้ไขประเภท" });
         }
-
-        // แก้ไขข้อมูลสินค้า
-        types[typeIndex] = { ...types[typeIndex], type };
-        return res.json({ message: "แก้ไขประเภทสำเร็จ", type: types[typeIndex] });
     });
 
-    // API สำหรับลบข้อมูลสินค้า
+    // API สำหรับลบข้อมูลประเภท
     router.delete("/delete/:typeID", async (req: Request, res: Response) => {
         const { typeID } = req.params;
 
-        const typeIndex = types.findIndex(type => type.typeID === typeID);
-        if (typeIndex === -1) {
-            return res.status(404).json({ message: "ไม่พบประเภทที่ต้องการลบ" });
+        try {
+            const deletedType = await prisma.type.delete({
+                where: { typeID },
+            });
+            res.json({ message: "ลบประเภทสำเร็จ", type: deletedType });
+        } catch (error) {
+            console.error("Error deleting type:", error);
+            if (error.code === "P2025") {
+                return res.status(404).json({ message: "ไม่พบประเภทที่ต้องการลบ" });
+            }
+            res.status(500).json({ message: "เกิดข้อผิดพลาดในการลบประเภท" });
         }
-
-        // ลบสินค้าจาก Array
-        const deletedType = types.splice(typeIndex, 1);
-        return res.json({ message: "ลบประเภทสำเร็จ", type: deletedType[0] });
     });
 
     return router;

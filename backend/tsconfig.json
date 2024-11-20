@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ES2020",
     "module": "CommonJS",
     "baseUrl": ".",
     "paths": {
@@ -9,7 +9,7 @@
       "@modules/*": ["src/modules/*"],
       "@src/*": ["src/*"]
     },
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "outDir": "build",
     "importsNotUsedAsValues": "remove",
     "esModuleInterop": true,
@@ -17,9 +17,9 @@
     "strict": true,
     "noPropertyAccessFromIndexSignature": false,
     "skipLibCheck": true,
-    "ignoreDeprecations": "5.0"
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
   },
-  "extends": [],
   "exclude": ["node_modules"],
-  "include": ["src/**/*.ts", "tests/**/*.ts"]
+  "include": ["src/**/*.ts", "tests/**/*.ts", "prisma/seed.ts"]
 }

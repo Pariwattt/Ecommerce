@@ -261,3 +261,82 @@ td {
     width: 250px;
     text-align: center;
 }
+.copyPages {
+    display: grid; /* ใช้ grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); /* ปรับจำนวนคอลัมน์อัตโนมัติตามขนาด */
+    gap: 1px; /* ระยะห่างระหว่างกล่อง */
+    width: 1269px; /* กำหนดให้ครอบคลุมความกว้าง */
+    padding: 10px; /* เพิ่ม padding ภายใน */
+    overflow-y: auto; /* เปิดใช้งานการเลื่อนแนวตั้งหากเนื้อหาเกิน */
+    background-color: rgb(252, 252, 252); /* สีพื้นหลังของกรอบ */
+    position: absolute;
+    top: 53%;
+    left: 0;
+    height: 395px; /* ความสูงของกรอบ */
+    border: 1px solid #ddd; /* สีและขนาดขอบ */
+}
+
+.proCopyBox-increase {
+    width: 100px; /* ให้กล่องปรับขนาดตาม grid */
+    height: 100px; /* ความสูงของกล่อง */
+    border-radius: 10px; /* ขอบกล่องโค้ง */
+    background-color: #f0ecec; /* สีพื้นหลัง */
+    border: 1px solid #ddd; /* เส้นขอบ */
+    display: flex;
+    justify-content: center; /* จัดข้อความในแนวนอน */
+    align-items: center; /* จัดข้อความในแนวตั้ง */
+    font-size: 18px;
+    color: #060606;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.proCopyBox-increase:hover {
+    background-color: #e0e0e0; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+}
+.copeTabbar{
+    display: flex;
+    align-items: center;            /* จัดให้อยู่กลางแนวตั้ง */
+    background-color: #b71c1c;     
+    color: white;                   /* สีตัวอักษร */
+    padding: 15px;                 
+    font-family: Arial, sans-serif; /* ฟอนต์ */
+    width: 1261px;                    /* ให้กว้างเต็มจอ */
+    height: 25px;                   /* เพิ่มความสูงให้มากขึ้น */
+    position: fixed;                /* ทำให้ตำแหน่งคงที่ */
+    top: 50%;                       /* กำหนดให้อยู่กลางแนวตั้ง */
+    transform: translateY(-50%);    /* ปรับตำแหน่งให้อยู่กลางแนวตั้ง */
+    z-index: 5;                  /* เพิ่ม z-index เพื่อให้แน่ใจว่ามีลำดับชั้นที่สูง */ 
+}
+.TypeCopyBox-increase{
+    width: auto;
+    height: 25px;
+    background-color: rgb(185, 19, 19);    /* สีพื้นหลังเริ่มต้น */
+    color: white;                           /* สีตัวอักษร */
+    border: 2px solid transparent;          /* เริ่มต้นด้วยขอบโปร่งใส */
+    margin-right: 10px;                     /* เพิ่มระยะห่างระหว่างกล่อง */
+    font-size: 18px;                        /* ขนาดตัวอักษร */
+    cursor: pointer;                        /* เปลี่ยน cursor เมื่อ hover */
+    padding: 2px 2px;                       /* เพิ่ม padding */
+    transition: all 0.3s ease;              /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
+    border-radius: 10px;                    /* ปรับขอบเป็นมุมโค้ง */
+    display: flex;                           /* ใช้ Flexbox เพื่อจัดตำแหน่งข้อความ */
+    align-items: center;                    /* จัดตำแหน่งในแนวตั้ง */
+    justify-content: center;                 /* จัดตำแหน่งในแนวนอน */
+}
+.left-buttons {
+    display: flex;
+    align-items: center;
+    
+}
+
+.TypeCopyBox-increase:hover {
+    color: rgb(243, 229, 229);             /* เปลี่ยนสีตัวอักษรเมื่อ hover */
+    background-color: rgba(189, 27, 21, 0.8); /* ปรับพื้นหลังให้โปร่งใสเมื่อ hover */
+    border: 2px solid rgba(243, 229, 229, 0.7); /* เพิ่มเส้นขอบโปร่งใส */
+}
+.TypeCopyBox-increase.active {
+    background-color: #f7f4f4; /* สีพื้นหลังเมื่อเลือก */
+    color: rgb(0, 0, 0); /* สีตัวอักษร */
+    border: 2px solid #ffffff;
+}

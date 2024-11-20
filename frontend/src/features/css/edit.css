@@ -260,3 +260,14 @@
     top: 50px;
     left: 0px;
 }
+/* When editing, allow user to type */
+.In-Code-box[readonly] {
+    pointer-events: none; /* Disable click and typing */
+    background-color: #d3d3d3; /* Light gray background */
+}
+
+/* When not in editing mode, input box has a normal background */
+.In-Code-box:not([readonly]) {
+    pointer-events: auto; /* Enable click and typing */
+    background-color: white; /* White background */
+}
