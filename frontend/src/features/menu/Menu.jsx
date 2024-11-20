@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import '../css/Menu.css';
 import Navbar from '../webPageFeatures/navbar';
 import Footbar from '../webPageFeatures/footbar';
-import LockZoom from '../webPageFeatures/LockZoom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
 
@@ -62,7 +61,7 @@ function App() {
         cart.reduce((total, product) => total + calculateTotal(product), 0);
 
     return (
-        <LockZoom>
+        
             <div>
                 <Navbar />
                 <div className="copyPages">
@@ -152,7 +151,7 @@ function App() {
                 </div>
                 <Footbar />
             </div>
-        </LockZoom>
+        
     );
 }
 

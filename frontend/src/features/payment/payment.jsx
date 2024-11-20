@@ -2,7 +2,6 @@ import React from 'react';
 import '../css/payment.css';  // นำเข้าไฟล์ CSS
 import Navbar from '../webPageFeatures/navbar';
 import Footbar from '../webPageFeatures/footbar';
-import LockZoom from '../webPageFeatures/LockZoom';
 
 import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
 
@@ -10,7 +9,7 @@ function App() {
   const Navigate = useNavigate();
   return (
     <div>
-       <LockZoom/>
+      
         <Navbar />
       {/* กลุ่มปุ่มที่มีอยู่ */}
       <div className="but-con">
