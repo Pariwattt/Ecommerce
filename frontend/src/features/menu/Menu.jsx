@@ -10,7 +10,10 @@ function App() {
     const [categories, setCategories] = useState([]); // ข้อมูลประเภทสินค้า
     const [selectedType, setSelectedType] = useState(null); // ประเภทสินค้าที่เลือก
     const [cart, setCart] = useState([]); // รายการสินค้าในตาราง
+    const [payments, setPayments] = useState([]); // ข้อมูลการชำระเงินทั้งหมด
     const Navigate = useNavigate();
+    const [discount, setDiscount] = useState(''); // เก็บค่าที่ใส่ในช่องส่วนลด
+    const [error, setError] = useState(''); // เก็บข้อความแสดงข้อผิดพลาด
 
     // ดึงข้อมูลสินค้า
     useEffect(() => {
@@ -33,6 +36,16 @@ function App() {
                 console.error('Error fetching type:', error);
             });
     }, []);
+    // ดึงข้อมูลการชำระเงินทั้งหมด
+    useEffect(() => {
+        axios.get('http://localhost:8081/v1/payment/payments')
+            .then((response) => {
+                setPayments(response.data.payments);
+            })
+            .catch((error) => {
+                console.error('Error fetching payments:', error);
+            });
+    }, []);
 
     // ฟิลเตอร์สินค้าโดยประเภท
     const filteredProducts = selectedType
@@ -52,6 +65,18 @@ function App() {
             }
         });
     };
+    // ฟังก์ชันจัดการการเปลี่ยนแปลงค่าในช่องส่วนลด
+    const handleDiscountChange = (e) => {
+        const value = e.target.value;
+
+        // ตรวจสอบว่าค่าเป็นตัวเลข และอยู่ในช่วง 0-100
+        if (value === '' || (/^\d+$/.test(value) && parseInt(value) >= 0 && parseInt(value) <= 100)) {
+            setDiscount(value); // อัปเดตค่า
+            setError(''); // ล้างข้อความข้อผิดพลาด
+        } else {
+            setError('กรุณากรอกส่วนลด');
+        }
+    };
 
     // คำนวณยอดรวมของแต่ละสินค้า
     const calculateTotal = (product) => product.price * product.quantity;
@@ -61,97 +86,107 @@ function App() {
         cart.reduce((total, product) => total + calculateTotal(product), 0);
 
     return (
-        
-            <div>
-                <Navbar />
-                <div className="copyPages">
-                    {filteredProducts.map((product) => (
+
+        <div>
+            <Navbar />
+            <div className="copyPages">
+                {filteredProducts.map((product) => (
+                    <div
+                        key={product.code}
+                        className="proCopyBox-increase"
+                        onClick={() => handleProductClick(product)}
+                    >
+                        <p>{product.name}</p>
+                    </div>
+                ))}
+            </div>
+            <div className="copeTabbar">
+                <div className="left-buttons">
+                    <div
+                        className={`TypeCopyBox-increase ${!selectedType ? 'active' : ''}`}
+                        onClick={() => setSelectedType(null)}
+                    >
+                        <span>ทั้งหมด</span>
+                    </div>
+                    {categories.map((category) => (
                         <div
-                            key={product.code}
-                            className="proCopyBox-increase"
-                            onClick={() => handleProductClick(product)}
+                            key={category.typeID}
+                            className={`TypeCopyBox-increase ${selectedType === category.typeID.toString() ? 'active' : ''}`}
+                            onClick={() => setSelectedType(category.typeID.toString())}
                         >
-                            <p>{product.name}</p>
+                            <p>{category.type}</p>
                         </div>
                     ))}
                 </div>
-                <div className="copeTabbar">
-                    <div className="left-buttons">
-                        <div
-                            className={`TypeCopyBox-increase ${!selectedType ? 'active' : ''}`}
-                            onClick={() => setSelectedType(null)}
-                        >
-                            <span>ทั้งหมด</span>
-                        </div>
-                        {categories.map((category) => (
-                            <div
-                                key={category.typeID}
-                                className={`TypeCopyBox-increase ${selectedType === category.typeID.toString() ? 'active' : ''}`}
-                                onClick={() => setSelectedType(category.typeID.toString())}
-                            >
-                                <p>{category.type}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="container-Menu">
-                    <div className="left-container">
-                        <div className="header-wrapper">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th >รายการ</th>
-                                        <th >ราคา</th>
-                                        <th >จำนวน</th>
-                                        <th >รวม</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-
-                        <div className="table-wrapper">
-                            <table>
-                                <tbody>
-                                    {cart.map((product) => (
-                                        <tr key={product.code}>
-                                            <td>{product.name}</td>
-                                            <td>{new Intl.NumberFormat().format(product.price)}</td>
-                                            <td>{product.quantity}</td>
-                                            <td>{new Intl.NumberFormat().format(calculateTotal(product))}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div className="summary-container">
-                        <div className="titleOfsummary">สรุปยอด</div>
-                        <div className="summary">
-                            <p>ราคา</p>
-                            <div className="price">
-                                {new Intl.NumberFormat().format(calculateGrandTotal())}
-                            </div>
-                            <p>ส่วนลด</p>
-                            <input type="text" className="discount" placeholder="ส่วนลด %" />
-                            <h2>ยอดชำระ</h2>
-                            <div className="Total">
-                                {new Intl.NumberFormat().format(calculateGrandTotal())}
-                            </div>
-                        </div>
-                        <div className="buttons">
-                            <button className="pay-btn" disabled={cart.length === 0} onClick={() => Navigate('/Payment')}>
-                                คิดเงิน
-                            </button>
-                            <button className="cancel-btn" onClick={() => setCart([])}>
-                                ยกเลิก
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <Footbar />
             </div>
-        
+
+            <div className="container-Menu">
+                <div className="left-container">
+                    <div className="header-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th >รายการ</th>
+                                    <th >ราคา</th>
+                                    <th >จำนวน</th>
+                                    <th >รวม</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div className="table-wrapper">
+                        <table>
+                            <tbody>
+                                {cart.map((product) => (
+                                    <tr key={product.code}>
+                                        <td>{product.name}</td>
+                                        <td>{new Intl.NumberFormat().format(product.price)}</td>
+                                        <td>{product.quantity}</td>
+                                        <td>{new Intl.NumberFormat().format(calculateTotal(product))}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div className="summary-container">
+                    <div className="titleOfsummary">สรุปยอด</div>
+                    <div className="summary">
+                        <p>ราคา</p>
+                        <div className="price">
+                            {new Intl.NumberFormat().format(calculateGrandTotal())}
+                        </div>
+                        <p>ส่วนลด</p>
+                        <input
+                            type="text"
+                            className="discount"
+                            placeholder="ส่วนลด %"
+                            value={discount}
+                            onChange={handleDiscountChange}
+                        />
+                        {error && <span className="error-message">{error}</span>} {/* แสดงข้อความข้อผิดพลาด */}
+                        <h2>ยอดชำระ</h2>
+                        <div className="Total">
+                            {/* คำนวณยอดชำระหลังหักส่วนลด */}
+                            {new Intl.NumberFormat().format(
+                                calculateGrandTotal() * (1 - discount / 100)
+                            )}
+                        </div>
+                    </div>
+                    <div className="buttons">
+                        <button className="pay-btn" disabled={cart.length === 0} onClick={() => Navigate('/Payment')}>
+                            คิดเงิน
+                        </button>
+                        <button className="cancel-btn" onClick={() => setCart([])}>
+                            ยกเลิก
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <Footbar />
+        </div>
+
     );
 }
 
