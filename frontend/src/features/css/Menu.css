@@ -1,4 +1,3 @@
-
 .container-Menu {
     justify-content: space-between;
     padding: 20px;
@@ -20,39 +19,126 @@
     height: 100%;
     /* ทำให้เต็มความสูง */
     padding: 20px;
+    width: 1240px;
+    margin: 0 auto;
+    /* จัดให้อยู่กลางหน้าจอ */
+    
 }
 
-.table-container,
-.menu-grid {
-    flex-grow: 1;
-    /* ให้ทั้งสองส่วนขยายเต็มที่ */
-    display: flex;
-    flex-direction: column;
-    /* เรียงภายในให้เป็นแนวตั้ง */
-}
-
-/* ตารางสินค้า */
-.table-container {
-    width: 100%;
-    /* ตารางเต็มความกว้าง */
-}
-
-
-/*ช่องรายการอาหาร*/
-table {
-    width: 100%;
-    /* ตารางเต็มความกว้าง */
-    border-collapse: collapse;
-    /* ทำให้ตารางไม่มีเส้นห่าง */
-}
-
-th,
-td {
-    padding: 10px;
+/* กล่องหัวข้อ */
+.header-wrapper {
+    width: 1240px;
     border: 1px solid #ddd;
-    /* เส้นขอบของเซลล์ */
+    /* ขอบกล่องหัวข้อ */
+    background-color: #f5f5f5;
+    /* สีพื้นหลังหัวข้อ */
+    border-radius: 8px 8px 0 0;
+    /* มุมกล่องส่วนบน */
+    overflow: hidden;
+    /* ซ่อนเนื้อหาที่เกินขอบ */
+    box-sizing: border-box;
+    /* รวม padding และ border ในการคำนวณขนาด */
+}
+
+.header-wrapper table,
+.table-wrapper table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.header-wrapper th,
+.table-wrapper td {
+    padding: 10px;
     text-align: center;
-    /* จัดข้อความให้อยู่กึ่งกลาง */
+    border-right: 1px solid #ddd;
+    /* เส้นแบ่งคอลัมน์ */
+    font-weight: bold;
+    background-color: #f5f5f5;
+    /* สีพื้นหลังหัวข้อ */
+    box-sizing: border-box;
+}
+
+/* หัวข้อแบบติดแน่น */
+.header-wrapper th {
+    position: sticky;
+    top: 0;
+    background-color: #f5f5f5;
+    z-index: 2;
+}
+
+.header-wrapper th:last-child {
+    border-right: none;
+    /* เอาเส้นขอบขวาออกในคอลัมน์สุดท้าย */
+}
+
+/* คอลัมน์ */
+.table-wrapper td {
+    border: 1px solid #ddd;
+
+}
+
+.table-wrapper tr {
+    height: 30px;
+}
+
+/* กล่องเนื้อหาตาราง */
+.table-wrapper {
+    width: 1240px;
+    height: 290px;
+    /* กำหนดความสูงให้เนื้อหาเลื่อน */
+    border: 1px solid #ddd;
+    /* ขอบกล่องเนื้อหา */
+    border-top: none;
+    /* เอาขอบบนออก เพื่อให้ดูต่อเนื่องกับหัวข้อ */
+    overflow-y: auto;
+    /* เพิ่ม scrollbar แนวตั้ง */
+    background-color: #ffffff;
+    /* สีพื้นหลังของเนื้อหา */
+    border-radius: 0 0 8px 8px;
+    /* มุมกล่องส่วนล่าง */
+    box-sizing: border-box;
+    /* รวม padding และ border ในการคำนวณขนาด */
+    -ms-overflow-style: none;
+    /* ซ่อน scroll bar ใน IE และ Edge */
+    scrollbar-width: none;
+}
+
+.table-wrapper table {
+    width: 1235;
+    border-collapse: collapse;
+    /* ยุบขอบตาราง */
+}
+
+
+.table-wrapper tr:last-child td {
+    border-bottom: none;
+    /* เอาเส้นขอบล่างออกในแถวสุดท้าย */
+}
+
+/* กำหนดความกว้างของคอลัมน์ */
+.header-wrapper th:nth-child(1),
+.table-wrapper td:nth-child(1) {
+    width: 45%;
+    /* ชื่อสินค้า */
+}
+
+.header-wrapper th:nth-child(2),
+.table-wrapper td:nth-child(2) {
+    width: 20%;
+    /* ราคา */
+}
+
+.header-wrapper th:nth-child(3),
+.table-wrapper td:nth-child(3) {
+    width: 10%;
+    /* จำนวนสินค้า */
+}
+
+.header-wrapper th:nth-child(4),
+.table-wrapper td:nth-child(4) {
+    width: 25%;
+    /* รวม */
 }
 
 
@@ -261,82 +347,139 @@ td {
     width: 250px;
     text-align: center;
 }
+
 .copyPages {
-    display: grid; /* ใช้ grid layout */
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); /* ปรับจำนวนคอลัมน์อัตโนมัติตามขนาด */
-    gap: 1px; /* ระยะห่างระหว่างกล่อง */
-    width: 1269px; /* กำหนดให้ครอบคลุมความกว้าง */
-    padding: 10px; /* เพิ่ม padding ภายใน */
-    overflow-y: auto; /* เปิดใช้งานการเลื่อนแนวตั้งหากเนื้อหาเกิน */
-    background-color: rgb(252, 252, 252); /* สีพื้นหลังของกรอบ */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    width: 1269px;
+    padding: 10px;
+    grid-auto-rows: 100px;
+    /* กำหนดความสูงคงที่ของแต่ละแถว */
+    overflow-y: auto;
+    background-color: rgb(252, 252, 252);
     position: absolute;
     top: 53%;
     left: 0;
-    height: 395px; /* ความสูงของกรอบ */
-    border: 1px solid #ddd; /* สีและขนาดขอบ */
+    height: 395px;
+    border: 1px solid #ddd;
+
+
 }
 
+
+
 .proCopyBox-increase {
-    width: 100px; /* ให้กล่องปรับขนาดตาม grid */
-    height: 100px; /* ความสูงของกล่อง */
-    border-radius: 10px; /* ขอบกล่องโค้ง */
-    background-color: #f0ecec; /* สีพื้นหลัง */
-    border: 1px solid #ddd; /* เส้นขอบ */
+    width: 110px;
+    /* ให้กล่องปรับขนาดตาม grid */
+    border-radius: 10px;
+    /* ขอบกล่องโค้ง */
+    background-color: #f0ecec;
+    /* สีพื้นหลัง */
+    border: 1px solid #ddd;
+    /* เส้นขอบ */
     display: flex;
-    justify-content: center; /* จัดข้อความในแนวนอน */
-    align-items: center; /* จัดข้อความในแนวตั้ง */
+    justify-content: center;
+    /* จัดข้อความในแนวนอน */
+    align-items: center;
+    /* จัดข้อความในแนวตั้ง */
     font-size: 18px;
     color: #060606;
     cursor: pointer;
     z-index: 2;
+    margin: 0;
+    /* ลบ margin ที่อาจเพิ่มระยะ */
+    padding: 5px;
+    height: 90px;
+    /* หรือกำหนดขนาดคงที่ */
+    box-sizing: border-box;
+    /* ป้องกันขยายพื้นที่ */
+
+}
+
+.proCopyBox-increase span,
+.proCopyBox-increase div {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
 }
 
 .proCopyBox-increase:hover {
-    background-color: #e0e0e0; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+    background-color: #e0e0e0;
+    /* เปลี่ยนสีพื้นหลังเมื่อ hover */
 }
-.copeTabbar{
+
+.copeTabbar {
     display: flex;
-    align-items: center;            /* จัดให้อยู่กลางแนวตั้ง */
-    background-color: #b71c1c;     
-    color: white;                   /* สีตัวอักษร */
-    padding: 15px;                 
-    font-family: Arial, sans-serif; /* ฟอนต์ */
-    width: 1261px;                    /* ให้กว้างเต็มจอ */
-    height: 25px;                   /* เพิ่มความสูงให้มากขึ้น */
-    position: fixed;                /* ทำให้ตำแหน่งคงที่ */
-    top: 50%;                       /* กำหนดให้อยู่กลางแนวตั้ง */
-    transform: translateY(-50%);    /* ปรับตำแหน่งให้อยู่กลางแนวตั้ง */
-    z-index: 5;                  /* เพิ่ม z-index เพื่อให้แน่ใจว่ามีลำดับชั้นที่สูง */ 
+    align-items: center;
+    /* จัดให้อยู่กลางแนวตั้ง */
+    background-color: #b71c1c;
+    color: white;
+    /* สีตัวอักษร */
+    padding: 15px;
+    font-family: Arial, sans-serif;
+    /* ฟอนต์ */
+    width: 1261px;
+    /* ให้กว้างเต็มจอ */
+    height: 25px;
+    /* เพิ่มความสูงให้มากขึ้น */
+    position: fixed;
+    /* ทำให้ตำแหน่งคงที่ */
+    top: 50%;
+    /* กำหนดให้อยู่กลางแนวตั้ง */
+    transform: translateY(-50%);
+    /* ปรับตำแหน่งให้อยู่กลางแนวตั้ง */
+    z-index: 5;
+    /* เพิ่ม z-index เพื่อให้แน่ใจว่ามีลำดับชั้นที่สูง */
 }
-.TypeCopyBox-increase{
+
+.TypeCopyBox-increase {
     width: auto;
     height: 25px;
-    background-color: rgb(185, 19, 19);    /* สีพื้นหลังเริ่มต้น */
-    color: white;                           /* สีตัวอักษร */
-    border: 2px solid transparent;          /* เริ่มต้นด้วยขอบโปร่งใส */
-    margin-right: 10px;                     /* เพิ่มระยะห่างระหว่างกล่อง */
-    font-size: 18px;                        /* ขนาดตัวอักษร */
-    cursor: pointer;                        /* เปลี่ยน cursor เมื่อ hover */
-    padding: 2px 2px;                       /* เพิ่ม padding */
-    transition: all 0.3s ease;              /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
-    border-radius: 10px;                    /* ปรับขอบเป็นมุมโค้ง */
-    display: flex;                           /* ใช้ Flexbox เพื่อจัดตำแหน่งข้อความ */
-    align-items: center;                    /* จัดตำแหน่งในแนวตั้ง */
-    justify-content: center;                 /* จัดตำแหน่งในแนวนอน */
+    background-color: rgb(185, 19, 19);
+    /* สีพื้นหลังเริ่มต้น */
+    color: white;
+    /* สีตัวอักษร */
+    border: 2px solid transparent;
+    /* เริ่มต้นด้วยขอบโปร่งใส */
+    margin-right: 10px;
+    /* เพิ่มระยะห่างระหว่างกล่อง */
+    font-size: 18px;
+    /* ขนาดตัวอักษร */
+    cursor: pointer;
+    /* เปลี่ยน cursor เมื่อ hover */
+    padding: 2px 2px;
+    /* เพิ่ม padding */
+    transition: all 0.3s ease;
+    /* เพิ่มการเคลื่อนไหวแบบนุ่มนวล */
+    border-radius: 10px;
+    /* ปรับขอบเป็นมุมโค้ง */
+    display: flex;
+    /* ใช้ Flexbox เพื่อจัดตำแหน่งข้อความ */
+    align-items: center;
+    /* จัดตำแหน่งในแนวตั้ง */
+    justify-content: center;
+    /* จัดตำแหน่งในแนวนอน */
 }
+
 .left-buttons {
     display: flex;
     align-items: center;
-    
+
 }
 
 .TypeCopyBox-increase:hover {
-    color: rgb(243, 229, 229);             /* เปลี่ยนสีตัวอักษรเมื่อ hover */
-    background-color: rgba(189, 27, 21, 0.8); /* ปรับพื้นหลังให้โปร่งใสเมื่อ hover */
-    border: 2px solid rgba(243, 229, 229, 0.7); /* เพิ่มเส้นขอบโปร่งใส */
+    color: rgb(243, 229, 229);
+    /* เปลี่ยนสีตัวอักษรเมื่อ hover */
+    background-color: rgba(189, 27, 21, 0.8);
+    /* ปรับพื้นหลังให้โปร่งใสเมื่อ hover */
+    border: 2px solid rgba(243, 229, 229, 0.7);
+    /* เพิ่มเส้นขอบโปร่งใส */
 }
+
 .TypeCopyBox-increase.active {
-    background-color: #f7f4f4; /* สีพื้นหลังเมื่อเลือก */
-    color: rgb(0, 0, 0); /* สีตัวอักษร */
+    background-color: #f7f4f4;
+    /* สีพื้นหลังเมื่อเลือก */
+    color: rgb(0, 0, 0);
+    /* สีตัวอักษร */
     border: 2px solid #ffffff;
 }
