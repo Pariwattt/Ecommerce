@@ -7,24 +7,20 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// Category Model
-model categories {
-  id             String    @id @default(uuid()) @db.Uuid
-  category_name  String    @unique
-  created_at     DateTime  @default(now())
-  updated_at     DateTime? @updatedAt 
-  products       product[]
+model Product {
+    id     Int    @id @default(autoincrement())
+    name   String
+    price  Float
+    code   String  @unique
+    type   Type    @relation(fields: [typeId], references: [typeID])
+    typeId String  @default("defaultTypeId") // กำหนดค่าเริ่มต้นให้กับ typeId
+    image  String?
 }
 
-// Product Model
-model product {
-  id            String     @id @default(uuid()) @db.Uuid
-  product_name  String
-  price         Float
-  code          String     @unique // เพิ่มฟิลด์ code และบังคับไม่ซ้ำ
-  image         String?    // ฟิลด์ image ที่เป็น optional
-  category_id   String     @db.Uuid
-  created_at    DateTime   @default(now())
-  updated_at    DateTime?  @updatedAt
-  category      categories @relation(fields: [category_id], references: [id])
+
+model Type {
+    id       Int       @id @default(autoincrement())
+    type     String    @unique
+    typeID   String    @unique
+    products Product[]
 }

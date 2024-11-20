@@ -1,28 +1,6 @@
 version: '3.9'
 
 services:
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "3000:80"  
-  #   environment:
-  #     NODE_ENV: development
-  #     REACT_APP_BACKEND_SERVER: http://localhost:8087/api/
-
-  # backend:
-  #   build: ./backend
-  #   ports:
-  #     - "8081:8081"
-  #   volumes:
-  #     - ./backend:/app
-  #   environment:
-  #     DATABASE_URL: postgresql://myuser:mypassword@postgres:5432/demo?sslmode=disable
-  #     TZ: Asia/Bangkok 
-  #   depends_on:
-  #     - postgres
-
   postgres:
     image: postgres:14-alpine
     environment:
@@ -32,6 +10,8 @@ services:
       TZ: Asia/Bangkok
     ports:
       - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data # เพิ่ม Volume ที่เก็บข้อมูลถาวร
 
   pgadmin:
     image: dpage/pgadmin4
@@ -44,4 +24,4 @@ services:
       - postgres
 
 volumes:
-  db:
+  db_data: # กำหนด Volume ที่เก็บข้อมูล

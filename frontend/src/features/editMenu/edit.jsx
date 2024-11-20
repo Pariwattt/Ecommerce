@@ -19,6 +19,7 @@ function App() {
     const [selectedCategory, setSelectedCategory] = useState(''); // ประเภทที่เลือก
     const [showFields, setShowFields] = useState(false);
     const [editingProductCode, setEditingProductCode] = useState(null); // ใช้ productCode แทน index
+    const [isEditing, setIsEditing] = useState(false); // ใช้บ่งชี้ว่าอยู่ในโหมดแก้ไขหรือไม่
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -43,29 +44,68 @@ function App() {
         fetchProducts();
         fetchCategories();
     }, []);
+    
+    // Handle category selection from Tabbar
+    const handleCategorySelect = (category) => {
+        setSelectedCategory(category); // Update the currently selected category
+        if (category === "") {
+            setFilteredProducts(products); // Show all products if "ทั้งหมด" is selected
+        } else {
+            const filtered = products.filter((product) => product.type?.type === category);
+            setFilteredProducts(filtered); // Show products matching the selected category
+        }
+    };
+
+    const handleShowFields = (productCode) => {
+        const product = products.find((product) => product.code === productCode);
+        if (product) {
+            setProductName(product.name);
+            setProductPrice(product.price);
+            setProductCode(product.code);
+            setProductCategory(product.type?.type || ""); // Ensure correct category is pre-filled
+            setImage(product.image);
+            setEditingProductCode(productCode);
+            setIsEditing(true); // Set to editing mode
+            setShowFields(true);
+        } else {
+            resetForm();
+            setIsEditing(false); // Set to add mode
+            setShowFields(true);
+        }
+    };
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setImage(reader.result);
+                setImage(reader.result); // ตรวจสอบว่า reader.result มีค่าที่ถูกต้อง
             };
             reader.readAsDataURL(file);
         }
     };
 
     const handlePriceChange = (e) => {
-        const value = e.target.value;
-        if (!isNaN(value)) {
+        let value = e.target.value;
+        // ลบเครื่องหมายคอมม่าออก
+        value = value.replace(/,/g, "");
+        // ตรวจสอบว่าเป็นตัวเลขหรือไม่ (รองรับตัวเลขทศนิยม)
+        if (/^\d*\.?\d*$/.test(value)) {
+            // แสดงตัวเลขที่มีเครื่องหมายคั่นพัน
             setProductPrice(value);
         }
+    };
+
+    const handleBlurPrice = () => {
+        // แปลงเป็นตัวเลขและใส่เครื่องหมายคั่นพัน
+        const formattedValue = new Intl.NumberFormat().format(productPrice);
+        setProductPrice(formattedValue);
     };
 
     const handleConfirm = async () => {
         const newProduct = {
             name: productName,
-            price: productPrice,
+            price: parseFloat(productPrice) || 0,// แปลงเป็นตัวเลข หรือใช้ 0 หากเว้นว่าง
             code: productCode,
             type: productCategory,
             image,
@@ -99,6 +139,7 @@ function App() {
 
     const handleDeleteProduct = async () => {
         try {
+            // ใช้ backticks (`  `) สำหรับ template string
             await axios.delete(`http://localhost:8081/v1/product/delete/${editingProductCode}`);
             alert("ลบสินค้าสำเร็จ");
 
@@ -117,34 +158,6 @@ function App() {
         resetForm();
     };
 
-    const handleShowFields = (productCode) => {
-        if (editingProductCode === productCode) {
-            setShowFields(!showFields);
-        } else {
-            setShowFields(true);
-            setEditingProductCode(productCode);
-
-            const product = products.find(product => product.code === productCode);
-            if (product) {
-                setProductName(product.name);
-                setProductPrice(product.price);
-                setProductCode(product.code);
-                setProductCategory(product.type);
-                setImage(product.image);
-            } else {
-                resetForm();
-            }
-        }
-    };
-
-    const handleCategorySelect = (category) => {
-        setSelectedCategory(category); // เก็บประเภทที่เลือก
-        setFilteredProducts(
-            category ? products.filter(product => product.type === category) : products
-        ); // หาก category เป็น '' จะแสดงสินค้าทั้งหมด
-        setShowFields(false); // ปิดฟอร์มเมื่อเปลี่ยนประเภทสินค้า
-    };
-
     const resetForm = () => {
         setProductName('');
         setProductPrice('');
@@ -153,6 +166,7 @@ function App() {
         setImage(null);
         setShowFields(false);
         setEditingProductCode(null);
+        setIsEditing(false); // Reset editing status
     };
 
     return (
@@ -182,7 +196,15 @@ function App() {
             {showFields && (
                 <div className='prolist-con'>
                     <div className='edit-img_box'>
-                        {image && <img src={image} alt="Uploaded" className='uploaded-image' />}
+                        {image && (
+                            <img
+                                src={image}
+                                alt="Uploaded"
+                                className='uploaded-image'
+                                onClick={() => document.getElementById("file-upload").click()} // คลิกที่รูปเพื่อเปลี่ยนภาพ
+                                style={{ cursor: 'pointer' }} // เพิ่ม cursor แบบ pointer เพื่อบอกผู้ใช้ว่าสามารถคลิกได้
+                            />
+                        )}
                         <input
                             type="file"
                             accept="image/*"
@@ -190,9 +212,11 @@ function App() {
                             style={{ display: 'none' }}
                             id="file-upload"
                         />
-                        <label htmlFor="file-upload" className="file-upload-label">
-                            <img src="/img/upload.png" className="L-upload-logo" />
-                        </label>
+                        {!image && (
+                            <label htmlFor="file-upload" className="file-upload-label">
+                                <img src="/img/upload.png" className="L-upload-logo" alt="Upload" />
+                            </label>
+                        )}
                     </div>
 
                     <div className='textName'>
@@ -229,8 +253,10 @@ function App() {
                             type="text"
                             className="In-Price-box"
                             value={productPrice}
-                            onChange={handlePriceChange}
+                            onChange={handlePriceChange} // ตรวจสอบการเปลี่ยนแปลงและแสดงผล
+                            onBlur={handleBlurPrice} // เมื่อออกจากช่องกรอก จะใส่เครื่องหมายคั่นพัน
                             placeholder="0"
+                            inputMode="decimal"
                             min="0"
                         />
                     </div>
@@ -238,6 +264,7 @@ function App() {
                         <input
                             className="In-Code-box"
                             value={productCode}
+                            readOnly={isEditing} // ถ้าอยู่ในโหมดแก้ไข จะไม่สามารถกรอกข้อมูลได้
                             onChange={(e) => setProductCode(e.target.value)}
                             placeholder="รหัสสินค้า"
                         />
