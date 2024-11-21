@@ -1,93 +1,172 @@
-import React from 'react';
-import '../css/Menu.css';  // นำเข้าไฟล์ CSS
+import React, { useState, useEffect } from 'react';
+import '../css/Menu.css';
 import Navbar from '../webPageFeatures/navbar';
 import Footbar from '../webPageFeatures/footbar';
-import LockZoom from '../webPageFeatures/LockZoom';
-
-import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
-    const Navigate = useNavigate();  // สร้าง instance ของ useNavigate
+    const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [selectedType, setSelectedType] = useState(null);
+    const [cart, setCart] = useState([]);
+    const [discount, setDiscount] = useState('0');
+    const [error, setError] = useState('');
+    const Navigate = useNavigate();
+
+    useEffect(() => {
+        axios.get('http://localhost:8081/v1/product/get')
+            .then((response) => setProducts(response.data))
+            .catch((error) => console.error('Error fetching products:', error));
+    }, []);
+
+    useEffect(() => {
+        axios.get('http://localhost:8081/v1/type/get')
+            .then((response) => setCategories(response.data))
+            .catch((error) => console.error('Error fetching type:', error));
+    }, []);
+
+    const filteredProducts = selectedType
+        ? products.filter((product) => product.typeId === selectedType)
+        : products;
+
+    const handleProductClick = (product) => {
+        setCart((prevCart) => {
+            const existingProduct = prevCart.find((item) => item.code === product.code);
+            return existingProduct
+                ? prevCart.map((item) =>
+                      item.code === product.code
+                          ? { ...item, quantity: item.quantity + 1 }
+                          : item
+                  )
+                : [...prevCart, { ...product, quantity: 1 }];
+        });
+    };
+
+    const handleDiscountChange = (e) => {
+        const value = e.target.value;
+        if (value === '' || (/^\d+$/.test(value) && parseInt(value) >= 0 && parseInt(value) <= 100)) {
+            setDiscount(value === '' ? '0' : value);
+            setError('');
+        } else {
+            setError('กรุณากรอกส่วนลด');
+        }
+    };
+
+    const calculateTotal = (product) => product.price * product.quantity;
+    const calculateGrandTotal = () => cart.reduce((total, product) => total + calculateTotal(product), 0);
+    const calculateDiscountedTotal = () => {
+        const total = calculateGrandTotal();
+        const discountValue = parseFloat(discount || 0);
+        return total * (1 - discountValue / 100);
+    };
+
     return (
-        <LockZoom>
-            <div>
-                <Navbar />
-                <div className="container-Menu">
-                    {/* ตารางแสดงรายการสินค้า และ พื้นที่แสดงเมนู */}
-                    <div className="left-container">
-                        <div className="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>รายการ</th>
-                                        <th>ราคา</th>
-                                        <th>จำนวน</th>
-                                        <th>รวม</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>เบอร์เกอร์ไก่</td>
-                                        <td>50</td>
-                                        <td>2</td>
-                                        <td>100</td>
-                                    </tr>
-                                    <tr>
-                                        <td>น้ำดื่มสิงห์</td>
-                                        <td>15</td>
-                                        <td>1</td>
-                                        <td>15</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        {/* แถบเมนูหลัก */}
-                        <div className="navbarMenuType">
-                            <button className="nav-item">เบอร์เกอร์</button>
-                            <button className="nav-item">ของทานเล่น</button>
-                            <button className="nav-item">เครื่องดื่ม</button>
-                            <button className="nav-item">Cafe</button>
-                            <input type="text" placeholder="ค้นหา" className="search-input" />
-                        </div>
-
-                        {/* พื้นที่แสดงเมนู */}
-                        <div className="menu-grid">
-                            <button className="menu-item">เบอร์เกอร์ไก่</button>
-                            <button className="menu-item">เบอร์เกอร์หมู</button>
-                            <button className="menu-item">เบอร์เกอร์ปลา</button>
-                            <button className="menu-item">เบอร์เกอร์เนื้อ</button>
-                            <button className="menu-item">เบอร์เกอร์ไก่</button>
-                            <button className="menu-item">เบอร์เกอร์หมู</button>
-                            <button className="menu-item">เบอร์เกอร์ปลา</button>
-                            <button className="menu-item">เบอร์เกอร์เนื้อ</button>
-                            <button className="menu-item">เบอร์เกอร์ไก่</button>
-                            <button className="menu-item">เบอร์เกอร์หมู</button>
-                            <button className="menu-item">เบอร์เกอร์ปลา</button>
-                            <button className="menu-item">เบอร์เกอร์เนื้อ</button>
-                        </div>
+        <div>
+            <Navbar />
+            <div className="copyPages">
+                {filteredProducts.map((product) => (
+                    <div
+                        key={product.code}
+                        className="proCopyBox-increase"
+                        onClick={() => handleProductClick(product)}
+                    >
+                        <p>{product.name}</p>
                     </div>
-
-                    {/* สรุปยอดชำระเงิน */}
-                    <div className="summary-container">
-                        <div className='titleOfsummary'>สรูปยอด</div>
-                        <div className="summary">
-                            <p>ราคา</p>
-                            <div className='price'>115</div>
-                            <p>ส่วนลด</p>
-                            <input type="text" className='discount' placeholder="ส่วนลด %" />
-                            <h2>ยอดชำระ</h2>
-                            <div className='Total'>....</div>
+                ))}
+            </div>
+            <div className="copeTabbar">
+                <div className="left-buttons">
+                    <div
+                        className={`TypeCopyBox-increase ${!selectedType ? 'active' : ''}`}
+                        onClick={() => setSelectedType(null)}
+                    >
+                        <span>ทั้งหมด</span>
+                    </div>
+                    {categories.map((category) => (
+                        <div
+                            key={category.typeID}
+                            className={`TypeCopyBox-increase ${selectedType === category.typeID.toString() ? 'active' : ''}`}
+                            onClick={() => setSelectedType(category.typeID.toString())}
+                        >
+                            <p>{category.type}</p>
                         </div>
-                        <div className="buttons">
-                            <button className="pay-btn" onClick={() => Navigate('/Payment')} >คิดเงิน</button>
-                            <button className="cancel-btn" >ยกเลิก</button>
-                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className="container-Menu">
+                <div className="left-container">
+                    <div className="header-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>รายการ</th>
+                                    <th>ราคา</th>
+                                    <th>จำนวน</th>
+                                    <th>รวม</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div className="table-wrapper">
+                        <table>
+                            <tbody>
+                                {cart.map((product) => (
+                                    <tr key={product.code}>
+                                        <td>{product.name}</td>
+                                        <td>{new Intl.NumberFormat().format(product.price)}</td>
+                                        <td>{product.quantity}</td>
+                                        <td>{new Intl.NumberFormat().format(calculateTotal(product))}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <Footbar />
+                <div className="summary-container">
+                    <div className="titleOfsummary">สรุปยอด</div>
+                    <div className="summary">
+                        <p>ราคา</p>
+                        <div className="price">{new Intl.NumberFormat().format(calculateGrandTotal())}</div>
+                        <p>ส่วนลด</p>
+                        <input
+                            type="text"
+                            className="discount"
+                            placeholder="ส่วนลด %"
+                            value={discount}
+                            onChange={handleDiscountChange}
+                        />
+                        {error && <span className="error-message">{error}</span>}
+                        <h2>ยอดชำระ</h2>
+                        <div className="Total">
+                            {new Intl.NumberFormat().format(calculateDiscountedTotal())}
+                        </div>
+                    </div>
+                    <div className="buttons">
+                        <button
+                            className="pay-btn"
+                            disabled={cart.length === 0}
+                            onClick={() =>
+                                Navigate('/Payment', {
+                                    state: {
+                                        cart,
+                                        discount,
+                                        total: calculateGrandTotal(),
+                                        discountedTotal: calculateDiscountedTotal(),
+                                    },
+                                })
+                            }
+                        >
+                            คิดเงิน
+                        </button>
+                        <button className="cancel-btn" onClick={() => setCart([])}>
+                            ยกเลิก
+                        </button>
+                    </div>
+                </div>
             </div>
-        </LockZoom>
+            <Footbar />
+        </div>
     );
 }
 

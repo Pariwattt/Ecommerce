@@ -19,12 +19,12 @@
   }
 
 
-.tabber-increasee,.tabber-Delete :hover {
+.tabber-increasee :hover {
     color: rgb(243, 229, 229);             /* เปลี่ยนสีตัวอักษรเมื่อ hover */
     background-color: rgba(233, 220, 220, 0.8); /* ปรับพื้นหลังให้โปร่งใสเมื่อ hover */
     border: 1px solid rgba(238, 228, 228, 0.7); /* เพิ่มเส้นขอบโปร่งใส */
 }
-.tabber-increase,.tabber-Delete {
+.tabber-increase {
     width: 50px; /* กำหนดความกว้างของกล่องข้อความ */
     height: 50px; /* กำหนดความสูงของกล่องข้อความ */
     border-radius: 10px; /* ปรับขอบโค้งของปุ่ม */
@@ -193,4 +193,9 @@
     background-color: #e0e0e0; /* พื้นหลังสีเทาอ่อน */
     color: #b71c1c; /* สีข้อความเปลี่ยนเมื่อ hover */
     border: 2px solid #b71c1c; /* เพิ่มขอบสีแดง */
+}
+.type-product.active {
+    background-color: #f7f4f4; /* สีพื้นหลังเมื่อเลือก */
+    color: rgb(0, 0, 0); /* สีตัวอักษร */
+    border: 2px solid #ffffff;
 }

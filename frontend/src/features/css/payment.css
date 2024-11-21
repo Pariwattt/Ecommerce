@@ -46,15 +46,12 @@
     border: 5px solid #b1b1b1;
     border-radius: 15px;
     padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 30px;
     font-weight: bold;
     color: green;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-}
+    text-align: center; /* ให้ตัวเลขอยู่กลาง */
+  }
 .price-box, .money-box {
   margin-bottom: -55px; /* ลดระยะห่างด้านล่างเหลือ 5px */
 }
@@ -65,36 +62,31 @@
     padding: 10px;            /* ระยะห่างภายใน container */
     margin-top: 10px;
     margin-left: 20px;
-  }
+    
+    }
   
   .but-con button {
-    padding: 10px 20px;       /* ระยะห่างภายในปุ่ม */
-    border: none;             /* เอาขอบออก */
-    border-radius: 5px;       /* มุมปุ่มโค้งเล็กน้อย */
-    font-size: 18px;          /* ขนาดตัวอักษร */
-    cursor: pointer;          /* เปลี่ยนเป็น pointer เมื่อ hover */
-    font-weight: bold;
-  }
-  
-  .but-con button:first-of-type {
-    background-color: #1e90ff; /* ปุ่ม QR Code สีฟ้า */
-    color: white;              /* ตัวอักษรสีขาว */
-    width: 160px;
-    padding: 18px;
-    border-radius: 10px;        /* มุมโค้ง 10px */
-  }
-  
-  .but-con button:last-of-type {
-    background-color: #32cd32; /* ปุ่ม เงินสด สีเขียว */
-    color: white;              /* ตัวอักษรสีขาว */
+    padding: 10px 20px;
+    margin: 5px;
+    border: 1px solid #444040;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 15px;
     width: 150px;
-    border-radius: 10px;        /* มุมโค้ง 10px */
+    height: 60px;
   }
   
+  .but-con button.selected {
+    background-color: #b91b1b;
+    color: rgb(253, 253, 253);
+    border-color: #8a280b;
+  }
   
   .but-con button:hover {
-    opacity: 0.8;              /* ลดความทึบเมื่อลากเมาส์ */
+    background-color: #4a85d3;
   }
+  
+ 
   .con-button1 {
     display: flex;              /* ใช้ Flexbox เพื่อจัดเรียงปุ่ม */
     justify-content: center;    /* จัดปุ่มให้อยู่ตรงกลาง */
@@ -105,7 +97,7 @@
   .con-button1 button {
     padding: 13px 50px;         /* ระยะห่างภายในปุ่ม */
     border: none;               /* เอาขอบออก */
-    border-radius: 15px;         /* มุมปุ่มโค้งเล็กน้อย */
+    border-radius: 50px;         /* มุมปุ่มโค้งเล็กน้อย */
     font-size: 25px;            /* ขนาดตัวอักษร */
     cursor: pointer;            /* เปลี่ยนเป็น pointer เมื่อ hover */
     margin-top: 20px;
