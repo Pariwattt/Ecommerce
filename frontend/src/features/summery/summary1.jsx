@@ -114,12 +114,14 @@ const Summary1 = () => {
                 </table>
 
             </div>
-            <div className="summary-section">
-                <button className="summary-button">ยอดขายรายวัน</button>
-                <button className="summary-button" onClick={() => Navigate('/summary3')}>ยอดขายรายเดือน</button>
-                <button className="summary-button" onClick={() => Navigate('/summary4')}>ยอดขายสินค้า</button>
+            <div className='summenu'>
+                <p className='ax'>สรุปยอดขาย</p>
+                <div className="summary-section">
+                    <button className="summary-button">ยอดขายรายวัน</button>
+                    <button className="summary-button" onClick={() => Navigate('/summary3')}>ยอดขายรายเดือน</button>
+                    <button className="summary-button" onClick={() => Navigate('/summary4')}>ยอดขายสินค้า</button>
+                </div>
             </div>
-
 
             <Footbar />
         </div>
