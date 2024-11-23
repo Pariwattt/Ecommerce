@@ -10,25 +10,19 @@ function Payment() {
 
     // รับข้อมูลจาก state ที่ส่งมาจาก Menu
     const {
-        cart = [], 
-        discount = 0, // ส่วนลดจากหน้า Menu
-    } = location.state || {}; // fallback state กรณีไม่มีข้อมูล
+        cart = [],
+        discount = 0, // รับส่วนลดที่ส่งมาจาก Payment.jsx
+        change = 0, // รับเงินทอน
+    } = location.state || {};
 
-    // คำนวณราคารวมของสินค้าทั้งหมด
     const calculateTotalAmount = () => {
         return cart.reduce((sum, product) => sum + (product.price * product.quantity), 0);
     };
 
-    const totalAmount = calculateTotalAmount(); // ราคารวมของสินค้าทั้งหมด
-
+    const totalAmount = calculateTotalAmount();
+    const finalTotal = totalAmount * (1 - discount / 100);
     // คำนวณยอดหลังหักส่วนลด
-    const calculateDiscountedTotal = () => {
-        return totalAmount * (1 - (discount / 100)); // หักส่วนลด
-    };
 
-    const finalTotal = calculateDiscountedTotal(); // ยอดที่ต้องชำระหลังหักส่วนลด
-    const paymentReceived = 100; // สมมติว่าลูกค้าจ่ายเงินมา 100 บาท
-    const change = paymentReceived - finalTotal; // เงินทอน
     const [showReceipt, setShowReceipt] = useState(false); // แสดงใบเสร็จหรือไม่
 
     return (

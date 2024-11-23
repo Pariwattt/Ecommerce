@@ -15,7 +15,7 @@ export const paymentRouter = (() => {
         }
 
         // หาก discount เป็นค่าว่าง หรือ undefined ให้ตั้งค่าเป็น 0
-        const validDiscount = discount !== undefined && discount !== "" ? parseFloat(discount) : 0;
+        const validDiscount = discount !== undefined && discount !== "" ? parseFloat(discount) : "";
 
         try {
             // ดึงข้อมูลสินค้าที่เลือก

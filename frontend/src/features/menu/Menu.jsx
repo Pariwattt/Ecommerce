@@ -46,7 +46,7 @@ function App() {
     const handleDiscountChange = (e) => {
         const value = e.target.value;
         if (value === '' || (/^\d+$/.test(value) && parseInt(value) >= 0 && parseInt(value) <= 100)) {
-            setDiscount(value === '' ? '0' : value);
+            setDiscount(value === '' ? '' : value);
             setError('');
         } else {
             setError('กรุณากรอกส่วนลด');
@@ -60,7 +60,15 @@ function App() {
         const discountValue = parseFloat(discount || 0);
         return total * (1 - discountValue / 100);
     };
+    const handleRemove = (code, cart, setCart) => {
+        const updatedCart = cart.map((product) =>
+            product.code === code
+                ? { ...product, quantity: product.quantity - 1 } // ลดจำนวนลงทีละ 1
+                : product
+        ).filter((product) => product.quantity > 0); // ถ้าจำนวนสินค้าเหลือ 0 ให้ลบออกจากตะกร้า
 
+        setCart(updatedCart); // อัปเดต cart
+    };
 
     return (
         <div>
@@ -111,9 +119,14 @@ function App() {
                     </div>
                     <div className="table-wrapper">
                         <table>
-                            <tbody>
+                        <tbody>
                                 {cart.map((product) => (
-                                    <tr key={product.code}>
+                                    <tr className='table-wrapper-item'
+                                        key={product.code}
+                                        onMouseEnter={(e) => e.currentTarget.classList.add('hovered')}
+                                        onMouseLeave={(e) => e.currentTarget.classList.remove('hovered')}
+                                        onClick={() => handleRemove(product.code, cart, setCart)} // เรียก handleRemove
+                                    >
                                         <td>{product.name}</td>
                                         <td>{new Intl.NumberFormat().format(product.price)}</td>
                                         <td>{product.quantity}</td>

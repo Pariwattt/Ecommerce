@@ -47,6 +47,7 @@ function App() {
                     state: {
                         cart,   // รายการสินค้าในตะกร้า
                         change, // จำนวนเงินทอน
+                        discount, // ส่วนลด
                     },
                 });
 

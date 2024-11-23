@@ -492,3 +492,7 @@
     /* สีตัวอักษร */
     border: 2px solid #ffffff;
 }
+.table-wrapper-item.hovered {
+    color: red;
+    cursor: pointer; /* เปลี่ยน cursor เป็น pointer */
+  }

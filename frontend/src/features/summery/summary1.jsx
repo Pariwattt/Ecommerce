@@ -5,6 +5,7 @@ import '../css/summary1.css';
 
 const Summary1 = () => {
     const [payments, setPayments] = useState([]);
+    const [selectedDate, setSelectedDate] = useState('');
 
     useEffect(() => {
         // ดึงข้อมูลจาก API /payments
@@ -18,14 +19,31 @@ const Summary1 = () => {
             .catch((error) => console.error('Error fetching payments:', error));
     }, []);
 
+    // ฟังก์ชันในการแสดงวันที่ในรูปแบบที่ต้องการ
+    const formatDate = (date) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(date).toLocaleDateString('th-TH', options);
+    };
+
+    const handleDateChange = (e) => {
+        setSelectedDate(e.target.value);
+    };
+
     return (
         <div>
             <Navbar />
             <div className="date-section">
-                <span>วันที่: 21 พฤศจิกายน 2567</span>
-                <span className="calendar-icon">📅</span>
+                {/* แสดงวันที่ปัจจุบัน */}
+                <span> {selectedDate ? formatDate(selectedDate) : formatDate(new Date())}</span>
+                {/* เพิ่มช่องเลือกวันที่ */}
+                <input
+                    type="date"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    max={new Date().toISOString().split("T")[0]}  // ไม่ให้เลือกวันที่ในอนาคต
+                />
             </div>
-            <div className="sales-container">
+            <div className="sales-container  frame">
                 <table className="sales-table">
                     <thead>
                         <tr>
@@ -39,7 +57,8 @@ const Summary1 = () => {
                             <th>เวลา</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    
+                        <tbody>
                         {payments.map((payment, index) => (
                             <tr key={payment.id}>
                                 <td>{index + 1}</td>
@@ -53,6 +72,8 @@ const Summary1 = () => {
                             </tr>
                         ))}
                     </tbody>
+                    
+                    
                     <tfoot>
                         <tr>
                             <td colSpan="2">รวม</td>
