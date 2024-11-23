@@ -1,0 +1,47 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+    id     Int    @id @default(autoincrement())
+    name   String
+    price  Float
+    code   String  @unique
+    type   Type    @relation(fields: [typeId], references: [typeID])
+    typeId String  @default("defaultTypeId") // กำหนดค่าเริ่มต้นให้กับ typeId
+    image  String?
+}
+
+
+model Type {
+    id       Int       @id @default(autoincrement())
+    type     String    @unique
+    typeID   String    @unique
+    products Product[]
+}
+
+model users {
+  id             String   @id @default(uuid()) @db.Uuid
+  username  String   @unique
+  password  String
+  role      String // USER , ADMIN
+  created_at     DateTime @default(now())
+  updated_at     DateTime? @updatedAt 
+}
+model Payment {
+  id            Int      @id @default(autoincrement()) // Payment ID
+  totalPrice    Float    
+  priceToPay    Float    
+  change        Float    
+  discount      Float    
+  typePay       String   
+  amountReceived Float   
+  productQuantity Int    
+  date          DateTime 
+  time          String   
+}
