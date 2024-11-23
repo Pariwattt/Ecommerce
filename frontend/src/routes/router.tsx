@@ -10,7 +10,6 @@ import SummaryPage from "../pages/Summery/index";
 import Summary2Page from "../pages/Summery2/index";
 import Summary3Page from "../pages/Summery3/index";
 import Summary4Page from "../pages/Summery4/index";
-//import Error404 from "../components/layouts/layout.error404";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +22,7 @@ const router = createBrowserRouter([
       {
         path: "Menu",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute requiredRoles={["USER", "ADMIN"]}>
             <MenuPage />
           </ProtectedRoute>
         ),
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: "EditMenu",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute requiredRoles={["ADMIN"]}>
             <EditPage />
           </ProtectedRoute>
         ),
@@ -39,7 +38,7 @@ const router = createBrowserRouter([
       {
         path: "Payment",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute requiredRoles={["USER", "ADMIN"]}>
             <PaymentPage />
           </ProtectedRoute>
         ),
@@ -47,7 +46,7 @@ const router = createBrowserRouter([
       {
         path: "Payment2", 
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute requiredRoles={["USER", "ADMIN"]}>
             <Payment2Page />
           </ProtectedRoute>
         ),
@@ -55,7 +54,7 @@ const router = createBrowserRouter([
       {
         path: "Summary1",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute requiredRoles={["USER", "ADMIN"]}>
             <SummaryPage />
           </ProtectedRoute>
         ),
@@ -63,7 +62,7 @@ const router = createBrowserRouter([
       {
         path: "Summary2",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute requiredRoles={["USER", "ADMIN"]}>
             <Summary2Page />
           </ProtectedRoute>
         ),
@@ -71,7 +70,7 @@ const router = createBrowserRouter([
       {
         path: "Summary3",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute requiredRoles={["USER", "ADMIN"]}>
             <Summary3Page />
           </ProtectedRoute>
         ),
@@ -79,7 +78,7 @@ const router = createBrowserRouter([
       {
         path: "Summary4",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute requiredRoles={["USER", "ADMIN"]}>
             <Summary4Page />
           </ProtectedRoute>
         ),

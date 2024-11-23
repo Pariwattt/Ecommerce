@@ -6,81 +6,61 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function App() {
-    const [products, setProducts] = useState([]); // ข้อมูลสินค้าทั้งหมด
-    const [categories, setCategories] = useState([]); // ข้อมูลประเภทสินค้า
-    const [selectedType, setSelectedType] = useState(null); // ประเภทสินค้าที่เลือก
-    const [cart, setCart] = useState([]); // รายการสินค้าในตะกร้า
-    const [discount, setDiscount] = useState('0'); // เก็บค่าที่ใส่ในช่องส่วนลด (เริ่มต้นเป็น 0)
-    const [error, setError] = useState(''); // เก็บข้อความแสดงข้อผิดพลาด
+    const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [selectedType, setSelectedType] = useState(null);
+    const [cart, setCart] = useState([]);
+    const [discount, setDiscount] = useState('0');
+    const [error, setError] = useState('');
     const Navigate = useNavigate();
 
-    // ดึงข้อมูลสินค้า
     useEffect(() => {
         axios.get('http://localhost:8081/v1/product/get')
-            .then((response) => {
-                setProducts(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching products:', error);
-            });
+            .then((response) => setProducts(response.data))
+            .catch((error) => console.error('Error fetching products:', error));
     }, []);
 
-    // ดึงข้อมูลประเภทสินค้า
     useEffect(() => {
         axios.get('http://localhost:8081/v1/type/get')
-            .then((response) => {
-                setCategories(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching type:', error);
-            });
+            .then((response) => setCategories(response.data))
+            .catch((error) => console.error('Error fetching type:', error));
     }, []);
 
-    // ฟิลเตอร์สินค้าโดยประเภท
     const filteredProducts = selectedType
         ? products.filter((product) => product.typeId === selectedType)
         : products;
 
-    // เพิ่มสินค้าในตะกร้า
     const handleProductClick = (product) => {
         setCart((prevCart) => {
             const existingProduct = prevCart.find((item) => item.code === product.code);
-            if (existingProduct) {
-                return prevCart.map((item) =>
-                    item.code === product.code ? { ...item, quantity: item.quantity + 1 } : item
-                );
-            } else {
-                return [...prevCart, { ...product, quantity: 1 }];
-            }
+            return existingProduct
+                ? prevCart.map((item) =>
+                    item.code === product.code
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                )
+                : [...prevCart, { ...product, quantity: 1 }];
         });
     };
 
-    // ฟังก์ชันจัดการการเปลี่ยนแปลงค่าในช่องส่วนลด
     const handleDiscountChange = (e) => {
         const value = e.target.value;
-
-        // ตรวจสอบว่าค่าเป็นตัวเลข และอยู่ในช่วง 0-100 หรือเป็นค่าว่าง
         if (value === '' || (/^\d+$/.test(value) && parseInt(value) >= 0 && parseInt(value) <= 100)) {
-            setDiscount(value === '' ? '0' : value); // อัปเดตค่าเป็น 0 ถ้าค่าว่าง
-            setError(''); // ล้างข้อความข้อผิดพลาด
+            setDiscount(value === '' ? '0' : value);
+            setError('');
         } else {
             setError('กรุณากรอกส่วนลด');
         }
     };
 
-    // คำนวณยอดรวมของแต่ละสินค้า
     const calculateTotal = (product) => product.price * product.quantity;
-
-    // คำนวณยอดรวมทั้งหมด
-    const calculateGrandTotal = () =>
-        cart.reduce((total, product) => total + calculateTotal(product), 0);
-
-    // คำนวณยอดชำระหลังหักส่วนลด
+    const calculateGrandTotal = () => cart.reduce((total, product) => total + calculateTotal(product), 0);
     const calculateDiscountedTotal = () => {
         const total = calculateGrandTotal();
-        const discountValue = parseFloat(discount || 0); // แปลงส่วนลดเป็นตัวเลข
+        const discountValue = parseFloat(discount || 0);
         return total * (1 - discountValue / 100);
     };
+
 
     return (
         <div>
@@ -115,7 +95,6 @@ function App() {
                     ))}
                 </div>
             </div>
-
             <div className="container-Menu">
                 <div className="left-container">
                     <div className="header-wrapper">
@@ -130,7 +109,6 @@ function App() {
                             </thead>
                         </table>
                     </div>
-
                     <div className="table-wrapper">
                         <table>
                             <tbody>
@@ -150,9 +128,7 @@ function App() {
                     <div className="titleOfsummary">สรุปยอด</div>
                     <div className="summary">
                         <p>ราคา</p>
-                        <div className="price">
-                            {new Intl.NumberFormat().format(calculateGrandTotal())}
-                        </div>
+                        <div className="price">{new Intl.NumberFormat().format(calculateGrandTotal())}</div>
                         <p>ส่วนลด</p>
                         <input
                             type="text"
@@ -175,8 +151,8 @@ function App() {
                                 Navigate('/Payment', {
                                     state: {
                                         cart,
-                                        discount,
                                         total: calculateGrandTotal(),
+                                        discount: discount, // ส่งข้อมูลส่วนลดไปด้วย
                                         discountedTotal: calculateDiscountedTotal(),
                                     },
                                 })
