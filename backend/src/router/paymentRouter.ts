@@ -1,3 +1,4 @@
+
 import express, { Request, Response, Router } from "express";
 import { PrismaClient } from "@prisma/client";
 
@@ -14,11 +15,9 @@ export const paymentRouter = (() => {
             return res.status(400).json({ message: "กรุณากรอกข้อมูลให้ครบถ้วน" });
         }
 
-        // หาก discount เป็นค่าว่าง หรือ undefined ให้ตั้งค่าเป็น 0
-        const validDiscount = discount !== undefined && discount !== "" ? parseFloat(discount) : "";
+        const validDiscount = discount !== undefined && discount !== "" ? parseFloat(discount) : 0;
 
         try {
-            // ดึงข้อมูลสินค้าที่เลือก
             const products = await prisma.product.findMany({
                 where: {
                     id: { in: productIds },
@@ -29,7 +28,6 @@ export const paymentRouter = (() => {
                 return res.status(404).json({ message: "ไม่พบสินค้าที่เลือก" });
             }
 
-            // คำนวณราคาและเงินทอน
             const totalPrice = products.reduce((sum, product) => sum + product.price, 0);
             const priceToPay = totalPrice - (totalPrice * (validDiscount / 100));
             const change = amountReceived - priceToPay;
@@ -38,13 +36,12 @@ export const paymentRouter = (() => {
                 return res.status(400).json({ message: "จำนวนเงินที่จ่ายไม่เพียงพอ" });
             }
 
-            // บันทึกการชำระเงินลงฐานข้อมูล
             const payment = await prisma.payment.create({
                 data: {
                     totalPrice,
                     priceToPay,
                     change,
-                    discount: validDiscount, // ใช้ validDiscount ที่เป็นค่า 0 หรือส่วนลดที่กรอก
+                    discount: validDiscount,
                     typePay,
                     amountReceived,
                     productQuantity: productIds.length,
@@ -66,21 +63,65 @@ export const paymentRouter = (() => {
         }
     });
 
-    // API สำหรับดึงข้อมูลการชำระเงินทั้งหมด
+    // API สำหรับดึงข้อมูลการชำระเงินทั้งหมด โดยกรองข้อมูลตามวัน
     router.get("/payments", async (req: Request, res: Response) => {
+        const { date } = req.query;
         try {
-            // ดึงข้อมูลการชำระเงินทั้งหมด
-            const payments = await prisma.payment.findMany();
+            const payments = date
+                ? await prisma.payment.findMany({
+                    where: {
+                        date: {
+                            gte: new Date(date as string),
+                            lt: new Date(new Date(date as string).setDate(new Date(date as string).getDate() + 1)),
+                        },
+                    },
+                })
+                : await prisma.payment.findMany();
 
             if (payments.length === 0) {
                 return res.status(404).json({ message: "ไม่พบข้อมูลการชำระเงิน" });
             }
 
-            // ส่งผลลัพธ์
             return res.json({
-                message: "ข้อมูลการชำระเงินทั้งหมด",
+                message: "ข้อมูลการชำระเงิน",
                 payments,
             });
+        } catch (error) {
+            console.error("Error fetching payments:", error);
+            res.status(500).json({ message: "เกิดข้อผิดพลาดในการดึงข้อมูลการชำระเงิน" });
+        }
+    });
+
+    // API สำหรับดึงข้อมูลการชำระเงินทั้งหมด โดยกรองข้อมูลตามเดือน
+    router.get("/payments/monthly", async (req: Request, res: Response) => {
+        const { date } = req.query; // รับ query parameter "date" (รูปแบบ YYYY-MM)
+
+        try {
+            if (date) {
+                const [year, month] = date.split("-");
+                const startDate = new Date(year, month - 1, 1);
+                const endDate = new Date(year, month, 0);
+
+                const payments = await prisma.payment.findMany({
+                    where: {
+                        date: {
+                            gte: startDate,
+                            lte: endDate,
+                        },
+                    },
+                });
+
+                if (payments.length === 0) {
+                    return res.status(404).json({ message: "ไม่พบข้อมูลการชำระเงินสำหรับเดือนนี้" });
+                }
+
+                return res.json({
+                    message: "ข้อมูลการชำระเงิน",
+                    payments,
+                });
+            } else {
+                return res.status(400).json({ message: "กรุณาระบุเดือน" });
+            }
         } catch (error) {
             console.error("Error fetching payments:", error);
             res.status(500).json({ message: "เกิดข้อผิดพลาดในการดึงข้อมูลการชำระเงิน" });

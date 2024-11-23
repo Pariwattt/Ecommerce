@@ -60,6 +60,7 @@
 /* ส่วนท้ายตาราง */
 .sales-table tfoot td {
     font-weight: bold;
+    text-align: right;
 }
 
 .summenu{
