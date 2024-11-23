@@ -11,13 +11,29 @@
 .date-section {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 1px;
     margin-left: 50px;
-    margin-top: 10px;
+    margin-top: 20px;
     font-family: Arial, sans-serif;
 }
-
-
+.deta-l{
+    display: flex; 
+    align-items: center;
+    gap: 20px;
+}
+.datt{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.butt{
+    position: relative; 
+    display: inline-block;
+}
 
 /* ตารางการขาย */
 .sales-table {
@@ -31,6 +47,8 @@
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
+    border: none; /* ลบเส้นขอบจากเซลล์ */
+
 }
 
 /* หัวตาราง */
@@ -45,8 +63,8 @@
 }
 
 .summenu{
-    width: 500px;
-    height: 750px;
+    width: 580px;
+    height: 820px;
     /* ขอบกล่องเนื้อหา */
     border-top: none;
     /* เอาขอบบนออก เพื่อให้ดูต่อเนื่องกับหัวข้อ */
@@ -58,7 +76,6 @@
     right: 20px; /* ระยะห่างจากด้านขวา */
     z-index: 8; /* ทำให้ปุ่มแสดงด้านบน */
     border-radius: 20px;
-
 
 }
 
@@ -81,7 +98,7 @@
     color: rgb(255, 255, 255);
     border: none;
     cursor: pointer;
-    width: 300px;
+    width: 350px;
     height: 60px;
     text-align: center;
     border-radius: 20px;
@@ -105,11 +122,13 @@
     border-radius: 4px;
     text-align: center;
     background-color: rgb(196, 34, 34);
+    color: #fafafa;
+    font-size: 20px;
     
 }
 .frame {
-    width: 1200px;
-    height: 700px;
+    width: 1300px;
+    height: 750px;
     /* ขอบกล่องเนื้อหา */
     border-top: none;
     /* เอาขอบบนออก เพื่อให้ดูต่อเนื่องกับหัวข้อ */
@@ -125,3 +144,21 @@
     /* ซ่อน scroll bar ใน IE และ Edge */
     scrollbar-width: none;
 }
+
+
+
+.sales-table td:nth-child(2),
+.sales-table td:nth-child(3),
+.sales-table td:nth-child(4),
+.sales-table td:nth-child(5),
+.sales-table td:nth-child(6)
+{
+    text-align: right; /* คอลัมน์ที่ 2 ชิดซ้าย */
+   
+}
+.imgg{
+    width: 27px;
+    height: 27px;
+    cursor: pointer;
+}
+

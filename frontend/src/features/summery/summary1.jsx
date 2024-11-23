@@ -30,35 +30,25 @@ const Summary1 = () => {
     const handleDateChange = (e) => {
         setSelectedDate(e.target.value);
     };
-
     return (
         <div>
             <Navbar />
-            <div className="date-section" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                {/* Display selected or current date */}
+            <div className="date-section deta-l">
                 <span>{selectedDate ? formatDate(selectedDate) : formatDate(new Date())}</span>
-
-                {/* Styled calendar icon with hidden date input */}
-                <div style={{ position: 'relative', display: 'inline-block' }}>
+                <div className='butt'>
                     <input
                         type="date"
                         value={selectedDate}
                         onChange={handleDateChange}
-                        max={new Date().toISOString().split("T")[0]} // Disable future dates
-                        style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '100%',
-                            height: '100%',
-                            opacity: 0, // Hide the date input
-                            cursor: 'pointer',
-                        }}
+                        max={new Date().toISOString().split("T")[0]}
+                        className='datt'
                     />
+
                     <img
-                        src="https://cdn-icons-png.flaticon.com/512/2089/2089641.png" // Example icon URL
+                        className='imgg'
+                        src="/img/PT.png" // Example icon URL
                         alt="Calendar Icon"
-                        style={{ width: '24px', height: '24px', cursor: 'pointer' }}
+
                     />
                 </div>
             </div>
