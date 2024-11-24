@@ -7,7 +7,9 @@ import { useNavigate } from 'react-router-dom';
 const Summary1 = () => {
     const Navigate = useNavigate();
     const [payments, setPayments] = useState([]);
-    const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // ค่าเริ่มต้นเป็นวันที่ปัจจุบัน
+    const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalContent, setModalContent] = useState([]); // เปลี่ยนเป็น array แทน string
 
     useEffect(() => {
         const fetchPayments = () => {
@@ -26,7 +28,7 @@ const Summary1 = () => {
         };
 
         fetchPayments();
-    }, [selectedDate]); // เมื่อ selectedDate เปลี่ยนจะดึงข้อมูลใหม่
+    }, [selectedDate]);
 
     const formatDate = (date) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -37,18 +39,42 @@ const Summary1 = () => {
         setSelectedDate(e.target.value);
     };
 
+    // ฟังก์ชันเปิดป๊อปอัพและแสดงรายละเอียดสินค้า
+    const openModal = (paymentId, time) => {
+        fetch(`http://localhost:8081/v1/payment/saleDetails?paymentId=${paymentId}&time=${time}`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.saleDetails && Array.isArray(data.saleDetails)) {
+                    setModalContent(data.saleDetails); // ตั้งค่าเป็น array
+                } else {
+                    setModalContent('ไม่มีข้อมูลรายละเอียดสินค้า');
+                }
+                setIsModalOpen(true);
+            })
+            .catch((error) => {
+                console.error('Error fetching product details:', error);
+                setModalContent('เกิดข้อผิดพลาดในการดึงข้อมูล');
+                setIsModalOpen(true);
+            });
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setModalContent([]);
+    };
+
     return (
         <div>
             <Navbar />
             <div className="date-section deta-l">
                 <span>{selectedDate ? formatDate(selectedDate) : formatDate(new Date())}</span>
-                <div className='butt'>
+                <div className="butt">
                     <input
                         type="date"
                         value={selectedDate}
                         onChange={handleDateChange}
                         max={new Date().toISOString().split("T")[0]}
-                        className='datt'
+                        className="datt"
                     />
                     <img
                         className="imgg"
@@ -79,11 +105,15 @@ const Summary1 = () => {
                                 <td>{payment.id}</td>
                                 <td>{payment.productQuantity}</td>
                                 <td>{(parseFloat(payment.totalPrice) || 0).toFixed(2)}</td>
-                                <td>{(parseFloat(payment.discount)|| 0)}%</td> {/* แสดงส่วนลดในรูปแบบเปอร์เซ็นต์ */}
+                                <td>{(parseFloat(payment.discount) || 0)}%</td>
                                 <td>{(parseFloat(payment.priceToPay) || 0).toFixed(2)}</td>
                                 <td>{payment.typePay}</td>
                                 <td>{payment.time}</td>
-                                <td>{payment.productDetails || 'ไม่มีข้อมูล'}</td>
+                                <td>
+                                    <button className="details-button" onClick={() => openModal(payment.id, payment.time)}>
+                                        รายละเอียด
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -99,6 +129,49 @@ const Summary1 = () => {
                     </tfoot>
                 </table>
             </div>
+
+            {/* ป๊อปอัพสำหรับแสดงรายละเอียดสินค้า */}
+            {isModalOpen && (
+                <div className="mo">
+                    <div className="mo-content">
+                        <span className="close-btn" onClick={closeModal}>ปิด</span>
+                        <div className="mo-body">
+                            <h3>รายละเอียดสินค้า</h3>
+                            {Array.isArray(modalContent) ? (
+                                modalContent.length > 0 ? (
+                                    <table className="modal-table">
+                                        <thead>
+                                            <tr>
+                                                <th>รหัสสินค้า</th>
+                                                <th>ชื่อสินค้า</th>
+                                                <th>จำนวน</th>
+                                                <th>ราคา</th>
+                                                <th>ราคารวม</th> {/* เพิ่มคอลัมน์ราคารวม */}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {modalContent.map((detail, index) => (
+                                                <tr key={index}>
+                                                    <td>{detail.code}</td>
+                                                    <td>{detail.name}</td>
+                                                    <td>{detail.quantity}</td>
+                                                    <td>{detail.price.toFixed(2)}</td>
+                                                    <td>{(detail.quantity * detail.price).toFixed(2)}</td> {/* คำนวณราคารวม */}
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                ) : (
+                                    <p>ไม่มีข้อมูลรายละเอียดสินค้า</p>
+                                )
+                            ) : (
+                                <p>{modalContent}</p>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div className="summenu">
                 <p className="ax">สรุปยอดขาย</p>
                 <div className="summary-section">
