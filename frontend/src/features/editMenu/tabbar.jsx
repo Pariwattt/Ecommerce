@@ -3,6 +3,7 @@ import '../css/tabbar.css';
 import { FaPlus } from 'react-icons/fa';
 import Type from './type';
 import axios from 'axios';
+import triggerRefresh from "../../components/refreshUtil";
 
 function Tabbar({ onCategorySelect }) { // รับ callback function
   const [showType, setShowType] = useState(false);
@@ -30,6 +31,7 @@ function Tabbar({ onCategorySelect }) { // รับ callback function
         setCategories((prev) => [...prev, response.data.type]); // เพิ่มหมวดหมู่ใหม่
         setShowType(false); // ซ่อนหน้าต่าง Type
         setIsEditing(false); // ปิดโหมดแก้ไข
+        triggerRefresh();
       } else {
         console.error('Invalid response data:', response.data);
       }
@@ -49,6 +51,10 @@ function Tabbar({ onCategorySelect }) { // รับ callback function
       setShowType(false); // ซ่อน Type หลังแก้ไข
       setIsEditing(false); // ปิดการแก้ไข
       setEditIndex(null); // รีเซ็ตสถานะการแก้ไข
+      if(setIsEditing)
+        {
+          triggerRefresh();
+        }
     } catch (error) {
       console.error("Error editing category:", error);
     }
@@ -63,6 +69,10 @@ function Tabbar({ onCategorySelect }) { // รับ callback function
       setShowType(false); // ซ่อน Type หลังลบ
       setIsEditing(false); // ปิดการแก้ไข
       setEditIndex(null); // รีเซ็ตสถานะการแก้ไข
+      if(setIsEditing)
+      {
+        triggerRefresh();
+      }
     } catch (error) {
       console.error("Error deleting category:", error);
     }

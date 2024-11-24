@@ -195,23 +195,40 @@
     font-size: 16px; /* ขนาดตัวอักษร */
     color: #333; /* สีตัวอักษร */
 }
-.productList-button {
 
-    width: 127px; /* กำหนดความกว้างของกล่องข้อความ */
-    height: 127px; /* กำหนดความสูงของกล่องข้อความ */
-    padding: 2px; /* เว้นระยะห่างภายในกล่องข้อความ */
-    font-size: 20px; /* ปรับขนาดฟอนต์ของข้อความในปุ่ม */
-    border-radius: 5px; /* ปรับขอบโค้งของปุ่ม */
-    background-color: #f1f1f1; /* สีพื้นหลังของปุ่ม */
-    border: 1px solid #ddd; /* กำหนดขอบของปุ่ม */
+/* ///////////////////////////////////////////////////////////// เพิ่ม /////////////////////////////////////////////////////////// */
+
+.productList-button {
+    width: 127px; /* ความกว้างของปุ่ม */
+    height: 127px; /* ความสูงของปุ่ม */
+    padding: 2px; /* ระยะห่างภายใน */
+    font-size: 20px; /* ขนาดฟอนต์ */
+    border-radius: 5px; /* มุมโค้งของปุ่ม */
+    background-image: url('/path/to/your/image.jpg'); /* ใส่ URL ของภาพที่ต้องการ */
+    background-size: cover; /* ปรับขนาดภาพให้ครอบคลุมปุ่ม */
+    background-position: center; /* จัดตำแหน่งภาพให้อยู่ตรงกลาง */
+    border: 1px solid #ddd; /* ขอบของปุ่ม */
     cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
     margin: 10px;
+    color: #fff; /* สีตัวอักษรในปุ่ม */
+    display: flex; /* จัดตำแหน่งข้อความให้อยู่กลางปุ่ม */
+    align-items: center; /* จัดข้อความในแนวตั้ง */
+    justify-content: center; /* จัดข้อความในแนวนอน */
+    text-align: center;
+    transition: transform 0.2s, background-color 0.3s ease; /* เพิ่มเอฟเฟกต์ */
 }
 
 .productList-button:hover {
-    background-color: #e0e0e0; /* สีพื้นหลังของปุ่มเมื่อ hover */
-
+    transform: scale(1.05); /* ขยายปุ่มเล็กน้อยเมื่อ hover */
+    opacity: 0.9; /* ทำให้โปร่งแสงเล็กน้อย */
 }
+
+.productList-button:active {
+    transform: scale(0.95); /* ย่อปุ่มเล็กน้อยเมื่อคลิก */
+}
+
+/* ///////////////////////////////////////////////////////////// เพิ่ม /////////////////////////////////////////////////////////// */
+
 .product-list{
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -219,13 +236,13 @@
 }
 .product-list-con{
     width: 1885px;            /* ความกว้างของกรอบ */
-    height: 405px;           /* ความสูงของกรอบ */
+    height: 415px;           /* ความสูงของกรอบ */
     border: 2px solid #ddd;  /* สีและขนาดขอบของกรอบ */
     padding: 10px;           /* ระยะห่างภายในกรอบ */
     overflow-y: auto;        /* เพิ่มการเลื่อนแนวตั้ง */
     background-color: #f9f9f9; /* พื้นหลังของกรอบ */
     position: absolute; 
-    top: 510px;
+    top: 520px;
     left: 0px;
 
 
@@ -251,7 +268,7 @@
 }
 .prolist-con{
     width: 1905px;            /* ความกว้างของกรอบ */
-    height: 389px;           /* ความสูงของกรอบ */
+    height: 444px;           /* ความสูงของกรอบ */
     border: 2px solid #ddd;  /* สีและขนาดขอบของกรอบ */
     padding: 1px;           /* ระยะห่างภายในกรอบ */
     overflow-y: auto;        /* เพิ่มการเลื่อนแนวตั้ง */

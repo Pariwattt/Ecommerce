@@ -5,24 +5,39 @@
     align-items: flex-start;
     padding: 20px;
     font-family: Arial, sans-serif;
+   
 }
 
-/* ส่วนของวันที่ */
 .date-section {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 1px;
+    margin-left: 50px;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
 }
-
-/* ไอคอนปฏิทิน */
-.calendar-icon {
-    font-size: 24px;
+.deta-l{
+    display: flex; 
+    align-items: center;
+    gap: 20px;
+}
+.datt{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.butt{
+    position: relative; 
+    display: inline-block;
 }
 
 /* ตารางการขาย */
 .sales-table {
-    width: 75%; /* ปรับขนาดของตารางเพื่อให้มีพื้นที่สำหรับปุ่ม */
+    width: 100%; /* ปรับขนาดของตารางเพื่อให้มีพื้นที่สำหรับปุ่ม */
     border-collapse: collapse;
     margin-bottom: 20px;
 }
@@ -32,6 +47,8 @@
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
+    border: none; /* ลบเส้นขอบจากเซลล์ */
+
 }
 
 /* หัวตาราง */
@@ -43,40 +60,57 @@
 /* ส่วนท้ายตาราง */
 .sales-table tfoot td {
     font-weight: bold;
+    text-align: right;
 }
 
-/* ปุ่มรายละเอียด */
-.details-button {
-    background-color: #f0f0f0;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
+.summenu{
+    width: 580px;
+    height: 820px;
+    /* ขอบกล่องเนื้อหา */
+    border-top: none;
+    /* เอาขอบบนออก เพื่อให้ดูต่อเนื่องกับหัวข้อ */
+    background-color: #f7f7f7;
+    /* สีพื้นหลังของเนื้อหา */
+    align-items: flex-end; /* ปรับตำแหน่งของปุ่มให้อยู่ทางขวา */
+    position: absolute; /* ทำให้ปุ่มอยู่ด้านบน */
+    top:60px; /* ระยะห่างจากด้านบน */
+    right: 20px; /* ระยะห่างจากด้านขวา */
+    z-index: 8; /* ทำให้ปุ่มแสดงด้านบน */
+    border-radius: 20px;
+
 }
 
 /* ส่วนของปุ่มสรุปยอดขาย */
 .summary-section {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     align-items: flex-end; /* ปรับตำแหน่งของปุ่มให้อยู่ทางขวา */
+    position: absolute; /* ทำให้ปุ่มอยู่ด้านบน */
+    top: 20%; /* ระยะห่างจากด้านบน */
+    right: 100px; /* ระยะห่างจากด้านขวา */
+    z-index: 10; /* ทำให้ปุ่มแสดงด้านบน */
 }
 
 /* ปุ่มสรุปยอดขาย */
 .summary-button {
     padding: 10px;
-    background-color: #4caf50;
-    color: white;
+    background-color: rgb(168, 16, 16);
+    color: rgb(255, 255, 255);
     border: none;
     cursor: pointer;
-    width: 200px;
+    width: 350px;
+    height: 60px;
     text-align: center;
     border-radius: 20px;
+    font-size: 18px;
 }
 
 /* ปุ่มสรุปยอดขายเมื่อโฮเวอร์ */
 .summary-button:hover {
-    background-color: #45a049;
+    background-color: #c22c2c;
 }
+
 
 .summary-header {
     margin-left: 20px;
@@ -84,10 +118,48 @@
     border-radius: 10px;
 }
 .ax{
-    margin-right: 30%;
-    padding: 20px;
-    border-radius: 10px;
+    top: auto;
+    padding: 10px;
+    border-radius: 4px;
     text-align: center;
-    background-color: red;
+    background-color: rgb(196, 34, 34);
+    color: #fafafa;
+    font-size: 20px;
     
 }
+.frame {
+    width: 1300px;
+    height: 750px;
+    /* ขอบกล่องเนื้อหา */
+    border-top: none;
+    /* เอาขอบบนออก เพื่อให้ดูต่อเนื่องกับหัวข้อ */
+    overflow-y: auto;
+    /* เพิ่ม scrollbar แนวตั้ง */
+    background-color: #fcfcfc;
+    /* สีพื้นหลังของเนื้อหา */
+    border-radius: 0 0 8px 8px;
+    /* มุมกล่องส่วนล่าง */
+    box-sizing: border-box;
+    /* รวม padding และ border ในการคำนวณขนาด */
+    -ms-overflow-style: none;
+    /* ซ่อน scroll bar ใน IE และ Edge */
+    scrollbar-width: none;
+}
+
+
+
+.sales-table td:nth-child(2),
+.sales-table td:nth-child(3),
+.sales-table td:nth-child(4),
+.sales-table td:nth-child(5),
+.sales-table td:nth-child(6)
+{
+    text-align: right; /* คอลัมน์ที่ 2 ชิดซ้าย */
+   
+}
+.imgg{
+    width: 27px;
+    height: 27px;
+    cursor: pointer;
+}
+

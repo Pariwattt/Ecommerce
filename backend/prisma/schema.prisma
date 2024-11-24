@@ -33,3 +33,15 @@ model users {
   created_at     DateTime @default(now())
   updated_at     DateTime? @updatedAt 
 }
+model Payment {
+  id            Int      @id @default(autoincrement()) // Payment ID
+  totalPrice    Float    
+  priceToPay    Float    
+  change        Float    
+  discount      Float    
+  typePay       String   
+  amountReceived Float   
+  productQuantity Int    
+  date          DateTime 
+  time          String   
+}

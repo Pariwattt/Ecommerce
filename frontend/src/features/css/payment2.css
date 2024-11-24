@@ -115,3 +115,98 @@
 .con-button2 button:hover {
     opacity: 0.8; /* ลดความทึบเมื่อลากเมาส์ */
 }
+.receipt {
+    position: fixed; /* ทำให้ส่วนนี้คงที่และอยู่บนหน้าจอ */
+    top: 50%; /* จัดให้อยู่กึ่งกลางหน้าจอในแนวตั้ง */
+    left: 50%; /* จัดให้อยู่กึ่งกลางหน้าจอในแนวนอน */
+    transform: translate(-50%, -50%); /* ใช้เพื่อเลื่อนส่วนนี้กลับมาสู่กึ่งกลาง */
+    background-color: #fff; /* สีพื้นหลัง */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* เงาเพื่อความสวยงาม */
+    padding: 20px; /* ระยะขอบภายใน */
+    border-radius: 8px; /* ขอบโค้งมน */
+    z-index: 1000; /* ให้อยู่ด้านบนสุดขององค์ประกอบอื่น */
+    width: 80%; /* ความกว้างของใบเสร็จ */
+    max-width: 500px; /* จำกัดความกว้างสูงสุด */
+    overflow-y: auto; /* เพิ่ม scroll หากเนื้อหายาวเกิน */
+    
+}
+
+.receipt table {
+    width: 100%; /* ทำให้ตารางกว้างเต็ม */
+    border-collapse: collapse; /* ลดช่องว่างระหว่างเส้น */
+    
+}
+
+.receipt th, .receipt td {
+    text-align: left; /* จัดข้อความชิดซ้าย */
+    padding: 8px; /* ระยะห่างภายในเซลล์ */
+    border-bottom: 1px solid #ddd; /* เส้นขอบด้านล่าง */
+}
+
+.close-receipt-button {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.close-receipt-button button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.close-receipt-button button:hover {
+    background-color: #0056b3; /* สีเมื่อวางเมาส์ */
+}
+
+
+.hh {
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    
+}
+
+.hh h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.hh h4 {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 5px 0;
+}
+.receipt th:nth-child(1), .receipt td:nth-child(1) {
+    text-align: left; /* จัดข้อความในคอลัมน์แรก (ชื่ออาหาร) ชิดซ้าย */
+}
+
+.receipt th:nth-child(2), .receipt td:nth-child(2),
+.receipt th:nth-child(3), .receipt td:nth-child(3) {
+    text-align: right; /* จัดข้อความในคอลัมน์ตัวเลข (จำนวนและรวม) ชิดขวา */
+}
+.sum {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* เพิ่มระยะห่างระหว่างบรรทัด */
+}
+
+.sum-item {
+    display: flex;
+    justify-content: space-between; /* แยกข้อความให้อยู่สองฝั่ง */
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.sum-item span:first-child {
+    text-align: left; /* ชิดซ้าย */
+}
+
+.sum-item span:last-child {
+    text-align: right; /* ชิดขวา */
+}

@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../css/edit.css';
 import Navbar from '../webPageFeatures/navbar';
 import Footbar from '../webPageFeatures/footbar';
-import LockZoom from '../webPageFeatures/LockZoom';
+
 import Tabbar from './tabbar';
 import { FaPlus } from 'react-icons/fa';
 
@@ -44,7 +44,7 @@ function App() {
         fetchProducts();
         fetchCategories();
     }, []);
-    
+
     // Handle category selection from Tabbar
     const handleCategorySelect = (category) => {
         setSelectedCategory(category); // Update the currently selected category
@@ -171,22 +171,27 @@ function App() {
 
     return (
         <div>
-            <LockZoom />
+
             <Navbar />
             <Footbar />
             <Tabbar onCategorySelect={handleCategorySelect} />
 
             <div className="product-list-con">
                 <div className="product-list">
-                    {filteredProducts.map(product => (
+                    {/* เพิ่ม */}
+                    {filteredProducts.map((product) => (
                         <button
                             key={product.code}
                             className="productList-button"
                             onClick={() => handleShowFields(product.code)}
+                            style={{
+                                backgroundImage: `url(${product.image || '/path/to/default/image.jpg'})`
+                            }}
                         >
                             {product.name}
                         </button>
                     ))}
+                    {/* เพิ่ม */}
                 </div>
                 <div className='proBox-increase' onClick={() => handleShowFields(null)}>
                     <FaPlus />
