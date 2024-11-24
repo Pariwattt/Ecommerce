@@ -72,18 +72,27 @@ function App() {
 
     return (
         <div>
-            <Navbar />
-            <div className="copyPages">
-                {filteredProducts.map((product) => (
-                    <div
-                        key={product.code}
-                        className="proCopyBox-increase"
-                        onClick={() => handleProductClick(product)}
-                    >
-                        <p>{product.name}</p>
-                    </div>
-                ))}
+            <Navbar /> 
+            {/*เพิ่ม*/}
+            <div className='copyPages-con'>
+                <div className="copyPages">
+                   
+                    {filteredProducts.map((product) => (
+                        <div
+                            key={product.code}
+                            className="proCopyBox-increase"
+                            onClick={() => handleProductClick(product)}
+                            style={{
+                                backgroundImage: `url(${product.image || '/path/to/default/image.jpg'})`
+                            }}
+                        >
+                            <p>{product.name}</p>
+                        </div>
+                    ))}
+                    
+                </div>
             </div>
+            {/*เพิ่ม*/}
             <div className="copeTabbar">
                 <div className="left-buttons">
                     <div
@@ -119,7 +128,7 @@ function App() {
                     </div>
                     <div className="table-wrapper">
                         <table>
-                        <tbody>
+                            <tbody>
                                 {cart.map((product) => (
                                     <tr className='table-wrapper-item'
                                         key={product.code}

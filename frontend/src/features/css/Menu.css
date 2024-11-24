@@ -357,9 +357,52 @@
     text-align: center;
 }
 
+
+/* ///////////////////////////////////////////////////////////// เพิ่ม และ แก้ไข/////////////////////////////////////////////////////////// */
+
 .copyPages {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+
+.proCopyBox-increase {
+
+    width: 127px; /* ความกว้างของปุ่ม */
+    height: 127px; /* ความสูงของปุ่ม */
+    padding: 5px; /* ระยะห่างภายใน */
+    font-size: 20px; /* ขนาดฟอนต์ */
+    border-radius: 10px; /* ขอบโค้งของปุ่ม */
+    background-image: url('/path/to/your/image.jpg'); /* ใส่ URL ของภาพที่ต้องการ */
+    background-size: cover; /* ปรับขนาดภาพให้ครอบคลุมปุ่ม */
+    background-position: center; /* จัดตำแหน่งภาพให้อยู่ตรงกลาง */
+    background-color: #f0ecec; /* สีพื้นหลัง (สำรองกรณีภาพโหลดไม่ขึ้น) */
+    border: 1px solid #ddd; /* เส้นขอบ */
+    display: flex; /* จัดข้อความในแนวนอน */
+    justify-content: center; /* จัดข้อความในแนวนอน */
+    align-items: center; /* จัดข้อความในแนวตั้ง */
+    font-size: 18px; /* ขนาดฟอนต์ที่ใช้จากโค้ดแรก */
+    color: white; /* สีตัวอักษร */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
+    z-index: 2; /* เลเยอร์ */
+    margin: 0; /* ลบ margin ที่อาจเพิ่มระยะ */
+    box-sizing: border-box; /* ป้องกันการขยายขนาดเกินขอบเขต */
+    transition: transform 0.2s, background-color 0.3s ease; /* เพิ่มเอฟเฟกต์ */
+}
+
+.proCopyBox-increase:hover {
+    transform: scale(1.05); /* ขยายปุ่มเล็กน้อยเมื่อ hover */
+    opacity: 0.9; /* ทำให้โปร่งแสงเล็กน้อย */
+}
+
+.proCopyBox-increase:active {
+    transform: scale(0.95); /* ย่อปุ่มเล็กน้อยเมื่อคลิก */
+}
+.copyPages-con{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(12, 1fr);
     width: 1269px;
     padding: 10px;
     grid-auto-rows: 100px;
@@ -371,39 +414,10 @@
     left: 0;
     height: 395px;
     border: 1px solid #ddd;
-
-
 }
+/* ///////////////////////////////////////////////////////////// เพิ่ม /////////////////////////////////////////////////////////// */
 
 
-
-.proCopyBox-increase {
-    width: 110px;
-    /* ให้กล่องปรับขนาดตาม grid */
-    border-radius: 10px;
-    /* ขอบกล่องโค้ง */
-    background-color: #f0ecec;
-    /* สีพื้นหลัง */
-    border: 1px solid #ddd;
-    /* เส้นขอบ */
-    display: flex;
-    justify-content: center;
-    /* จัดข้อความในแนวนอน */
-    align-items: center;
-    /* จัดข้อความในแนวตั้ง */
-    font-size: 18px;
-    color: #060606;
-    cursor: pointer;
-    z-index: 2;
-    margin: 0;
-    /* ลบ margin ที่อาจเพิ่มระยะ */
-    padding: 5px;
-    height: 90px;
-    /* หรือกำหนดขนาดคงที่ */
-    box-sizing: border-box;
-    /* ป้องกันขยายพื้นที่ */
-
-}
 
 .proCopyBox-increase span,
 .proCopyBox-increase div {

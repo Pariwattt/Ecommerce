@@ -5,7 +5,7 @@
     align-items: flex-start;
     padding: 20px;
     font-family: Arial, sans-serif;
-   
+
 }
 
 .date-section {
@@ -16,12 +16,14 @@
     margin-top: 20px;
     font-family: Arial, sans-serif;
 }
-.deta-l{
-    display: flex; 
+
+.deta-l {
+    display: flex;
     align-items: center;
     gap: 20px;
 }
-.datt{
+
+.datt {
     position: absolute;
     top: 0;
     left: 0;
@@ -30,24 +32,28 @@
     opacity: 0;
     cursor: pointer;
 }
-.butt{
-    position: relative; 
+
+.butt {
+    position: relative;
     display: inline-block;
 }
 
 /* ตารางการขาย */
 .sales-table {
-    width: 100%; /* ปรับขนาดของตารางเพื่อให้มีพื้นที่สำหรับปุ่ม */
+    width: 100%;
+    /* ปรับขนาดของตารางเพื่อให้มีพื้นที่สำหรับปุ่ม */
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
 /* เซลล์ตาราง */
-.sales-table th, .sales-table td {
+.sales-table th,
+.sales-table td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
-    border: none; /* ลบเส้นขอบจากเซลล์ */
+    border: none;
+    /* ลบเส้นขอบจากเซลล์ */
 
 }
 
@@ -63,7 +69,7 @@
     text-align: right;
 }
 
-.summenu{
+.summenu {
     width: 580px;
     height: 820px;
     /* ขอบกล่องเนื้อหา */
@@ -71,11 +77,16 @@
     /* เอาขอบบนออก เพื่อให้ดูต่อเนื่องกับหัวข้อ */
     background-color: #f7f7f7;
     /* สีพื้นหลังของเนื้อหา */
-    align-items: flex-end; /* ปรับตำแหน่งของปุ่มให้อยู่ทางขวา */
-    position: absolute; /* ทำให้ปุ่มอยู่ด้านบน */
-    top:60px; /* ระยะห่างจากด้านบน */
-    right: 20px; /* ระยะห่างจากด้านขวา */
-    z-index: 8; /* ทำให้ปุ่มแสดงด้านบน */
+    align-items: flex-end;
+    /* ปรับตำแหน่งของปุ่มให้อยู่ทางขวา */
+    position: absolute;
+    /* ทำให้ปุ่มอยู่ด้านบน */
+    top: 60px;
+    /* ระยะห่างจากด้านบน */
+    right: 20px;
+    /* ระยะห่างจากด้านขวา */
+    z-index: 8;
+    /* ทำให้ปุ่มแสดงด้านบน */
     border-radius: 20px;
 
 }
@@ -85,11 +96,16 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    align-items: flex-end; /* ปรับตำแหน่งของปุ่มให้อยู่ทางขวา */
-    position: absolute; /* ทำให้ปุ่มอยู่ด้านบน */
-    top: 20%; /* ระยะห่างจากด้านบน */
-    right: 100px; /* ระยะห่างจากด้านขวา */
-    z-index: 10; /* ทำให้ปุ่มแสดงด้านบน */
+    align-items: flex-end;
+    /* ปรับตำแหน่งของปุ่มให้อยู่ทางขวา */
+    position: absolute;
+    /* ทำให้ปุ่มอยู่ด้านบน */
+    top: 20%;
+    /* ระยะห่างจากด้านบน */
+    right: 100px;
+    /* ระยะห่างจากด้านขวา */
+    z-index: 10;
+    /* ทำให้ปุ่มแสดงด้านบน */
 }
 
 /* ปุ่มสรุปยอดขาย */
@@ -117,7 +133,8 @@
     padding: 10px;
     border-radius: 10px;
 }
-.ax{
+
+.ax {
     top: auto;
     padding: 10px;
     border-radius: 4px;
@@ -125,8 +142,9 @@
     background-color: rgb(196, 34, 34);
     color: #fafafa;
     font-size: 20px;
-    
+
 }
+
 .frame {
     width: 1300px;
     height: 750px;
@@ -152,14 +170,73 @@
 .sales-table td:nth-child(3),
 .sales-table td:nth-child(4),
 .sales-table td:nth-child(5),
-.sales-table td:nth-child(6)
-{
-    text-align: right; /* คอลัมน์ที่ 2 ชิดซ้าย */
-   
+.sales-table td:nth-child(6) {
+    text-align: right;
+    /* คอลัมน์ที่ 2 ชิดซ้าย */
+
 }
-.imgg{
+
+.imgg {
     width: 27px;
     height: 27px;
     cursor: pointer;
 }
 
+/* ปรับสไตล์ป๊อปอัพ */
+.mo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.mo-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    height: 750px;
+    overflow-y: auto;
+
+}
+
+.close-btn {
+    position: absolute;
+    top: 85%;
+    right: 50%;
+    font-size: 35px;
+    cursor: pointer;
+    color: black;
+
+
+}
+
+.close-btn:hover {
+    color: #bd1717;
+}
+
+.iconD {
+    width: 20px;
+    height: 20px;
+}
+.modal-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modal-table th, .modal-table td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.modal-table th {
+    background-color: #f2f2f2;
+}

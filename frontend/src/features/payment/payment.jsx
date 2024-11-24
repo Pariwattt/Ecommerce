@@ -25,15 +25,22 @@ function App() {
         const amountReceivedNum = parseFloat(amountReceived || 0);
         const discountedTotalNum = parseFloat(discountedTotal || 0);
 
-        if (amountReceivedNum < discountedTotalNum) {
+        if (isNaN(amountReceivedNum) || amountReceivedNum < discountedTotalNum) {
             setError('จำนวนเงินที่รับมาต้องไม่น้อยกว่ายอดเงินที่ต้องชำระ');
             return;
         }
 
         try {
             // ส่งคำขอการชำระเงินไปยัง API
-            const response = await axios.post('http://localhost:8081/v1/payment/pay', {
-                productIds: cart.map(item => item.id), // ส่ง ID ของสินค้าทั้งหมดใน cart
+            const response = await axios.post("http://localhost:8081/v1/payment/pay", {
+                products: cart.map(item => ({
+                    productId: item.id,
+                    code: item.code,
+                    name: item.name,
+                    type: item.typeId,
+                    price: item.price,
+                    quantity: item.quantity,
+                })),
                 discount: parseFloat(discount || 0),
                 amountReceived: amountReceivedNum,
                 typePay: typePay,
@@ -99,7 +106,7 @@ function App() {
                 <div className="P-price-section">
                     <p className="L-abel">ราคาหลังหักส่วนลด</p>
                     <div className="price0-box">
-                        {new Intl.NumberFormat().format(discountedTotal)} {/* แสดงยอดที่ต้องชำระ */}
+                        {new Intl.NumberFormat().format(discountedTotal || 0)} {/* แสดงยอดที่ต้องชำระ */}
                     </div>
                 </div>
 

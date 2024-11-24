@@ -48,6 +48,7 @@ export const productRouter = (() => {
             res.status(500).json({ message: "เกิดข้อผิดพลาดในการเพิ่มสินค้า" });
         }
     });
+    
 
     // Edit a product
     router.put("/edit/:code", async (req: Request, res: Response) => {

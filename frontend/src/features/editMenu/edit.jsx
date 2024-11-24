@@ -44,7 +44,7 @@ function App() {
         fetchProducts();
         fetchCategories();
     }, []);
-    
+
     // Handle category selection from Tabbar
     const handleCategorySelect = (category) => {
         setSelectedCategory(category); // Update the currently selected category
@@ -171,22 +171,27 @@ function App() {
 
     return (
         <div>
-            
+
             <Navbar />
             <Footbar />
             <Tabbar onCategorySelect={handleCategorySelect} />
 
             <div className="product-list-con">
                 <div className="product-list">
-                    {filteredProducts.map(product => (
+                    {/* เพิ่ม */}
+                    {filteredProducts.map((product) => (
                         <button
                             key={product.code}
                             className="productList-button"
                             onClick={() => handleShowFields(product.code)}
+                            style={{
+                                backgroundImage: `url(${product.image || '/path/to/default/image.jpg'})`
+                            }}
                         >
                             {product.name}
                         </button>
                     ))}
+                    {/* เพิ่ม */}
                 </div>
                 <div className='proBox-increase' onClick={() => handleShowFields(null)}>
                     <FaPlus />
