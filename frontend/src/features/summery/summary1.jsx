@@ -144,7 +144,6 @@ const Summary1 = () => {
                                             <tr>
                                                 <th>รหัสสินค้า</th>
                                                 <th>ชื่อสินค้า</th>
-                                                <th>ประเภท</th>
                                                 <th>จำนวน</th>
                                                 <th>ราคา</th>
                                                 <th>ราคารวม</th> {/* เพิ่มคอลัมน์ราคารวม */}
@@ -155,7 +154,6 @@ const Summary1 = () => {
                                                 <tr key={index}>
                                                     <td>{detail.code}</td>
                                                     <td>{detail.name}</td>
-                                                    <td>{detail.type}</td> {/* ดึงชื่อประเภทจาก `type` */}
                                                     <td>{detail.quantity}</td>
                                                     <td>{detail.price.toFixed(2)}</td>
                                                     <td>{(detail.quantity * detail.price).toFixed(2)}</td> {/* คำนวณราคารวม */}
