@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 async function main() {
   // Seed types
   const types = [
-    { type: 'Electronics', typeID: '1' },
+    { type: 'Electronics', typeID: '1' }, //เพิ่มตัวอย่าง Type
     { type: 'Clothing', typeID: '2' },
     { type: 'Books', typeID: '3' },
   ];
@@ -18,7 +18,7 @@ async function main() {
 
   // Seed products
   const products = [
-    { name: 'Laptop', price: 1000, code: 'P001', type: 'Electronics', image: null },
+    { name: 'Laptop', price: 1000, code: 'P001', type: 'Electronics', image: null }, //เพิ่มตัวอย่าง products
     { name: 'T-shirt', price: 20, code: 'P002', type: 'Clothing', image: null },
   ];
   for (const product of products) {

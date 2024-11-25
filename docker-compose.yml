@@ -24,4 +24,4 @@ services:
       - postgres
 
 volumes:
-  db_data: # กำหนด Volume ที่เก็บข้อมูล
+  db_data: # กำหนด Volume ที่เก็บข้อมูล //เก็บข้อมูลไว้ในนี้

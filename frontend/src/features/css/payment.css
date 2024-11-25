@@ -1,14 +1,14 @@
 .new-container {
-    width: 1300px;
-    height: 430px;
-    background-color: #d3d3d3df;
-    border-radius: 10px;
-    padding: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  width: 1300px; /* กำหนดความกว้างของ container */
+  height: 430px; /* กำหนดความสูงของ container */
+  background-color: #d3d3d3df; /* สีพื้นหลังของ container */
+  border-radius: 10px; /* มุมของ container โค้งมน */
+  padding: 20px; /* ระยะห่างภายใน container */
+  position: absolute; /* ตำแหน่งแบบ absolute */
+  top: 50%; /* จัดตำแหน่งให้อยู่กลางหน้าจอในแนวตั้ง */
+  left: 50%; /* จัดตำแหน่งให้อยู่กลางหน้าจอในแนวนอน */
+  transform: translate(-50%, -50%); /* ใช้ translate เพื่อจัดให้อยู่ตรงกลาง */
+}
   
   .P-price-section, .receive-money-section {
     margin-bottom: 20px;
@@ -24,34 +24,33 @@
   }
   
   .price0-box {
-    width: 40%;
-    height: 40px;
-    background-color: white;
-    border: 5px solid #b1b1b1;
-    border-radius: 15px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    font-weight: bold;
-    color: red;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-  }
-  .money-box {
-    width: 40%;
-    height: 40px;
-    background-color: white;
-    border: 5px solid #b1b1b1;
-    border-radius: 15px;
-    padding: 10px;
-    font-size: 30px;
-    font-weight: bold;
-    color: green;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center; /* ให้ตัวเลขอยู่กลาง */
-  }
+    width: 40%; /* ความกว้างของกล่อง */
+    height: 40px; /* ความสูงของกล่อง */
+    background-color: white; /* สีพื้นหลัง */
+    border: 5px solid #b1b1b1; /* สีและขนาดของขอบ */
+    border-radius: 15px; /* มุมของกล่องโค้งมน */
+    padding: 10px; /* ระยะห่างภายในกล่อง */
+    display: flex; /* ใช้ Flexbox */
+    align-items: center; /* จัดให้อยู่กลางในแนวตั้ง */
+    justify-content: center; /* จัดให้อยู่กลางในแนวนอน */
+    font-size: 30px; /* ขนาดตัวอักษร */
+    font-weight: bold; /* ตัวอักษรหนา */
+    color: red; /* สีตัวอักษร */
+    font-family: Arial, Helvetica, sans-serif; /* ฟอนต์ */
+}
+.money-box {
+  width: 40%; /* ความกว้างของกล่อง */
+  height: 40px; /* ความสูงของกล่อง */
+  background-color: white; /* สีพื้นหลัง */
+  border: 5px solid #b1b1b1; /* สีและขนาดของขอบ */
+  border-radius: 15px; /* มุมของกล่องโค้งมน */
+  padding: 10px; /* ระยะห่างภายในกล่อง */
+  font-size: 30px; /* ขนาดตัวอักษร */
+  font-weight: bold; /* ตัวอักษรหนา */
+  color: green; /* สีตัวอักษร */
+  font-family: Arial, Helvetica, sans-serif; /* ฟอนต์ */
+  text-align: center; /* จัดข้อความให้อยู่กลาง */
+}
 .price-box, .money-box {
   margin-bottom: -55px; /* ลดระยะห่างด้านล่างเหลือ 5px */
 }
@@ -65,26 +64,27 @@
     
     }
   
-  .but-con button {
-    padding: 10px 20px;
-    margin: 5px;
-    border: 1px solid #444040;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border-radius: 15px;
-    width: 150px;
-    height: 60px;
+    .but-con button {
+      padding: 10px 20px; /* ระยะห่างภายในปุ่ม */
+      margin: 5px; /* ระยะห่างภายนอกปุ่ม */
+      border: 1px solid #444040; /* สีและขนาดของขอบปุ่ม */
+      cursor: pointer; /* เปลี่ยนเป็น pointer เมื่อ hover */
+      transition: background-color 0.3s; /* เพิ่ม effect การเปลี่ยนสี */
+      border-radius: 15px; /* มุมปุ่มโค้งมน */
+      width: 150px; /* ความกว้างของปุ่ม */
+      height: 60px; /* ความสูงของปุ่ม */
   }
   
   .but-con button.selected {
-    background-color: #b91b1b;
-    color: rgb(253, 253, 253);
-    border-color: #8a280b;
+      background-color: #b91b1b; /* สีพื้นหลังเมื่อเลือก */
+      color: rgb(253, 253, 253); /* สีตัวอักษร */
+      border-color: #8a280b; /* สีขอบ */
   }
   
   .but-con button:hover {
-    background-color: #4a85d3;
+      background-color: #4a85d3; /* สีพื้นหลังเมื่อ hover */
   }
+  
   
  
   .con-button1 {

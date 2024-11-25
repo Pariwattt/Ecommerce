@@ -12,7 +12,7 @@ model Product {
     name   String
     price  Float
     code   String  @unique
-    type   Type    @relation(fields: [typeId], references: [typeID])
+    type   Type    @relation(fields: [typeId], references: [typeID]) // ความสัมพันธ์กับประเภทสินค้า
     typeId String  @default("defaultTypeId") // กำหนดค่าเริ่มต้นให้กับ typeId
     image  String?
     quantitySold   Int      @default(0) // เพิ่มคอลัมน์จำนวนสินค้าที่ขาย
@@ -35,7 +35,7 @@ model users {
   updated_at     DateTime? @updatedAt 
 }
 model Payment {
-  id            Int      @id @default(autoincrement()) // Payment ID
+  id            Int      @id @default(autoincrement()) // Payment ID รหัสการชำระเงิน เป็น Primary Key และเพิ่มอัตโนมัติ
   totalPrice    Float    
   priceToPay    Float    
   change        Float    
@@ -45,11 +45,11 @@ model Payment {
   productQuantity Int    
   date          DateTime 
   time          String  
-  saleDetail    SaleDetail[]  // เชื่อมโยงกับรายการขาย
+  saleDetail    SaleDetail[]  // ความสัมพันธ์กับรายละเอียดการขาย
 }
 
 model SaleDetail {
-  id         Int      @id @default(autoincrement())
+  id         Int      @id @default(autoincrement()) // รหัสรายละเอียดการขาย เป็น Primary Key และเพิ่มอัตโนมัติ
   paymentId  Int
   productId  Int
   code       String
@@ -58,5 +58,5 @@ model SaleDetail {
   price      Float
   quantity   Int
   saleTime   DateTime
-  Payment    Payment  @relation(fields: [paymentId], references: [id])
+  Payment    Payment  @relation(fields: [paymentId], references: [id]) // ความสัมพันธ์กับการชำระเงิน
 }
