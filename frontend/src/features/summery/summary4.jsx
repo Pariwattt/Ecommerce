@@ -29,14 +29,8 @@ const SalesTable = () => {
     return (
         <div>
             <Navbar />
-            <div className="summary-header d-flex justify-content-between align-items-center mb-3">
-                <span>
-                    <input type="date" className="form-control w-25" id="dateInput" max={new Date().toISOString().split('T')[0]} />
-                </span>
-                <span className="calendar-icon">📅</span>
-            </div>
 
-            <div className="sales-container">
+            <div className="sales-container frame">
                 <table className="sales-table">
                     <thead>
                         <tr>
