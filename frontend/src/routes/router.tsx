@@ -7,7 +7,6 @@ import PaymentPage from "../pages/Payment/index";
 import LoginPage from "../pages/Login/index";
 import Payment2Page from "../pages/Payment2/index";
 import SummaryPage from "../pages/Summery/index";
-import Summary2Page from "../pages/Summery2/index";
 import Summary3Page from "../pages/Summery3/index";
 import Summary4Page from "../pages/Summery4/index";
 
@@ -56,14 +55,6 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute requiredRoles={["USER", "ADMIN"]}>
             <SummaryPage />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "Summary2",
-        element: (
-          <ProtectedRoute requiredRoles={["USER", "ADMIN"]}>
-            <Summary2Page />
           </ProtectedRoute>
         ),
       },

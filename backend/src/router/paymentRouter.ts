@@ -137,49 +137,103 @@ export const paymentRouter = (() => {
     });
     // API สำหรับดึงข้อมูลรายละเอียดการขาย
     // API สำหรับดึงข้อมูลรายละเอียดการขาย
-// API สำหรับดึงข้อมูลรายละเอียดการขาย
-router.get("/saleDetails", async (req: Request, res: Response) => {
-    const { paymentId, time } = req.query;
+    // API สำหรับดึงข้อมูลรายละเอียดการขาย
+    router.get("/saleDetails", async (req: Request, res: Response) => {
+        const { paymentId, time } = req.query;
 
-    if (!paymentId || !time) {
-        return res.status(400).json({ message: "กรุณาระบุข้อมูลให้ครบถ้วน" });
-    }
-
-    try {
-        const payment = await prisma.payment.findUnique({
-            where: {
-                id: parseInt(paymentId as string),
-            },
-        });
-
-        if (!payment) {
-            return res.status(404).json({ message: "ไม่พบข้อมูลการชำระเงิน" });
+        if (!paymentId || !time) {
+            return res.status(400).json({ message: "กรุณาระบุข้อมูลให้ครบถ้วน" });
         }
 
-        // แปลงค่า date ของ payment ให้เป็น Date object
-        const paymentDate = new Date(payment.date);
-
-        // เปรียบเทียบ saleTime กับ payment.date โดยใช้ range ของวันที่เดียว
-        const saleDetails = await prisma.saleDetail.findMany({
-            where: {
-                paymentId: parseInt(paymentId as string),
-                saleTime: {
-                    gte: paymentDate, // saleTime ใหญ่กว่าหรือเท่ากับ payment.date
-                    lt: new Date(paymentDate.getTime() + 86400000), // เพิ่ม 1 วัน (86400000 ms = 1 วัน)
+        try {
+            const payment = await prisma.payment.findUnique({
+                where: {
+                    id: parseInt(paymentId as string),
                 },
-            },
-        });
+            });
 
-        if (saleDetails.length === 0) {
-            return res.status(404).json({ message: "ไม่พบข้อมูลรายละเอียดสินค้า" });
+            if (!payment) {
+                return res.status(404).json({ message: "ไม่พบข้อมูลการชำระเงิน" });
+            }
+
+            // แปลงค่า date ของ payment ให้เป็น Date object
+            const paymentDate = new Date(payment.date);
+
+            // เปรียบเทียบ saleTime กับ payment.date โดยใช้ range ของวันที่เดียว
+            const saleDetails = await prisma.saleDetail.findMany({
+                where: {
+                    paymentId: parseInt(paymentId as string),
+                    saleTime: {
+                        gte: paymentDate, // saleTime ใหญ่กว่าหรือเท่ากับ payment.date
+                        lt: new Date(paymentDate.getTime() + 86400000), // เพิ่ม 1 วัน (86400000 ms = 1 วัน)
+                    },
+                },
+            });
+
+            if (saleDetails.length === 0) {
+                return res.status(404).json({ message: "ไม่พบข้อมูลรายละเอียดสินค้า" });
+            }
+
+            return res.json({ saleDetails });
+        } catch (error) {
+            console.error("Error fetching sale details:", error);
+            return res.status(500).json({ message: "เกิดข้อผิดพลาดในการดึงข้อมูล" });
         }
+    });
+    // API สำหรับดึงข้อมูลรายละเอียดการขายทั้งหมด
+    // API สำหรับดึงข้อมูลรายละเอียดการขายทั้งหมด
+    router.get("/saleDetails/all", async (req: Request, res: Response) => {
+        try {
+            // ดึงข้อมูลจาก SaleDetail ทั้งหมด
+            const saleDetails = await prisma.saleDetail.findMany();
 
-        return res.json({ saleDetails });
-    } catch (error) {
-        console.error("Error fetching sale details:", error);
-        return res.status(500).json({ message: "เกิดข้อผิดพลาดในการดึงข้อมูล" });
-    }
-});
+            if (saleDetails.length === 0) {
+                return res.status(404).json({ message: "ไม่พบข้อมูลรายละเอียดสินค้า" });
+            }
+
+            // รวมข้อมูล (Aggregate) สินค้าตาม code
+            const aggregatedData = saleDetails.reduce((result, detail) => {
+                const existingProduct = result.find((item) => item.code === detail.code);
+                if (existingProduct) {
+                    // หากพบสินค้าเดียวกันรวมจำนวนสินค้าและยอดรวม
+                    existingProduct.quantity += detail.quantity;
+                    existingProduct.totalPrice += detail.quantity * detail.price;
+                } else {
+                    // หากยังไม่มีในผลลัพธ์ให้เพิ่มข้อมูลใหม่
+                    result.push({
+                        code: detail.code,
+                        name: detail.name,
+                        type: detail.type,
+                        price: detail.price,
+                        quantity: detail.quantity,
+                        totalPrice: detail.quantity * detail.price,
+                    });
+                }
+                return result;
+            }, [] as {
+                code: string;
+                name: string;
+                type: string;
+                price: number;
+                quantity: number;
+                totalPrice: number;
+            }[]);
+
+            // จัดเรียงข้อมูลจากจำนวนสินค้า (quantity) มากไปน้อย
+            aggregatedData.sort((a, b) => b.quantity - a.quantity);
+
+            return res.json({
+                message: "ข้อมูลรายละเอียดการขายทั้งหมด",
+                saleDetails: aggregatedData,
+            });
+        } catch (error) {
+            console.error("Error fetching all sale details:", error);
+            return res.status(500).json({ message: "เกิดข้อผิดพลาดในการดึงข้อมูล" });
+        }
+    });
+
+
+
 
     return router;
 })();

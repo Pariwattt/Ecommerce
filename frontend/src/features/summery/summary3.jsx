@@ -19,11 +19,16 @@ const Summary3 = () => {
             fetch(url)
                 .then((response) => response.json())
                 .then((data) => {
-                    if (data.payments) {
+                    if (data.payments && data.payments.length > 0) {
                         setPayments(data.payments);
+                    } else {
+                        setPayments([]); // รีเซต payments เป็น array ว่าง
                     }
                 })
-                .catch((error) => console.error('Error fetching payments:', error));
+                .catch((error) => {
+                    console.error('Error fetching payments:', error);
+                    setPayments([]); // รีเซต payments เป็น array ว่างในกรณีเกิดข้อผิดพลาด
+                });
         };
 
         fetchPayments();
@@ -98,16 +103,25 @@ const Summary3 = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.keys(dailySummary).map((date, index) => (
-                            <tr key={index}>
-                                <td>{date}</td>
-                                <td>{dailySummary[date].productQuantity}</td>
-                                <td>{dailySummary[date].totalPrice.toFixed(2)}</td>
-                                <td>{(dailySummary[date].discount)}%</td>
-                                <td>{(dailySummary[date].priceToPay).toFixed(2)}</td>
+                        {Object.keys(dailySummary).length > 0 ? (
+                            Object.keys(dailySummary).map((date, index) => (
+                                <tr key={index}>
+                                    <td>{date}</td>
+                                    <td>{dailySummary[date].productQuantity}</td>
+                                    <td>{dailySummary[date].totalPrice.toFixed(2)}</td>
+                                    <td>{(dailySummary[date].discount)}%</td>
+                                    <td>{dailySummary[date].priceToPay.toFixed(2)}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="5" style={{ textAlign: 'center' }}>
+                                    ไม่มีข้อมูลสำหรับเดือนที่เลือก
+                                </td>
                             </tr>
-                        ))}
+                        )}
                     </tbody>
+
                     <tfoot>
                         <tr>
                             <td colSpan="1">รวม</td>

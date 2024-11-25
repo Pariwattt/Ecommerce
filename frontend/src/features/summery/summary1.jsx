@@ -16,19 +16,25 @@ const Summary1 = () => {
             const url = selectedDate
                 ? `http://localhost:8081/v1/payment/payments?date=${selectedDate}`
                 : 'http://localhost:8081/v1/payment/payments';
-
+    
             fetch(url)
                 .then((response) => response.json())
                 .then((data) => {
-                    if (data.payments) {
+                    if (data.payments && data.payments.length > 0) {
                         setPayments(data.payments);
+                    } else {
+                        setPayments([]); // รีเซต payments เป็น array ว่าง
                     }
                 })
-                .catch((error) => console.error('Error fetching payments:', error));
+                .catch((error) => {
+                    console.error('Error fetching payments:', error);
+                    setPayments([]); // รีเซต payments เป็น array ว่างในกรณีเกิดข้อผิดพลาด
+                });
         };
-
+    
         fetchPayments();
     }, [selectedDate]);
+    
 
     const formatDate = (date) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -99,24 +105,33 @@ const Summary1 = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {payments.map((payment, index) => (
-                            <tr key={payment.id}>
-                                <td>{index + 1}</td>
-                                <td>{payment.id}</td>
-                                <td>{payment.productQuantity}</td>
-                                <td>{(parseFloat(payment.totalPrice) || 0).toFixed(2)}</td>
-                                <td>{(parseFloat(payment.discount) || 0)}%</td>
-                                <td>{(parseFloat(payment.priceToPay) || 0).toFixed(2)}</td>
-                                <td>{payment.typePay}</td>
-                                <td>{payment.time}</td>
-                                <td>
-                                    <button className="details-button" onClick={() => openModal(payment.id, payment.time)}>
-                                        รายละเอียด
-                                    </button>
+                        {payments.length > 0 ? (
+                            payments.map((payment, index) => (
+                                <tr key={payment.id}>
+                                    <td>{index + 1}</td>
+                                    <td>{payment.id}</td>
+                                    <td>{payment.productQuantity}</td>
+                                    <td>{(parseFloat(payment.totalPrice) || 0).toFixed(2)}</td>
+                                    <td>{(parseFloat(payment.discount) || 0)}%</td>
+                                    <td>{(parseFloat(payment.priceToPay) || 0).toFixed(2)}</td>
+                                    <td>{payment.typePay}</td>
+                                    <td>{payment.time}</td>
+                                    <td>
+                                        <button className="details-button" onClick={() => openModal(payment.id, payment.time)}>
+                                            รายละเอียด
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="9" style={{ textAlign: 'center' }}>
+                                    ไม่มีข้อมูลสำหรับวันที่เลือก
                                 </td>
                             </tr>
-                        ))}
+                        )}
                     </tbody>
+
                     <tfoot>
                         <tr>
                             <td colSpan="2">รวม</td>
