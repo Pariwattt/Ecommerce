@@ -1,48 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../webPageFeatures/navbar';
-import Footbar from '../webPageFeatures/footbar';
-import '../css/summary1.css';
-import { useNavigate } from 'react-router-dom';
+import Navbar from '../webPageFeatures/navbar'; 
+import Footbar from '../webPageFeatures/footbar'; 
+import '../css/summary1.css'; 
+import { useNavigate } from 'react-router-dom'; 
 
 const Summary1 = () => {
-    const Navigate = useNavigate();
-    const [payments, setPayments] = useState([]);
-    const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalContent, setModalContent] = useState([]); // เปลี่ยนเป็น array แทน string
+    const Navigate = useNavigate(); 
+    const [payments, setPayments] = useState([]); // เก็บข้อมูลการชำระเงิน
+    const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // วันที่เลือก
+    const [isModalOpen, setIsModalOpen] = useState(false); // สถานะป๊อปอัพ
+    const [modalContent, setModalContent] = useState([]); // รายละเอียดสินค้าในป๊อปอัพ
 
     useEffect(() => {
         const fetchPayments = () => {
             const url = selectedDate
                 ? `http://localhost:8081/v1/payment/payments?date=${selectedDate}`
-                : 'http://localhost:8081/v1/payment/payments';
+                : 'http://localhost:8081/v1/payment/payments'; // API สำหรับดึงข้อมูลการชำระเงิน
     
             fetch(url)
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.payments && data.payments.length > 0) {
-                        setPayments(data.payments);
+                        setPayments(data.payments); // ตั้งค่า payments เมื่อมีข้อมูล
                     } else {
                         setPayments([]); // รีเซต payments เป็น array ว่าง
                     }
                 })
                 .catch((error) => {
-                    console.error('Error fetching payments:', error);
-                    setPayments([]); // รีเซต payments เป็น array ว่างในกรณีเกิดข้อผิดพลาด
+                    console.error('Error fetching payments:', error); // แสดงข้อผิดพลาด
+                    setPayments([]); // รีเซต payments เป็น array ว่าง
                 });
         };
     
-        fetchPayments();
-    }, [selectedDate]);
-    
+        fetchPayments(); // เรียกฟังก์ชันดึงข้อมูล
+    }, [selectedDate]); // ทำงานใหม่ทุกครั้งเมื่อ selectedDate เปลี่ยน
 
+    // ฟังก์ชันจัดรูปแบบวันที่
     const formatDate = (date) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date(date).toLocaleDateString('th-TH', options);
+        return new Date(date).toLocaleDateString('th-TH', options); // แปลงวันที่เป็นรูปแบบภาษาไทย
     };
 
     const handleDateChange = (e) => {
-        setSelectedDate(e.target.value);
+        setSelectedDate(e.target.value); // เปลี่ยนค่า selectedDate
     };
 
     // ฟังก์ชันเปิดป๊อปอัพและแสดงรายละเอียดสินค้า
@@ -51,27 +51,26 @@ const Summary1 = () => {
             .then((response) => response.json())
             .then((data) => {
                 if (data.saleDetails && Array.isArray(data.saleDetails)) {
-                    setModalContent(data.saleDetails); // ตั้งค่าเป็น array
+                    setModalContent(data.saleDetails); // ตั้งค่า modalContent เป็น array
                 } else {
-                    setModalContent('ไม่มีข้อมูลรายละเอียดสินค้า');
+                    setModalContent('ไม่มีข้อมูลรายละเอียดสินค้า'); // แสดงข้อความกรณีไม่มีข้อมูล
                 }
-                setIsModalOpen(true);
+                setIsModalOpen(true); // เปิดป๊อปอัพ
             })
             .catch((error) => {
-                console.error('Error fetching product details:', error);
-                setModalContent('เกิดข้อผิดพลาดในการดึงข้อมูล');
+                console.error('Error fetching product details:', error); // แสดงข้อผิดพลาด
+                setModalContent('เกิดข้อผิดพลาดในการดึงข้อมูล'); // แสดงข้อความข้อผิดพลาด
                 setIsModalOpen(true);
             });
     };
 
     const closeModal = () => {
-        setIsModalOpen(false);
-        setModalContent([]);
+        setIsModalOpen(false); // ปิดป๊อปอัพ
+        setModalContent([]); // ล้างข้อมูลใน modalContent
     };
-
     return (
         <div>
-            <Navbar />
+            <Navbar /> {/* Navbar ด้านบน */}
             <div className="date-section deta-l">
                 <span>{selectedDate ? formatDate(selectedDate) : formatDate(new Date())}</span>
                 <div className="butt">
@@ -79,7 +78,7 @@ const Summary1 = () => {
                         type="date"
                         value={selectedDate}
                         onChange={handleDateChange}
-                        max={new Date().toISOString().split("T")[0]}
+                        max={new Date().toISOString().split("T")[0]} // ไม่สามารถเลือกวันที่ในอนาคตได้
                         className="datt"
                     />
                     <img
@@ -89,6 +88,8 @@ const Summary1 = () => {
                     />
                 </div>
             </div>
+
+            {/* ตารางสรุปการขาย */}
             <div className="sales-container frame">
                 <table className="sales-table">
                     <thead>
@@ -132,6 +133,7 @@ const Summary1 = () => {
                         )}
                     </tbody>
 
+                    {/* ส่วนสรุปยอดรวม */}
                     <tfoot>
                         <tr>
                             <td colSpan="2">รวม</td>
@@ -161,7 +163,7 @@ const Summary1 = () => {
                                                 <th>ชื่อสินค้า</th>
                                                 <th>จำนวน</th>
                                                 <th>ราคา</th>
-                                                <th>ราคารวม</th> {/* เพิ่มคอลัมน์ราคารวม */}
+                                                <th>ราคารวม</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -171,7 +173,7 @@ const Summary1 = () => {
                                                     <td>{detail.name}</td>
                                                     <td>{detail.quantity}</td>
                                                     <td>{detail.price.toFixed(2)}</td>
-                                                    <td>{(detail.quantity * detail.price).toFixed(2)}</td> {/* คำนวณราคารวม */}
+                                                    <td>{(detail.quantity * detail.price).toFixed(2)}</td> {/* ราคารวม */}
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -186,7 +188,6 @@ const Summary1 = () => {
                     </div>
                 </div>
             )}
-
             <div className="summenu">
                 <p className="ax">สรุปยอดขายรายวัน</p>
                 <div className="summary-section">
@@ -195,6 +196,7 @@ const Summary1 = () => {
                     <button className="summary-button" onClick={() => Navigate('/summary4')}>ยอดขายสินค้า</button>
                 </div>
             </div>
+
             <Footbar />
         </div>
     );

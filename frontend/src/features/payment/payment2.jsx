@@ -1,35 +1,35 @@
 import React, { useState } from 'react';
-import '../css/payment2.css';
-import Navbar from '../webPageFeatures/navbar';
-import Footbar from '../webPageFeatures/footbar';
-import { useLocation, useNavigate } from 'react-router-dom';
+import '../css/payment2.css'; 
+import Navbar from '../webPageFeatures/navbar'; 
+import Footbar from '../webPageFeatures/footbar'; 
+import { useLocation, useNavigate } from 'react-router-dom'; // ใช้สำหรับการเปลี่ยนหน้าและรับข้อมูลจาก URL
 
 function Payment() {
-    const location = useLocation();
-    const Navigate = useNavigate();
+    const location = useLocation(); // รับข้อมูลที่ส่งมาจากหน้าก่อนหน้า
+    const Navigate = useNavigate(); // ใช้สำหรับการนำทางไปยังหน้าอื่น
 
-    // รับข้อมูลจาก state ที่ส่งมาจาก Menu
+    // ดึงข้อมูลจาก state
     const {
-        cart = [],
-        discount = 0, // รับส่วนลดที่ส่งมาจาก Payment.jsx
-        change = 0, // รับเงินทอน
+        cart = [], // รายการสินค้าในตะกร้า
+        discount = 0, // ส่วนลดที่ส่งมาจากหน้า Payment.jsx
+        change = 0, // จำนวนเงินทอน
     } = location.state || {};
 
+    // ฟังก์ชันคำนวณยอดรวม
     const calculateTotalAmount = () => {
         return cart.reduce((sum, product) => sum + (product.price * product.quantity), 0);
     };
 
-    const totalAmount = calculateTotalAmount();
-    const finalTotal = totalAmount * (1 - discount / 100);
-    // คำนวณยอดหลังหักส่วนลด
+    const totalAmount = calculateTotalAmount(); // ยอดรวมก่อนหักส่วนลด
+    const finalTotal = totalAmount * (1 - discount / 100); // คำนวณยอดหลังหักส่วนลด
 
-    const [showReceipt, setShowReceipt] = useState(false); // แสดงใบเสร็จหรือไม่
+    const [showReceipt, setShowReceipt] = useState(false); // ใช้สำหรับแสดงหรือซ่อนใบเสร็จ
 
     return (
         <div>
-            <Navbar />
+            <Navbar /> {/* Navbar ด้านบน */}
             <div className="new-container">
-                {/* ส่วนแสดงจำนวนเงินทอน */}
+                {/* ส่วนแสดงเงินทอน */}
                 <div className="price-section">
                     <p className="label">ทอนเงิน</p>
                     <div className="price1-box">
@@ -93,14 +93,12 @@ function Payment() {
                             </div>
                         </div>
 
-                        {/* ปุ่มปิดใบเสร็จ */}
                         <div className="close-receipt-button">
                             <button onClick={() => setShowReceipt(false)}>ปิดใบเสร็จ</button>
                         </div>
                     </div>
                 )}
 
-                {/* ปุ่มดำเนินการ */}
                 <div className="con-button">
                     <button onClick={() => Navigate('/Menu')}>จบรายการ</button>
                 </div>
@@ -108,9 +106,9 @@ function Payment() {
                     <button onClick={() => setShowReceipt(true)}>ใบเสร็จคิดเงิน</button>
                 </div>
             </div>
-            <Footbar />
+            <Footbar /> 
         </div>
     );
 }
 
-export default Payment;
+export default Payment; 

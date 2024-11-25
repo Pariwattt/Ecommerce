@@ -1,39 +1,39 @@
 import React, { useState } from 'react';
-import '../css/payment.css'; // นำเข้าไฟล์ CSS
-import Navbar from '../webPageFeatures/navbar';
-import Footbar from '../webPageFeatures/footbar';
-import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import '../css/payment.css'; 
+import Navbar from '../webPageFeatures/navbar'; 
+import Footbar from '../webPageFeatures/footbar'; 
+import { useNavigate, useLocation } from 'react-router-dom'; 
+import axios from 'axios'; 
 
 function App() {
-    const Navigate = useNavigate();
-    const location = useLocation();
-
-    // รับข้อมูลที่ส่งมาจาก Menu.jsx
-    const { cart = [], discount, discountedTotal } = location.state || {};
-
-    const [amountReceived, setAmountReceived] = useState('');
-    const [typePay, setTypePay] = useState(''); // เก็บประเภทการชำระเงินที่เลือก
-    const [error, setError] = useState('');
+    const Navigate = useNavigate(); // ใช้สำหรับการนำทางไปยังหน้าอื่น
+    const location = useLocation(); // รับข้อมูลที่ส่งมาผ่าน state
+    // รับข้อมูลจากหน้า `Menu.jsx` ผ่าน state
+    const { cart = [], discount, discountedTotal } = location.state || {}; // ตั้งค่าเริ่มต้นกรณีไม่มีข้อมูล
+    const [amountReceived, setAmountReceived] = useState(''); // เก็บจำนวนเงินที่รับจากลูกค้า
+    const [typePay, setTypePay] = useState(''); // เก็บประเภทการชำระเงินที่เลือก (QR Code หรือ เงินสด)
+    const [error, setError] = useState(''); // เก็บข้อความข้อผิดพลาด
 
     const handleConfirmPayment = async () => {
+        // ตรวจสอบว่าประเภทการชำระเงินถูกเลือกหรือยัง
         if (!typePay) {
             setError('กรุณาเลือกประเภทการชำระเงิน');
             return;
         }
 
-        const amountReceivedNum = parseFloat(amountReceived || 0);
-        const discountedTotalNum = parseFloat(discountedTotal || 0);
+        const amountReceivedNum = parseFloat(amountReceived || 0); // แปลงจำนวนเงินที่รับจากข้อความเป็นตัวเลข
+        const discountedTotalNum = parseFloat(discountedTotal || 0); // แปลงยอดที่ต้องชำระเป็นตัวเลข
 
+        // ตรวจสอบว่าจำนวนเงินที่รับเพียงพอหรือไม่
         if (isNaN(amountReceivedNum) || amountReceivedNum < discountedTotalNum) {
             setError('จำนวนเงินที่รับมาต้องไม่น้อยกว่ายอดเงินที่ต้องชำระ');
             return;
         }
 
         try {
-            // ส่งคำขอการชำระเงินไปยัง API
+            // ส่งคำขอชำระเงินไปยัง API
             const response = await axios.post("http://localhost:8081/v1/payment/pay", {
-                products: cart.map(item => ({
+                products: cart.map(item => ({ // แปลงรายการสินค้าในตะกร้าให้อยู่ในรูปแบบที่ API ต้องการ
                     productId: item.id,
                     code: item.code,
                     name: item.name,
@@ -41,15 +41,14 @@ function App() {
                     price: item.price,
                     quantity: item.quantity,
                 })),
-                discount: parseFloat(discount || 0),
-                amountReceived: amountReceivedNum,
-                typePay: typePay,
+                discount: parseFloat(discount || 0), // ส่งส่วนลดที่ได้รับ
+                amountReceived: amountReceivedNum, // ส่งจำนวนเงินที่รับจากลูกค้า
+                typePay: typePay, // ส่งประเภทการชำระเงินที่เลือก
             });
 
-            if (response.status === 201) {
-                const change = amountReceivedNum - discountedTotalNum;
+            if (response.status === 201) { // ตรวจสอบว่าสำเร็จหรือไม่
+                const change = amountReceivedNum - discountedTotalNum; // คำนวณเงินทอน
 
-                // ส่งข้อมูล cart และ change ไปยังหน้า payment2.jsx
                 Navigate('/payment2', {
                     state: {
                         cart,   // รายการสินค้าในตะกร้า
@@ -58,13 +57,14 @@ function App() {
                     },
                 });
 
-                alert('ชำระเงินสำเร็จ');
+                alert('ชำระเงินสำเร็จ'); 
             } else {
-                setError('เกิดข้อผิดพลาดในการชำระเงิน');
+                setError('เกิดข้อผิดพลาดในการชำระเงิน'); 
             }
         } catch (error) {
-            console.error('Error confirming payment:', error.response || error.message);
+            console.error('Error confirming payment:', error.response || error.message); 
 
+            // ตรวจสอบว่าข้อผิดพลาดมาจาก API หรือการเชื่อมต่อ
             if (error.response) {
                 setError(`ข้อผิดพลาด: ${error.response.data.message || error.response.statusText}`);
             } else {
@@ -74,29 +74,29 @@ function App() {
     };
 
     const handleCancel = () => {
-        Navigate('/Menu');
+        Navigate('/Menu'); 
     };
 
     const handleInputChange = (e) => {
-        const value = e.target.value;
+        const value = e.target.value; // รับค่าจาก input
         if (value >= 0) {
-            setAmountReceived(value);
+            setAmountReceived(value); // อัปเดต state ด้วยค่าที่ป้อน
         }
     };
 
     return (
         <div>
-            <Navbar />
+            <Navbar /> 
             <div className="but-con">
                 <button
-                    className={typePay === 'QR_CODE' ? 'selected' : ''}
-                    onClick={() => setTypePay('QR_CODE')}
+                    className={typePay === 'QR_CODE' ? 'selected' : ''} // เปลี่ยน style หากเลือก QR Code
+                    onClick={() => setTypePay('QR_CODE')} // อัปเดตประเภทการชำระเงิน
                 >
                     QR Code
                 </button>
                 <button
-                    className={typePay === 'CASH' ? 'selected' : ''}
-                    onClick={() => setTypePay('CASH')}
+                    className={typePay === 'CASH' ? 'selected' : ''} // เปลี่ยน style หากเลือกเงินสด
+                    onClick={() => setTypePay('CASH')} // อัปเดตประเภทการชำระเงิน
                 >
                     เงินสด
                 </button>
@@ -106,7 +106,7 @@ function App() {
                 <div className="P-price-section">
                     <p className="L-abel">ราคาหลังหักส่วนลด</p>
                     <div className="price0-box">
-                        {new Intl.NumberFormat().format(discountedTotal || 0)} {/* แสดงยอดที่ต้องชำระ */}
+                        {new Intl.NumberFormat().format(discountedTotal || 0)} {/* แปลงจำนวนเงินให้แสดงในรูปแบบที่อ่านง่าย */}
                     </div>
                 </div>
 
@@ -115,14 +115,13 @@ function App() {
                     <input
                         type="number"
                         className="money-box"
-                        value={amountReceived}
-                        onChange={handleInputChange}
+                        value={amountReceived} // แสดงค่าปัจจุบันใน input
+                        onChange={handleInputChange} // เรียกฟังก์ชันเมื่อมีการเปลี่ยนแปลง
                         placeholder="กรอกจำนวนเงิน"
                         min="0"
                     />
                 </div>
-
-                {error && <p className="error-message">{error}</p>} {/* แสดงข้อความ error */}
+                {error && <p className="error-message">{error}</p>}
 
                 <div className="con-button1">
                     <button onClick={handleCancel}>ยกเลิก</button>
@@ -134,4 +133,4 @@ function App() {
     );
 }
 
-export default App;
+export default App; 
